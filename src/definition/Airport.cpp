@@ -29,8 +29,8 @@ double Airport::getLongitude() const {
 }
 
 void Loader::loadAirports(Graph& graph) {
-    std::string filename = "airports.csv";
-    std::ifstream file("dataset/"+filename);
+    std::string filename = "dataset/airports.csv";
+    std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error: Unable to open file " << filename << std::endl;
         return;
