@@ -1,11 +1,21 @@
-"C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2023.2.2/bin/ninja/win/x64/ninja.exe" -G Ninja -S "C:\Users\Sílvia Augusto\Desktop\2proj_AED_G106" -B "C:\Users\Sílvia Augusto\Desktop\2proj_AED_G106\cmake-build-debug"
+"C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2023.2.2/bin/ninja/win/x64/ninja.exe" -G Ninja -S "C:\Users\Sílvia Augusto\Desktop\2projAED" -B "C:\Users\Sílvia Augusto\Desktop\2projAED\cmake-build-debug"
 -- The C compiler identification is GNU 13.1.0
+-- The CXX compiler identification is GNU 13.1.0
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
 -- Check for working C compiler: C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/gcc.exe - skipped
 -- Detecting C compile features
 -- Detecting C compile features - done
--- Configuring done (1.2s)
-CMake Error: CMake can not determine linker language for target: 2proj_AED_G106
--- Generating done (0.0s)
-CMake Generate step failed.  Build files cannot be regenerated correctly.
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at CMakeLists.txt:31 (add_executable):
+  add_executable cannot create target "2projAED" because another target with
+  the same name already exists.  The existing target is an executable created
+  in source directory "C:/Users/Sílvia Augusto/Desktop/2projAED".  See
+  documentation for policy CMP0002 for more details.
+
+
+-- Configuring incomplete, errors occurred!

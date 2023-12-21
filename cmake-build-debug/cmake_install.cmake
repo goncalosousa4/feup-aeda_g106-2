@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Sílvia Augusto/Desktop/2proj_AED_G106
+# Install script for directory: C:/Users/Sílvia Augusto/Desktop/2projAED
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Sílvia Augusto/Desktop/2proj_AED_G106/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Sílvia Augusto/Desktop/2projAED/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
