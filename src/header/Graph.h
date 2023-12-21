@@ -1,267 +1,173 @@
-/*
- * Graph.h
- */
 #ifndef GRAPH_H_
 #define GRAPH_H_
 
-#include <cstddef>
-#include <utility>
 #include <vector>
 #include <queue>
 #include <stack>
 #include <list>
+#include "Airport.h"
 
-using namespace std;
-
-template <class T> class Edge;
-template <class T> class Graph;
-template <class T> class Vertex;
-
+class Edge;
 
 /****************** Provided structures  ********************/
 
-template <class T>
 class Vertex {
-    T info;                // contents
-    vector<Edge<T> > adj;  // list of outgoing edges
+    std::vector<Edge> adj;  // list of outgoing edges
     bool visited;
     bool processing;
     int indegree;
     int num;               // auxiliary field
     int low;               // auxiliary field
-    void addEdge(Vertex<T> *dest, double w, string airline);
-    bool removeEdgeTo(Vertex<T> *d);
+    Airport airport;
+
 public:
-    Vertex(T in);
-    T getInfo() const;
-    void setInfo(T in);
+    Vertex(const std::string& code);
     bool isVisited() const;
     void setVisited(bool v);
     bool isProcessing() const;
     void setProcessing(bool p);
     int getIndegree() const;
     void setIndegree(int indegree);
-    const vector<Edge<T>> &getAdj() const;
-    void setAdj(const vector<Edge<T>> &adj);
-    friend class Graph<T>;
-    int getNum() const;
-    void setNum(int num);
-    int getLow() const;
-    void setLow(int low);
+    const std::vector<Edge>& getAdj() const;
+    void setAdj(const std::vector<Edge>& adj);
+    const Airport& getAirport() const;
+    void setAirport(const Airport& airport);
+
+    void addEdge(Vertex* dest, double w);
+    bool removeEdgeTo(Vertex* dest);
 };
 
-template <class T>
 class Edge {
-    Vertex<T> * dest;      // destination vertex
+    Vertex* dest;      // destination vertex
     double weight;         // edge weight
-    string airline;
+
 public:
-    Edge(Vertex<T> *d, double w, string airline_);
-    Vertex<T> *getDest() const;
-    void setDest(Vertex<T> *dest);
+    Edge(Vertex* d, double w);
+    Vertex* getDest() const;
+    void setDest(Vertex* dest);
     double getWeight() const;
     void setWeight(double weight);
-    void setAirline(const string& airline);
-    string getAirline() const;
-    friend class Graph<T>;
-    friend class Vertex<T>;
 };
 
-template <class T>
 class Graph {
-    vector<Vertex<T> *> vertexSet;      // vertex set
-    void dfsVisit(Vertex<T> *v,  vector<T> & res) const;
-    bool dfsIsDAG(Vertex<T> *v) const;
+    std::vector<Vertex*> vertexSet;      // vertex set
+    void dfsVisit(Vertex* v, std::vector<std::string>& res);
+
 public:
-    Vertex<T> *findVertex(const T &in) const;
+    Vertex* findVertex(const std::string& code) const;
     int getNumVertex() const;
-    bool addVertex(const T &in);
-    bool removeVertex(const T &in);
-    bool addEdge(const T &sourc, const T &dest, double w, string airline);
-    bool removeEdge(const T &sourc, const T &dest);
-    vector<Vertex<T> * > getVertexSet() const;
-    vector<T> dfs() const;
-    vector<T> dfs(const T & source) const;
-    vector<T> bfs(const T &source) const;
-    vector<T> topsort() const;
+    bool addVertex(const std::string& code);
+    bool removeVertex(const std::string& code);
+    bool addEdge(const std::string& sourc, const std::string& dest, double w);
+    bool removeEdge(const std::string& source, const std::string& dest);
+    std::vector<Vertex*> getVertexSet() const;
+    std::vector<std::string> dfs();
+    std::vector<std::string> dfs(const std::string& source);
+    std::vector<std::string> bfs(const std::string& source) const;
     bool isDAG() const;
 };
 
-/****************** Provided constructors and functions ********************/
+/****************** Vertex Implementation ********************/
 
-template <class T>
-Vertex<T>::Vertex(T in): info(in) {}
+Vertex::Vertex(const std::string& code) : visited(false), processing(false), indegree(0), num(0), low(0), airport(code, "", "", 0.0, 0.0) {}
 
-template <class T>
-Edge<T>::Edge(Vertex<T> *d, double w, string airline_): dest(d), weight(w), airline(std::move(airline_)) {}
-
-
-template <class T>
-int Graph<T>::getNumVertex() const {
-    return vertexSet.size();
-}
-
-template <class T>
-vector<Vertex<T> * > Graph<T>::getVertexSet() const {
-    return vertexSet;
-}
-
-template<class T>
-T Vertex<T>::getInfo() const {
-    return info;
-}
-
-template<class T>
-void Vertex<T>::setInfo(T in) {
-    Vertex::info = in;
-}
-
-template<class T>
-bool Vertex<T>::isProcessing() const {
-    return processing;
-}
-
-template<class T>
-void Vertex<T>::setProcessing(bool p) {
-    Vertex::processing = p;
-}
-
-template<class T>
-Vertex<T> *Edge<T>::getDest() const {
-    return dest;
-}
-
-template<class T>
-void Edge<T>::setDest(Vertex<T> *d) {
-    Edge::dest = d;
-}
-
-template<class T>
-double Edge<T>::getWeight() const {
-    return weight;
-}
-
-template<class T>
-void Edge<T>::setWeight(double weight) {
-    Edge::weight = weight;
-}
-
-template<class T>
-void Edge<T>::setAirline(const std::string& airline_) {
-    Edge::airline = airline_;
-}
-
-template<class T>
-string Edge<T>::getAirline() const {
-    return airline;
-}
-
-template <class T>
-Vertex<T> * Graph<T>::findVertex(const T &in) const {
-    for (auto v : vertexSet)
-        if (v->info == in)
-            return v;
-    return NULL;
-}
-
-template <class T>
-bool Vertex<T>::isVisited() const {
+bool Vertex::isVisited() const {
     return visited;
 }
 
-template<class T>
-int Vertex<T>::getIndegree() const {
+void Vertex::setVisited(bool v) {
+    visited = v;
+}
+
+bool Vertex::isProcessing() const {
+    return processing;
+}
+
+void Vertex::setProcessing(bool p) {
+    processing = p;
+}
+
+int Vertex::getIndegree() const {
     return indegree;
 }
 
-template<class T>
-void Vertex<T>::setIndegree(int indegree) {
-    Vertex::indegree = indegree;
+void Vertex::setIndegree(int indegree) {
+    this->indegree = indegree;
 }
 
-template<class T>
-int Vertex<T>::getNum() const {
-    return num;
-}
-
-template<class T>
-void Vertex<T>::setNum(int num) {
-    Vertex::num = num;
-}
-
-template<class T>
-int Vertex<T>::getLow() const {
-    return low;
-}
-
-template<class T>
-void Vertex<T>::setLow(int low) {
-    Vertex::low = low;
-}
-
-template <class T>
-void Vertex<T>::setVisited(bool v) {
-    Vertex::visited = v;
-}
-
-template<class T>
-const vector<Edge<T>> &Vertex<T>::getAdj() const {
+const std::vector<Edge>& Vertex::getAdj() const {
     return adj;
 }
 
-template <class T>
-void Vertex<T>::setAdj(const vector<Edge<T>> &adj) {
-    Vertex::adj = adj;
+void Vertex::setAdj(const std::vector<Edge>& adj) {
+    this->adj = adj;
 }
 
-
-
-template <class T>
-bool Graph<T>::addVertex(const T &in) {
-    if ( findVertex(in) != NULL)
-        return false;
-    vertexSet.push_back(new Vertex<T>(in));
-    return true;
+const Airport& Vertex::getAirport() const {
+    return airport;
 }
 
-template <class T>
-bool Graph<T>::addEdge(const T &sourc, const T &dest, double w, string airline) {
-    auto v1 = findVertex(sourc);
-    auto v2 = findVertex(dest);
-    if (v1 == NULL || v2 == NULL)
-        return false;
-    v1->addEdge(v2,w,airline);
-    return true;
+void Vertex::setAirport(const Airport& airport) {
+    this->airport = airport;
 }
 
-template <class T>
-void Vertex<T>::addEdge(Vertex<T> *d, double w, string airline) {
-    adj.push_back(Edge<T>(d, w, airline));
+void Vertex::addEdge(Vertex* dest, double w) {
+    adj.push_back(Edge(dest, w));
 }
 
-template <class T>
-bool Graph<T>::removeEdge(const T &sourc, const T &dest) {
-    auto v1 = findVertex(sourc);
-    auto v2 = findVertex(dest);
-    if (v1 == NULL || v2 == NULL)
-        return false;
-    return v1->removeEdgeTo(v2);
-}
-
-template <class T>
-bool Vertex<T>::removeEdgeTo(Vertex<T> *d) {
-    for (auto it = adj.begin(); it != adj.end(); it++)
-        if (it->dest  == d) {
+bool Vertex::removeEdgeTo(Vertex* dest) {
+    for (auto it = adj.begin(); it != adj.end(); ++it) {
+        if (it->getDest() == dest) {
             adj.erase(it);
             return true;
         }
+    }
     return false;
 }
 
-template <class T>
-bool Graph<T>::removeVertex(const T &in) {
-    for (auto it = vertexSet.begin(); it != vertexSet.end(); it++)
-        if ((*it)->info  == in) {
+/****************** Edge Implementation ********************/
+
+Edge::Edge(Vertex* d, double w) : dest(d), weight(w) {}
+
+Vertex* Edge::getDest() const {
+    return dest;
+}
+
+void Edge::setDest(Vertex* d) {
+    dest = d;
+}
+
+double Edge::getWeight() const {
+    return weight;
+}
+
+void Edge::setWeight(double w) {
+    weight = w;
+}
+
+/****************** Graph Implementation ********************/
+
+Vertex* Graph::findVertex(const std::string& code) const {
+    for (auto v : vertexSet)
+        if (v->getAirport().getCode() == code)
+            return v;
+    return nullptr;
+}
+
+int Graph::getNumVertex() const {
+    return vertexSet.size();
+}
+
+bool Graph::addVertex(const std::string& code) {
+    if (findVertex(code) != nullptr)
+        return false;
+    vertexSet.push_back(new Vertex(code));
+    return true;
+}
+
+bool Graph::removeVertex(const std::string& code) {
+    for (auto it = vertexSet.begin(); it != vertexSet.end(); ++it) {
+        if ((*it)->getAirport().getCode() == code) {
             auto v = *it;
             vertexSet.erase(it);
             for (auto u : vertexSet)
@@ -269,150 +175,91 @@ bool Graph<T>::removeVertex(const T &in) {
             delete v;
             return true;
         }
+    }
     return false;
 }
 
+bool Graph::addEdge(const std::string& sourc, const std::string& dest, double w) {
+    auto v1 = findVertex(sourc);
+    auto v2 = findVertex(dest);
+    if (v1 == nullptr || v2 == nullptr)
+        return false;
+    v1->addEdge(v2, w);
+    return true;
+}
 
-/****************** DFS ********************/
+bool Graph::removeEdge(const std::string& sourc, const std::string& dest) {
+    auto v1 = findVertex(sourc);
+    auto v2 = findVertex(dest);
+    if (v1 == nullptr || v2 == nullptr)
+        return false;
+    return v1->removeEdgeTo(v2);
+}
 
-template <class T>
-vector<T> Graph<T>::dfs() const {
-    vector<T> res;
+std::vector<Vertex*> Graph::getVertexSet() const {
+    return vertexSet;
+}
+
+std::vector<std::string> Graph::dfs() {
+    std::vector<std::string> res;
     for (auto v : vertexSet)
-        v->visited = false;
+        v->setVisited(false);
     for (auto v : vertexSet)
-        if (! v->visited)
+        if (!v->isVisited())
             dfsVisit(v, res);
     return res;
 }
 
-template <class T>
-void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> & res) const {
-    v->visited = true;
-    res.push_back(v->info);
-    for (auto & e : v->adj) {
-        auto w = e.dest;
-        if ( ! w->visited)
+void Graph::dfsVisit(Vertex* v, std::vector<std::string>& res) {
+    v->setVisited(true);
+    res.push_back(v->getAirport().getCode());
+    for (auto& e : v->getAdj()) {
+        auto w = e.getDest();
+        if (!w->isVisited())
             dfsVisit(w, res);
     }
 }
 
-
-/****************** DFS ********************/
-template <class T>
-vector<T> Graph<T>::dfs(const T & source) const {
-    vector<T> res;
+std::vector<std::string> Graph::dfs(const std::string& source) {
+    std::vector<std::string> res;
     auto s = findVertex(source);
     if (s == nullptr)
         return res;
 
     for (auto v : vertexSet)
-        v->visited = false;
+        v->setVisited(false);
 
     dfsVisit(s, res);
     return res;
 }
 
-
-/****************** BFS ********************/
-
-template <class T>
-vector<T> Graph<T>::bfs(const T & source) const {
-    vector<T> res;
+std::vector<std::string> Graph::bfs(const std::string& source) const {
+    std::vector<std::string> res;
     auto s = findVertex(source);
-    if (s == NULL)
+    if (s == nullptr)
         return res;
-    queue<Vertex<T> *> q;
+
+    std::queue<Vertex*> q;
     for (auto v : vertexSet)
-        v->visited = false;
+        v->setVisited(false);
+
     q.push(s);
-    s->visited = true;
+    s->setVisited(true);
+
     while (!q.empty()) {
         auto v = q.front();
         q.pop();
-        res.push_back(v->info);
-        for (auto & e : v->adj) {
-            auto w = e.dest;
-            if ( ! w->visited ) {
+        res.push_back(v->getAirport().getCode());
+
+        for (auto& e : v->getAdj()) {
+            auto w = e.getDest();
+            if (!w->isVisited()) {
                 q.push(w);
-                w->visited = true;
+                w->setVisited(true);
             }
         }
     }
-    return res;
-}
 
-
-/****************** isDAG  ********************/
-
-template <class T>
-bool Graph<T>::isDAG() const {
-    for (auto v : vertexSet) {
-        v->visited = false;
-        v->processing = false;
-    }
-    for (auto v : vertexSet)
-        if (! v->visited)
-            if ( ! dfsIsDAG(v) )
-                return false;
-    return true;
-}
-
-template <class T>
-bool Graph<T>::dfsIsDAG(Vertex<T> *v) const {
-    v->visited = true;
-    v->processing = true;
-    for (auto & e : v->adj) {
-        auto w = e.dest;
-        if (w->processing)
-            return false;
-        if (! w->visited)
-            if (! dfsIsDAG(w))
-                return false;
-    }
-    v->processing = false;
-    return true;
-}
-
-
-/****************** toposort ********************/
-
-template<class T>
-vector<T> Graph<T>::topsort() const {
-    vector<T> res;
-    queue<Vertex<T>*> q;
-    if (!isDAG()) {
-        return res;
-    }
-
-    for (Vertex<T>* vertex : vertexSet) {
-        vertex->indegree = 0;
-    }
-    for (Vertex<T>* vertex : vertexSet) {
-        for (Edge<T> edge : vertex->adj) {
-            Vertex<T>* vertex1 = edge.dest;
-            vertex1->indegree++;
-        }
-    }
-    for (Vertex<T>* vertex : vertexSet) {
-        if (vertex->indegree == 0)
-            q.push(vertex);
-    }
-
-    while (!q.empty()) {
-        Vertex<T>* vertex = q.front();
-
-        for (Edge<T> edge : vertex->adj) {
-            Vertex<T>* adj = edge.getDest();
-            adj->indegree--;
-            if (adj->indegree == 0) {
-                q.push(adj);
-            }
-        }
-
-        q.pop();
-        res.push_back(vertex->info);
-    }
     return res;
 }
 
