@@ -7,7 +7,7 @@
 
 class Loader {
 public:
-    static void loadAirports(Graph& graph, const std::string& filename);
+    static void loadAirports(Graph& graph);
 };
 
 #endif /* AIRPORTLOADER_H_ */

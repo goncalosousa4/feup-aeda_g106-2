@@ -3,6 +3,7 @@
 
 #include <string>
 
+
 class Airport {
 private:
     std::string code;
@@ -12,6 +13,7 @@ private:
     double longitude;
 
 public:
+
     Airport(const std::string& code, const std::string& name, const std::string& city,
             double latitude, double longitude);
 
