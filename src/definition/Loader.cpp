@@ -76,7 +76,7 @@ void Loader::loadFlights(Graph& graph, const std::string& filename) {
 
             if (graph.findVertex(origin) && graph.findVertex(origin) ) {
 
-
+                // Haversine Distance Function implementation, i guess
 
                 double lat1 = src.getLatitude();
                 double lon1 = src.getLongitude();
@@ -101,8 +101,7 @@ void Loader::loadFlights(Graph& graph, const std::string& filename) {
                 double w = radius * c;
 
 
-                graph.addEdge(origin, destination, w);
-
+                graph.addEdge(origin, destination, airline, w);
             } else {
                 std::cerr << "Error: One or both airports not found for flight from "
                           << origin << " to " << destination << std::endl;

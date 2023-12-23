@@ -16,4 +16,6 @@ add_executable(2proj_AED_G106
         main.cpp
         src/definition/Graph.cpp
         src/header/Flight.h
-        src/definition/Flight.cpp)
+        src/definition/Flight.cpp
+        src/definition/Menu.cpp
+        src/header/Menu.h)

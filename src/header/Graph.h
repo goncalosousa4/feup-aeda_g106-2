@@ -47,20 +47,21 @@ public:
     Vertex* getDest() const;
     void setDest(Vertex* dest);
     double getWeight() const;
-    void setWeight(double weight);
-    /*const Flight& getFlight() const;
-    void setFlight(const Flight& flight);*/
+
+
 };
 
 class Graph {
     std::vector<Vertex*> vertexSet;      // vertex set
+    std::vector<Edge*> edgeSet;
     void dfsVisit(Vertex* v, std::vector<std::string>& res);
 
 public:
     Vertex* findVertex(const std::string& code) const;
     int getNumVertex() const;
+    int getNumEdges() const;
     bool addVertex(const std::string& code);
-    bool addEdge(const std::string& sourc, const std::string& dest, double w);
+    bool addEdge(const std::string& sourc, const std::string& dest, const std::string airline, double w);
     std::vector<Vertex*> getVertexSet() const;
     std::vector<std::string> dfs();
     std::vector<std::string> dfs(const std::string& source);

@@ -13,7 +13,7 @@ public:
 private:
     std::string origin;
     std::string destination;
-    const std::string& airline;
+    std::string airline;
 };
 
 #endif //FLIGHT_H

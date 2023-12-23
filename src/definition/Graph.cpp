@@ -65,17 +65,8 @@ double Edge::getWeight() const {
     return weight;
 }
 
-void Edge::setWeight(double w) {
-    weight = w;
-}
 
-/*const Flight& Edge::getFlight() const {
-    return flight;
-}
 
-void Edge::setFlight(const Flight &flight) {
-    this->flight  flight;
-}*/
 
 /****************** Graph Implementation ********************/
 
@@ -89,6 +80,9 @@ Vertex* Graph::findVertex(const std::string& code) const {
 int Graph::getNumVertex() const {
     return vertexSet.size();
 }
+int Graph::getNumEdges() const {
+    return edgeSet.size();
+}
 
 bool Graph::addVertex(const std::string& code) {
     if (findVertex(code) != nullptr)
@@ -98,13 +92,15 @@ bool Graph::addVertex(const std::string& code) {
 }
 
 
-bool Graph::addEdge(const std::string& sourc, const std::string& dest, double w) {
+bool Graph::addEdge(const std::string& sourc, const std::string& dest, const std::string airline, double w) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
     v1->addEdge(v2, w);
+    edgeSet.push_back(new Edge(v2, w));
     return true;
+
 }
 
 std::vector<Vertex*> Graph::getVertexSet() const {
