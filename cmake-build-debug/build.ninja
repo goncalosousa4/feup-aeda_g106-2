@@ -55,6 +55,18 @@ build CMakeFiles/2proj_AED_G106.dir/src/definition/Airport.cpp.obj: CXX_COMPILER
   OBJECT_DIR = CMakeFiles\2proj_AED_G106.dir
   OBJECT_FILE_DIR = CMakeFiles\2proj_AED_G106.dir\src\definition
 
+build CMakeFiles/2proj_AED_G106.dir/src/definition/Loader.cpp.obj: CXX_COMPILER__2proj_AED_G106_unscanned_Debug C$:/Users/Sílvia$ Augusto/Desktop/2proj_AED_G106/src/definition/Loader.cpp || cmake_object_order_depends_target_2proj_AED_G106
+  DEP_FILE = CMakeFiles\2proj_AED_G106.dir\src\definition\Loader.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\2proj_AED_G106.dir
+  OBJECT_FILE_DIR = CMakeFiles\2proj_AED_G106.dir\src\definition
+
+build CMakeFiles/2proj_AED_G106.dir/src/definition/main.cpp.obj: CXX_COMPILER__2proj_AED_G106_unscanned_Debug C$:/Users/Sílvia$ Augusto/Desktop/2proj_AED_G106/src/definition/main.cpp || cmake_object_order_depends_target_2proj_AED_G106
+  DEP_FILE = CMakeFiles\2proj_AED_G106.dir\src\definition\main.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\2proj_AED_G106.dir
+  OBJECT_FILE_DIR = CMakeFiles\2proj_AED_G106.dir\src\definition
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target 2proj_AED_G106
@@ -63,7 +75,7 @@ build CMakeFiles/2proj_AED_G106.dir/src/definition/Airport.cpp.obj: CXX_COMPILER
 #############################################
 # Link the executable 2proj_AED_G106.exe
 
-build 2proj_AED_G106.exe: CXX_EXECUTABLE_LINKER__2proj_AED_G106_Debug CMakeFiles/2proj_AED_G106.dir/src/definition/Airport.cpp.obj
+build 2proj_AED_G106.exe: CXX_EXECUTABLE_LINKER__2proj_AED_G106_Debug CMakeFiles/2proj_AED_G106.dir/src/definition/Airport.cpp.obj CMakeFiles/2proj_AED_G106.dir/src/definition/Loader.cpp.obj CMakeFiles/2proj_AED_G106.dir/src/definition/main.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\2proj_AED_G106.dir

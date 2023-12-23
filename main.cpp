@@ -1,14 +1,13 @@
 #include "src/header/Graph.h"
-#include "src/header/Loader.h"
 #include "src/header/Airport.h"
-
+#include "src/header/Loader.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
-int main(){
-    Graph Airports;
-    Loader::loadAirports(Airports);
-
-    std::cout << "Number of airports loaded: " << Airports.getNumVertex() << std::endl;
-
+int main() {
+    Graph Airport;
+    Loader::loadAirports(Airport);
     return 0;
 }
