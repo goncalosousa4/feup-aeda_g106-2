@@ -12,11 +12,11 @@ private:
     double longitude;
 
 public:
-    Airport(std::string code, std::string name, std::string city, double latitude, double longitude);
+    Airport(const std::string& code, const std::string& name, const std::string& city, double latitude, double longitude);
 
-    std::string getCode() const;
-    std::string getName() const;
-    std::string getCity() const;
+    const std::string& getCode() const;
+    const std::string& getName() const;
+    const std::string& getCity() const;
     double getLatitude() const;
     double getLongitude() const;
 };

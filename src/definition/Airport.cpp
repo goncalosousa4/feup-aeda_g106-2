@@ -1,17 +1,17 @@
 #include "../header/Airport.h"
 
-Airport::Airport(std::string code, std::string name, std::string city, double latitude, double longitude)
+Airport::Airport(const std::string& code, const std::string& name, const std::string& city, double latitude, double longitude)
         : code(code), name(name), city(city), latitude(latitude), longitude(longitude) {}
 
-std::string Airport::getCode() const {
+const std::string& Airport::getCode() const {
     return code;
 }
 
-std::string Airport::getName() const {
+const std::string& Airport::getName() const {
     return name;
 }
 
-std::string Airport::getCity() const {
+const std::string& Airport::getCity() const {
     return city;
 }
 

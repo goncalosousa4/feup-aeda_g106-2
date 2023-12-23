@@ -8,6 +8,8 @@
 
 int main() {
     Graph Airport;
-    Loader::loadAirports(Airport);
+    Loader::loadAirports(Airport, "airports.csv");
+
+    std::cout << "Number of airports loaded: " << Airport.getNumVertex() << std::endl;
     return 0;
 }

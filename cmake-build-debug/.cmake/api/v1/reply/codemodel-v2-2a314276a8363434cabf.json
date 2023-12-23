@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.26"
+						"string" : "3.27"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "2proj_AED_G106::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-2proj_AED_G106-Debug-f6f2d020d51584746b11.json",
+					"jsonFile" : "target-2proj_AED_G106-Debug-e7e7d6b090bfbd66b181.json",
 					"name" : "2proj_AED_G106",
 					"projectIndex" : 0
 				}

@@ -1,14 +1,15 @@
 #include "../header/Airport.h"
 #include "../header/Loader.h"
+#include "../header/Graph.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
 
-void Loader::loadAirports(Graph& graph) {
-    std::ifstream file("dataset/airports.csv");
+void Loader::loadAirports(Graph& graph, std::string filename) {
+    std::ifstream file("../dataset/airports.csv");
     if (!file.is_open()) {
-        std::cerr << "Error: Unable to open file dataset/airports.csv " << std::endl;
+        std::cerr << "Error: Unable to open file airports.csv " << std::endl;
         return;
     }
 
