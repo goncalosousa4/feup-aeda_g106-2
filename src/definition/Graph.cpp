@@ -32,9 +32,9 @@ const std::vector<Edge>& Vertex::getAdj() const {
     return adj;
 }
 
-void Vertex::setAdj(const std::vector<Edge>& adj) {
+/*void Vertex::setAdj(const std::vector<Edge>& adj) {
     this->adj = adj;
-}
+}*/
 
 const Airport& Vertex::getAirport() const {
     return airport;
@@ -48,15 +48,6 @@ void Vertex::addEdge(Vertex* dest, double w) {
     adj.push_back(Edge(dest, w));
 }
 
-bool Vertex::removeEdgeTo(Vertex* dest) {
-    for (auto it = adj.begin(); it != adj.end(); ++it) {
-        if (it->getDest() == dest) {
-            adj.erase(it);
-            return true;
-        }
-    }
-    return false;
-}
 
 /****************** Edge Implementation ********************/
 
@@ -78,6 +69,14 @@ void Edge::setWeight(double w) {
     weight = w;
 }
 
+/*const Flight& Edge::getFlight() const {
+    return flight;
+}
+
+void Edge::setFlight(const Flight &flight) {
+    this->flight  flight;
+}*/
+
 /****************** Graph Implementation ********************/
 
 Vertex* Graph::findVertex(const std::string& code) const {
@@ -98,19 +97,6 @@ bool Graph::addVertex(const std::string& code) {
     return true;
 }
 
-bool Graph::removeVertex(const std::string& code) {
-    for (auto it = vertexSet.begin(); it != vertexSet.end(); ++it) {
-        if ((*it)->getAirport().getCode() == code) {
-            auto v = *it;
-            vertexSet.erase(it);
-            for (auto u : vertexSet)
-                u->removeEdgeTo(v);
-            delete v;
-            return true;
-        }
-    }
-    return false;
-}
 
 bool Graph::addEdge(const std::string& sourc, const std::string& dest, double w) {
     auto v1 = findVertex(sourc);
@@ -119,14 +105,6 @@ bool Graph::addEdge(const std::string& sourc, const std::string& dest, double w)
         return false;
     v1->addEdge(v2, w);
     return true;
-}
-
-bool Graph::removeEdge(const std::string& sourc, const std::string& dest) {
-    auto v1 = findVertex(sourc);
-    auto v2 = findVertex(dest);
-    if (v1 == nullptr || v2 == nullptr)
-        return false;
-    return v1->removeEdgeTo(v2);
 }
 
 std::vector<Vertex*> Graph::getVertexSet() const {

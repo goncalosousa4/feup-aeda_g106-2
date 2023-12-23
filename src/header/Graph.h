@@ -6,6 +6,7 @@
 #include <stack>
 #include <list>
 #include "Airport.h"
+#include "Flight.h"
 
 class Edge;
 
@@ -34,12 +35,12 @@ public:
     void setAirport(const Airport& airport);
 
     void addEdge(Vertex* dest, double w);
-    bool removeEdgeTo(Vertex* dest);
 };
 
 class Edge {
     Vertex* dest;      // destination vertex
     double weight;         // edge weight
+
 
 public:
     Edge(Vertex* d, double w);
@@ -47,6 +48,8 @@ public:
     void setDest(Vertex* dest);
     double getWeight() const;
     void setWeight(double weight);
+    /*const Flight& getFlight() const;
+    void setFlight(const Flight& flight);*/
 };
 
 class Graph {
@@ -57,9 +60,7 @@ public:
     Vertex* findVertex(const std::string& code) const;
     int getNumVertex() const;
     bool addVertex(const std::string& code);
-    bool removeVertex(const std::string& code);
     bool addEdge(const std::string& sourc, const std::string& dest, double w);
-    bool removeEdge(const std::string& source, const std::string& dest);
     std::vector<Vertex*> getVertexSet() const;
     std::vector<std::string> dfs();
     std::vector<std::string> dfs(const std::string& source);
