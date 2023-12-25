@@ -174,7 +174,8 @@ void Menu::flightsPerCityPerAirline(Graph ap) {
         }
     }
     std::cout << "The number of flights from " << city << " is " << num << std::endl;
-    std::cout << "Number of flights from " << city << " per airline:" << std::endl;
+    std::cout << city << " has " << flightsPerAirline.size() << " airlines available\n";
+    std::cout << "\nNumber of flights from " << city << " per airline:" << std::endl;
     for (const auto& entry : flightsPerAirline) {
         auto airline = entry.first;
         std::cout << "\t-" << airline << ": " << entry.second << std::endl; // insert airline name like - IBE (Iberia Airlines)
