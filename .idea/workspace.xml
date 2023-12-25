@@ -21,9 +21,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="799ec3df-112a-4cce-89a1-22becce3d46f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/definition/Airline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/definition/Airline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/definition/Loader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/definition/Loader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/header/Airline.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/Airline.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/2proj_AED_G106.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/2proj_AED_G106.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/definition/Menu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/definition/Menu.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/header/Loader.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/Loader.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +110,7 @@
       <workItem from="1703423505348" duration="5000" />
       <workItem from="1703458008366" duration="692000" />
       <workItem from="1703461828720" duration="7644000" />
-      <workItem from="1703509384571" duration="5909000" />
+      <workItem from="1703509384571" duration="7449000" />
     </task>
     <servers />
   </component>

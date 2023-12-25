@@ -12,7 +12,7 @@ public:
     static void loadFlights(Graph& graph, const std::string& flightFilename);
 
 
-    Airline findAirlineByCode(const std::string &code); // finds airlines without loading the entire file
+    static Airline findAirlineByCode(const std::string &code); // finds airlines without loading the entire file
 };
 
 #endif

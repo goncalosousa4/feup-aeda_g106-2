@@ -1,4 +1,6 @@
 #include "Menu.h"
+#include "Airline.h"
+#include "Loader.h"
 #include <set>
 #include <unordered_map>
 
@@ -42,7 +44,7 @@ void Menu::displayMenu(Graph ap) {
                 std::cout<<"                            \\ \\"<<std::endl;
                 std::cout<<"                             \\  \\"<<std::endl;
                 std::cout<<"                      |\\      \\   \\"<<std::endl;
-                std::cout<<"..................... >}==|||A E D|||[  ) ...    "<<std::endl;
+                std::cout<<"..................... >}(|||||A E D|||[  ) ...    "<<std::endl;
                 std::cout<<"                      |/      /   /"<<std::endl;
                 std::cout<<"                             /  /"<<std::endl;
                 std::cout<<" Thank you for choosing us  / /"<<std::endl;
@@ -162,11 +164,12 @@ void Menu::flightsPerCityPerAirline(Graph ap) {
     std::cin.ignore();
     std::getline(std::cin, city);
     std::cout << std::endl;
-    int num = 0;
+    int num = 0, count = 0;
     std::unordered_map<std::string, int> flightsPerAirline;
 
     for (const auto& vertex : ap.getVertexSet()) {
         if (vertex->getAirport().getCity() == city) {
+            count++;
             for (const Edge& edge : vertex->getAdj()) {
                 std::string airline = edge.getAirline();
                 flightsPerAirline[airline]++;
@@ -174,12 +177,18 @@ void Menu::flightsPerCityPerAirline(Graph ap) {
             }
         }
     }
-    std::cout << "The number of flights from " << city << " is " << num << std::endl;
-    std::cout << city << " has " << flightsPerAirline.size() << " airlines available\n";
-    std::cout << "\nNumber of flights from " << city << " per airline:" << std::endl;
-    for (const auto& entry : flightsPerAirline) {
-        auto airline = entry.first;
-        std::cout << "\t-" << airline << ": " << entry.second << std::endl; // insert airline name like - IBE (Iberia Airlines)
+
+    if (count==0){
+        std::cout <<"City " << city << " not found. Please enter a valid city\n";
+    }else{
+        std::cout << "The number of flights from " << city << " is " << num << std::endl;
+        std::cout << city << " has " << flightsPerAirline.size() << " airlines available\n";
+        std::cout << "\nNumber of flights from " << city << " per airline:" << std::endl;
+        for (const auto& entry : flightsPerAirline) {
+            auto airlineCode = entry.first;
+            Airline line = Loader::findAirlineByCode(airlineCode);
+            std::cout << "\t-" << airlineCode << " ("<< line.getName() <<  "): " << entry.second << std::endl; // insert airline name like - IBE (Iberia Airlines)
+        }
     }
 }
 
@@ -189,7 +198,7 @@ void Menu::flightsPerAirline(Graph ap){
     std::cin.ignore();
     std::getline(std::cin, airline);
     std::cout << std::endl;
-
+    Airline line = Loader::findAirlineByCode(airline);
     int totalFlights = 0;
 
     for (const auto& vertex : ap.getVertexSet()) {
@@ -200,7 +209,12 @@ void Menu::flightsPerAirline(Graph ap){
         }
     }
 
-    std::cout << "The number of flights for " << airline << " is " << totalFlights << std::endl; // insert airline name like - IBE (Iberia Airlines)
+    if (totalFlights==0){
+        std::cout << "Airline " << airline << " not found. Please enter a valid Airline\n";
+    } else{
+        std::cout << "The number of flights for " << airline << " (" << line.getName() << ")" << " is " << totalFlights << std::endl; // insert airline name like - IBE (Iberia Airlines)
+    }
+
 }
 
 void Menu::countCountriesForAirport(Graph ap) {
