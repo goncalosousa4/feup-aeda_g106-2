@@ -1,11 +1,11 @@
 #include "Menu.h"
-
+#include <set>
 
 void Menu::displayMenu(Graph ap) {
     int choice;
     do {
-
-        std::cout << "\n  M E N U  \n";
+        std::cout << "\n-----------\n" ;
+        std::cout << "  M E N U   \n";
         std::cout << "-----------\n" ;
         std::cout << "1. Check the global number of airports\n";
         std::cout << "2. Check the number of available flights\n";
@@ -13,6 +13,7 @@ void Menu::displayMenu(Graph ap) {
         std::cout << "\n0. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
+        std::cout << std::endl;
 
         switch (choice) {
             case 1:
@@ -45,19 +46,30 @@ void Menu::printAvailableFlights(Graph ap) {
 }
 
 void Menu::countFlightsOutOfAirport(Graph ap) {
+    std::set<std::string> airlines;
+
     std::string airportCode;
     std::cout << "Enter the airport code: ";
     std::cin >> airportCode;
+    std::cout << std::endl;
 
     Vertex* airportVertex = ap.findVertex(airportCode);
+    for (const Edge &edge: airportVertex->getAdj()) {
+        airlines.insert(edge.getAirline());
+    }
+
     if (airportVertex) {
         int numFlights = airportVertex->getAdj().size();
-        std::cout << "Number of flights out of " << airportCode << ": " << numFlights << std::endl;
+        std::cout << "           A I R P O R T   " << airportCode << "          \n";
+        std::cout << "+-----------------------------------------+\n";
+        std::cout << "| The number of flights out of " << airportCode << " is " << numFlights << " |"  << std::endl;
+        std::cout << "|  -Flights have " << airlines.size() << " different Airlines    |\n";
+        std::cout << "+-----------------------------------------+\n";
     } else {
         std::cout << "Airport with code " << airportCode << " not found." << std::endl;
     }
-}
 
+}
 void Menu::airportInfoMenu(Graph ap){
     int choice;
     do {
@@ -69,6 +81,7 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
+        std::cout << std::endl;
 
         switch (choice) {
             case 1:
@@ -77,6 +90,7 @@ void Menu::airportInfoMenu(Graph ap){
 
             case 0:
                 displayMenu(ap);
+                break;
             default:
                 std::cout << "Invalid choice. Please try again.\n";
         }

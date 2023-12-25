@@ -44,14 +44,14 @@ void Vertex::setAirport(const Airport& airport) {
     this->airport = airport;
 }
 
-void Vertex::addEdge(Vertex* dest, double w) {
-    adj.push_back(Edge(dest, w));
+void Vertex::addEdge(Vertex* dest, double w, std::string airline) {
+    adj.push_back(Edge(dest, w, airline));
 }
 
 
 /****************** Edge Implementation ********************/
 
-Edge::Edge(Vertex* d, double w) : dest(d), weight(w) {}
+Edge::Edge(Vertex* d, double w, std::string airline) : dest(d), weight(w), airline(airline) {}
 
 Vertex* Edge::getDest() const {
     return dest;
@@ -64,7 +64,9 @@ void Edge::setDest(Vertex* d) {
 double Edge::getWeight() const {
     return weight;
 }
-
+std::string Edge::getAirline() const{
+    return airline;
+}
 
 
 
@@ -97,8 +99,8 @@ bool Graph::addEdge(const std::string& sourc, const std::string& dest, const std
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
-    v1->addEdge(v2, w);
-    edgeSet.push_back(new Edge(v2, w));
+    v1->addEdge(v2, w, airline);
+    edgeSet.push_back(new Edge(v2, w, airline));
     return true;
 
 }

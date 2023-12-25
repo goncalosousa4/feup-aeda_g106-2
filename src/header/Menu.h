@@ -16,7 +16,6 @@ private:
     static void printAvailableAirports(Graph ap);
     static void printAvailableFlights(Graph ap);
     static void countFlightsOutOfAirport(Graph ap);
-    static void countDifferentAirlines(Graph ap);
 
 
 };

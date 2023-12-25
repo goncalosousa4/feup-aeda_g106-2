@@ -34,19 +34,21 @@ public:
     const Airport& getAirport() const;
     void setAirport(const Airport& airport);
 
-    void addEdge(Vertex* dest, double w);
+    void addEdge(Vertex* dest, double w, std::string airline);
 };
 
 class Edge {
     Vertex* dest;      // destination vertex
     double weight;         // edge weight
+    std::string airline;
 
 
 public:
-    Edge(Vertex* d, double w);
+    Edge(Vertex* d, double w, std::string airline);
     Vertex* getDest() const;
     void setDest(Vertex* dest);
     double getWeight() const;
+    std::string getAirline() const;
 
 
 };
