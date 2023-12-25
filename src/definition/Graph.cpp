@@ -2,7 +2,7 @@
 
 /****************** Vertex Implementation ********************/
 
-Vertex::Vertex(const std::string& code) : visited(false), processing(false), indegree(0), num(0), low(0), airport(code, "", "", 0.0, 0.0) {}
+Vertex::Vertex(const std::string& code) : visited(false), processing(false), indegree(0), num(0), low(0), airport(code, "", "", "", 0.0, 0.0) {}
 
 bool Vertex::isVisited() const {
     return visited;

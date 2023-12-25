@@ -9,6 +9,7 @@ public:
 
     static void displayMenu(Graph ap);
     static void airportInfoMenu(Graph ap);
+    static void statsMenu(Graph ap);
 
 private:
     static void printAvailableAirports(Graph ap);
@@ -16,6 +17,9 @@ private:
     static void countFlightsOutOfAirport(Graph ap);
     static void flightsPerCityPerAirline(Graph ap);
     static void flightsPerAirline(Graph ap);
+    static void countCountriesForAirport(Graph ap);
+    static void countCountriesForCity(Graph ap);
+
 
 };
 

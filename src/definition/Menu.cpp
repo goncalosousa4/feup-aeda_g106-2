@@ -11,8 +11,8 @@ void Menu::displayMenu(Graph ap) {
         std::cout << "1. Check the global number of airports\n";
         std::cout << "2. Check the number of available flights\n";
         std::cout << "3. Show Airports' information\n";
-        std::cout << "4. Check city stats\n";
-        std::cout << "5. Check airline stats\n";
+        std::cout << "4. Check statistics\n";
+
         std::cout << "\n0. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -31,11 +31,7 @@ void Menu::displayMenu(Graph ap) {
                 break;
 
             case 4:
-                flightsPerCityPerAirline(ap);
-                break;
-
-            case 5:
-                flightsPerAirline(ap);
+                statsMenu(ap);
                 break;
 
             case 0:
@@ -120,6 +116,45 @@ void Menu::airportInfoMenu(Graph ap){
         }
     } while (choice != 3);
 }
+
+void Menu::statsMenu(Graph ap){
+    int choice;
+    do {
+        std::cout << "\n-------------\n" ;
+        std::cout << "  S T A T S  \n";
+        std::cout << "-------------\n" ;
+        std::cout << "1. Check City statistics\n";
+        std::cout << "2. Check Airline statistics\n";
+        std::cout << "3. Check countries from a city\n";
+        std::cout << "4. Check countries from an Airport\n";
+        std::cout << "\n0. Return to Main Menu\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+        std::cout << std::endl;
+
+        switch (choice) {
+            case 1:
+                flightsPerCityPerAirline(ap);
+                break;
+            case 2:
+                flightsPerAirline(ap);
+                break;
+            case 3:
+                countCountriesForCity(ap);
+                break;
+            case 4:
+                countCountriesForAirport(ap);
+                break;
+            case 0:
+                displayMenu(ap);
+                break;
+
+            default:
+                std::cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 6);
+}
+
 void Menu::flightsPerCityPerAirline(Graph ap) {
     std::string city;
     std::cout << "Enter the city: ";
@@ -139,7 +174,7 @@ void Menu::flightsPerCityPerAirline(Graph ap) {
         }
     }
     std::cout << "The number of flights from " << city << " is " << num << std::endl;
-    std::cout << "The number of flights from " << city << " per airline:" << std::endl;
+    std::cout << "Number of flights from " << city << " per airline:" << std::endl;
     for (const auto& entry : flightsPerAirline) {
         auto airline = entry.first;
         std::cout << "\t-" << airline << ": " << entry.second << std::endl; // insert airline name like - IBE (Iberia Airlines)
@@ -163,8 +198,53 @@ void Menu::flightsPerAirline(Graph ap){
         }
     }
 
-    std::cout << "The number of flights for " << airline << ": " << totalFlights << std::endl; // insert airline name like - IBE (Iberia Airlines)
+    std::cout << "The number of flights for " << airline << " is " << totalFlights << std::endl; // insert airline name like - IBE (Iberia Airlines)
 }
+
+void Menu::countCountriesForAirport(Graph ap) {
+    std::string airportCode;
+    std::cout << "Enter the airport code: ";
+    std::cin >> airportCode;
+    std::cout << std::endl;
+
+    const Vertex* airportVertex = ap.findVertex(airportCode);
+    if (!airportVertex) {
+        std::cout << "Airport with code " << airportCode << " not found." << std::endl;
+        return;
+    }
+
+    std::set<std::string> countries;
+
+    for (const Edge& edge : airportVertex->getAdj()) {
+        Vertex* dest = edge.getDest();
+        countries.insert(dest->getAirport().getCountry());
+    }
+
+    std::cout << "The number of different countries able to reach departing from " << airportCode << " is " << countries.size() << std::endl;
+}
+
+
+void Menu::countCountriesForCity(Graph ap) {
+    std::string city;
+    std::cout << "Enter the city: ";
+    std::cin.ignore();
+    std::getline(std::cin, city);
+    std::cout << std::endl;
+
+    std::set<std::string> countries;
+
+    for (const auto& vertex : ap.getVertexSet()) {
+        if (vertex->getAirport().getCity() == city) {
+            for (const Edge& edge : vertex->getAdj()) {
+                Vertex* dest = edge.getDest();
+
+                countries.insert(dest->getAirport().getCountry());
+            }
+        }
+    }
+    std::cout << "The number of different countries able to reach departing from " << city << " is " << countries.size() << std::endl;
+}
+
 
 
 

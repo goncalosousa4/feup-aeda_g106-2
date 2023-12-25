@@ -28,11 +28,12 @@ void Loader::loadAirports(Graph& graph, std::string filename) {
             std::string code = tokens[0];
             std::string name = tokens[1];
             std::string city = tokens[2];
+            std::string country = tokens[3];
             double latitude = std::stod(tokens[4]);
             double longitude = std::stod(tokens[5]);
             if (graph.addVertex(code)) {
                 auto vertex = graph.findVertex(code);
-                vertex->setAirport(Airport(code, name, city, latitude, longitude));
+                vertex->setAirport(Airport(code, name, city,country, latitude, longitude));
             } else {
                 std::cerr << "Error: Airport with code " << code << " already exists in the graph." << std::endl;
             }
