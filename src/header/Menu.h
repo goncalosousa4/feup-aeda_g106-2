@@ -16,7 +16,8 @@ private:
     static void printAvailableAirports(Graph ap);
     static void printAvailableFlights(Graph ap);
     static void countFlightsOutOfAirport(Graph ap);
-
+    static void flightsPerCityPerAirline(Graph ap);
+    static void flightsPerAirline(Graph ap);
 
 };
 

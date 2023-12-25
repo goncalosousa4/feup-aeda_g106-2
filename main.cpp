@@ -15,7 +15,7 @@ int main() {
     int space;
     std::cin >> space;
     if (space == 0){
-
+/*
         std::cout<<"          \\    "<<std::endl;
         std::cout<<"          \\ \\"<<std::endl;
         std::cout<<"           \\  \\"<<std::endl;
@@ -25,7 +25,7 @@ int main() {
         std::cout<<"           /  /"<<std::endl;
         std::cout<<"          / /"<<std::endl;
         std::cout<<"          /"<<std::endl;
-
+*/
         std::cout<<"                   \\    "<<std::endl;
         std::cout<<"                   \\ \\"<<std::endl;
         std::cout<<"                    \\  \\"<<std::endl;
@@ -35,7 +35,7 @@ int main() {
         std::cout<<"                    /  /"<<std::endl;
         std::cout<<"                   / /"<<std::endl;
         std::cout<<"                   /"<<std::endl;
-
+/*
         std::cout<<"                            \\    "<<std::endl;
         std::cout<<"                            \\ \\"<<std::endl;
         std::cout<<"                             \\  \\"<<std::endl;
@@ -45,7 +45,7 @@ int main() {
         std::cout<<"                             /  /"<<std::endl;
         std::cout<<"                            / /"<<std::endl;
         std::cout<<"                            /"<<std::endl;
-
+*/
         Menu::displayMenu(Airport);
     } else {std::cout<< "Enter a valid key!";}
 
