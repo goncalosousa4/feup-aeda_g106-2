@@ -8,11 +8,11 @@ public:
     Airline();
     Airline(const std::string& code, const std::string& name, const std::string& callsign, const std::string& country);
 
-    // Getter methods (you can add more if needed)
-    std::string getCode() const;
-    std::string getName() const;
-    std::string getCallsign() const;
-    std::string getCountry() const;
+
+    const std::string& getCode() const;
+    const std::string& getName() const;
+    const std::string& getCallsign() const;
+    const std::string& getCountry() const;
 
 private:
     std::string code;
