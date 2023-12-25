@@ -33,7 +33,8 @@ void Menu::displayMenu(Graph ap) {
             case 4:
                 statsMenu(ap);
                 break;
-
+            case 5:
+                break;
             case 0:
 
 
