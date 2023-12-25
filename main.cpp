@@ -15,7 +15,7 @@ int main() {
     int space;
     std::cin >> space;
     if (space == 0){
-/*
+
         std::cout<<"          \\    "<<std::endl;
         std::cout<<"          \\ \\"<<std::endl;
         std::cout<<"           \\  \\"<<std::endl;
@@ -23,9 +23,10 @@ int main() {
         std::cout<<"... >}==|||A E D|||[  ) .....................    "<<std::endl;
         std::cout<<"    |/      /   /"<<std::endl;
         std::cout<<"           /  /"<<std::endl;
-        std::cout<<"          / /"<<std::endl;
+        std::cout<<"          / /             Hello!                "<<std::endl;
         std::cout<<"          /"<<std::endl;
-*/
+
+/*
         std::cout<<"                   \\    "<<std::endl;
         std::cout<<"                   \\ \\"<<std::endl;
         std::cout<<"                    \\  \\"<<std::endl;
@@ -35,7 +36,8 @@ int main() {
         std::cout<<"                    /  /"<<std::endl;
         std::cout<<"                   / /"<<std::endl;
         std::cout<<"                   /"<<std::endl;
-/*
+*/
+ /*
         std::cout<<"                            \\    "<<std::endl;
         std::cout<<"                            \\ \\"<<std::endl;
         std::cout<<"                             \\  \\"<<std::endl;

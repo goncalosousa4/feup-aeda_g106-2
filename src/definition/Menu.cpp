@@ -39,8 +39,20 @@ void Menu::displayMenu(Graph ap) {
                 break;
 
             case 0:
-                std::cout << "Thank you for choosing us. See you soon...\n";
-                break;
+
+
+                std::cout<<"                            \\    "<<std::endl;
+                std::cout<<"                            \\ \\"<<std::endl;
+                std::cout<<"                             \\  \\"<<std::endl;
+                std::cout<<"                      |\\      \\   \\"<<std::endl;
+                std::cout<<"..................... >}==|||A E D|||[  ) ...    "<<std::endl;
+                std::cout<<"                      |/      /   /"<<std::endl;
+                std::cout<<"                             /  /"<<std::endl;
+                std::cout<<" Thank you for choosing us  / /"<<std::endl;
+                std::cout<<"       See you soon...      /"<<std::endl;
+
+                exit(0);
+
             default:
                 std::cout << "Invalid choice. Please try again.\n";
         }
