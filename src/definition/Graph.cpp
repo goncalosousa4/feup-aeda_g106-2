@@ -32,10 +32,6 @@ const std::vector<Edge>& Vertex::getAdj() const {
     return adj;
 }
 
-/*void Vertex::setAdj(const std::vector<Edge>& adj) {
-    this->adj = adj;
-}*/
-
 const Airport& Vertex::getAirport() const {
     return airport;
 }

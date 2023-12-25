@@ -16,4 +16,4 @@ private:
     std::string airline;
 };
 
-#endif //FLIGHT_H
+#endif

@@ -30,7 +30,6 @@ public:
     int getIndegree() const;
     void setIndegree(int indegree);
     const std::vector<Edge>& getAdj() const;
-    void setAdj(const std::vector<Edge>& adj);
     const Airport& getAirport() const;
     void setAirport(const Airport& airport);
 
@@ -71,4 +70,4 @@ public:
     bool isDAG() const;
 };
 
-#endif /* GRAPH_H_ */
+#endif

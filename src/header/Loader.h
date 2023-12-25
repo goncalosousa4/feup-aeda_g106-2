@@ -11,4 +11,4 @@ public:
     static void loadFlights(Graph& graph, const std::string& flightFilename);
 };
 
-#endif /* AIRPORTLOADER_H_ */
+#endif

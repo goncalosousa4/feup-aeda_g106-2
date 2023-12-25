@@ -21,4 +21,4 @@ public:
     double getLongitude() const;
 };
 
-#endif /* AIRPORT_H_ */
+#endif
