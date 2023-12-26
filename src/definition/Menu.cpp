@@ -45,11 +45,11 @@ void Menu::displayMenu(Graph ap) {
                 std::cout<<"                            \\ \\"<<std::endl;
                 std::cout<<"                             \\  \\"<<std::endl;
                 std::cout<<"                      |\\      \\   \\"<<std::endl;
-                std::cout<<"..................... >}(|||||A E D|||[  ) ...    "<<std::endl;
+                std::cout<<"--------------------  >}(|||||A E D|||[  )  --    "<<std::endl;
                 std::cout<<"                      |/      /   /"<<std::endl;
                 std::cout<<"                             /  /"<<std::endl;
                 std::cout<<" Thank you for choosing us  / /"<<std::endl;
-                std::cout<<"       See you soon...      /"<<std::endl;
+                std::cout<<"      See you soon...       /"<<std::endl;
 
                 exit(0);
 

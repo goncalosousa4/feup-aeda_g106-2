@@ -20,10 +20,10 @@ int main() {
     std::cout<<"          \\ \\"<<std::endl;
     std::cout<<"           \\  \\"<<std::endl;
     std::cout<<"    |\\      \\   \\"<<std::endl;
-    std::cout<<"... >}(|||||A E D|||[  ) .....................    "<<std::endl;
+    std::cout<<"--  >}(|||||A E D|||[  )  ---------------------    "<<std::endl;
     std::cout<<"    |/      /   /"<<std::endl;
-    std::cout<<"           /  /"<<std::endl;
-    std::cout<<"          / /             Hello, "<< name << "!" << std::endl;
+    std::cout<<"           /  /     Hello! Welcome "<< name << "!" << std::endl;
+    std::cout<<"          / /        " << std::endl;
     std::cout<<"          /"<<std::endl;
 
     Menu::displayMenu(Airport);
