@@ -23,7 +23,7 @@ int main() {
     std::cout<<"... >}(|||||A E D|||[  ) .....................    "<<std::endl;
     std::cout<<"    |/      /   /"<<std::endl;
     std::cout<<"           /  /"<<std::endl;
-    std::cout<<"          / /             Hello, "<< name << std::endl;
+    std::cout<<"          / /             Hello, "<< name << "!" << std::endl;
     std::cout<<"          /"<<std::endl;
 
 /*
