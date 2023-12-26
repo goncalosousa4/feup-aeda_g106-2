@@ -3,6 +3,7 @@
 #include "Loader.h"
 #include <set>
 #include <unordered_map>
+#include <algorithm>
 
 void Menu::displayMenu(Graph ap) {
     int choice;
@@ -101,6 +102,7 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "-----------\n" ;
         std::cout << "1. Check the number of flights out of an Airport\n";
         std::cout << "2. Show the number of different destinations reachable from an Airport\n";
+        std::cout << "3. Rankings\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -110,8 +112,17 @@ void Menu::airportInfoMenu(Graph ap){
             case 1:
                 countFlightsOutOfAirport(ap);
                 break;
+
             case 2:
                 printNumDestinationsForAirport(ap);
+                break;
+
+            case 3:
+                int top;
+                std::cout << "Which ranking would you like to check? Top ";
+                std::cin >> top;
+                std::cout << std::endl;
+                ranking(ap, top);
                 break;
             case 0:
                 displayMenu(ap);
@@ -286,9 +297,9 @@ void Menu::printNumDestinationsForAirport(Graph ap) {
             uniqueCountries.insert(destinationAirport.getCountry());
         }
 
-        int numAirports = static_cast<int>(uniqueAirports.size());
-        int numCities = static_cast<int>(uniqueCities.size());
-        int numCountries = static_cast<int>(uniqueCountries.size());
+        int numAirports = (uniqueAirports.size());
+        int numCities = (uniqueCities.size());
+        int numCountries = (uniqueCountries.size());
 
         std::cout << "Airport " << airportCode << " (" << ap.findVertex(airportCode)->getAirport().getName() << ") can get to:"<< std::endl <<"-"<< numAirports
         << " different airports\n" << "-" <<numCities << " different cities\n"
@@ -297,6 +308,29 @@ void Menu::printNumDestinationsForAirport(Graph ap) {
         std::cerr << "Airport with code " << airportCode << " not found." << std::endl;
     }
 }
+void Menu::ranking(Graph ap, int k) {
+    std::vector<std::pair<std::string, int>> airportFlightsCount;
 
 
+    for (const Vertex *vertex: ap.getVertexSet()) {
+        const std::vector<Edge> &adjEdges = vertex->getAdj();
+        int numFlights = (adjEdges.size());
+        airportFlightsCount.emplace_back(vertex->getAirport().getCode(), numFlights);
+    }
+
+
+    std::sort(airportFlightsCount.begin(), airportFlightsCount.end(),
+              [](const auto& a, const auto& b) {
+                  return a.second > b.second;
+              });
+
+
+    std::cout << "        T O P  " << k << std::endl;
+    std::cout << "+----------------------+\n";
+    std::cout <<" AIRPORT\tFLIGHTS\n";
+    for (int i = 0; i < k && i < airportFlightsCount.size(); ++i) {
+        const auto &airportCount = airportFlightsCount[i];
+        std::cout << "   " << airportCount.first << "\t\t  " << airportCount.second << std::endl;
+    }
+}
 
