@@ -26,28 +26,6 @@ int main() {
     std::cout<<"          / /             Hello, "<< name << "!" << std::endl;
     std::cout<<"          /"<<std::endl;
 
-/*
-    std::cout<<"                   \\    "<<std::endl;
-    std::cout<<"                   \\ \\"<<std::endl;
-    std::cout<<"                    \\  \\"<<std::endl;
-    std::cout<<"             |\\      \\   \\"<<std::endl;
-    std::cout<<"............ >}==|||A E D|||[  ) ............    "<<std::endl;
-    std::cout<<"             |/      /   /"<<std::endl;
-    std::cout<<"                    /  /"<<std::endl;
-    std::cout<<"                   / /"<<std::endl;
-    std::cout<<"                   /"<<std::endl;
-*/
-/*
-    std::cout<<"                            \\    "<<std::endl;
-    std::cout<<"                            \\ \\"<<std::endl;
-    std::cout<<"                             \\  \\"<<std::endl;
-    std::cout<<"                      |\\      \\   \\"<<std::endl;
-    std::cout<<"..................... >}==|||A E D|||[  ) ...    "<<std::endl;
-    std::cout<<"                      |/      /   /"<<std::endl;
-    std::cout<<"                             /  /"<<std::endl;
-    std::cout<<"                            / /"<<std::endl;
-    std::cout<<"                            /"<<std::endl;
-*/
     Menu::displayMenu(Airport);
 
 
@@ -58,7 +36,7 @@ int main() {
 //          \ \
 //           \  \
 //    |\      \   \
-//    > }==|||||||||||[  )
+//    >}(|||||A E D|||[  )
 //    |/      /   /
 //           /  /
 //          / /

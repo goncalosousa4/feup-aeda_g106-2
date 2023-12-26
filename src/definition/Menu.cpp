@@ -85,9 +85,9 @@ void Menu::countFlightsOutOfAirport(Graph ap) {
         int numFlights = airportVertex->getAdj().size();
         std::cout << "           A I R P O R T   " << airportCode << "          \n";
         std::cout << "+-----------------------------------------+\n";
-        std::cout << "| The number of flights out of " << airportCode << " is " << numFlights << " |"  << std::endl;
-        std::cout << "|  -Flights have " << airlines.size() << " different Airlines    |\n";
-        std::cout << "+-----------------------------------------+\n";
+        std::cout << " The number of flights out of " << airportCode << " is " << numFlights  << std::endl;
+        std::cout << "  -Flights have " << airlines.size() << " different Airlines    \n";
+
     } else {
         std::cout << "Airport with code " << airportCode << " not found." << std::endl;
     }
@@ -100,7 +100,7 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "  I N F O  \n";
         std::cout << "-----------\n" ;
         std::cout << "1. Check the number of flights out of an Airport\n";
-
+        std::cout << "2. Show the number of different destinations reachable from an Airport\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -110,7 +110,9 @@ void Menu::airportInfoMenu(Graph ap){
             case 1:
                 countFlightsOutOfAirport(ap);
                 break;
-
+            case 2:
+                printNumDestinationsForAirport(ap);
+                break;
             case 0:
                 displayMenu(ap);
                 break;
@@ -260,7 +262,41 @@ void Menu::countCountriesForCity(Graph ap) {
     }
     std::cout << "The number of different countries able to reach departing from " << city << " is " << countries.size() << std::endl;
 }
+void Menu::printNumDestinationsForAirport(Graph ap) {
+    std::string airportCode;
+    std::cout << "Enter the airport code: ";
+    std::cin >> airportCode;
+    std::cout<<std::endl;
 
+    const Vertex *vertex = ap.findVertex(airportCode);
+
+    if (vertex != nullptr) {
+        const std::vector<Edge> &adjEdges = vertex->getAdj();
+
+        std::set<std::string> uniqueAirports;
+        std::set<std::string> uniqueCities;         // sets wont let the dest repeat
+        std::set<std::string> uniqueCountries;
+
+        for (const Edge &edge: adjEdges) {
+            const Vertex *destinationVertex = edge.getDest();
+            const Airport &destinationAirport = destinationVertex->getAirport();
+
+            uniqueAirports.insert(destinationAirport.getCode());
+            uniqueCities.insert(destinationAirport.getCity());
+            uniqueCountries.insert(destinationAirport.getCountry());
+        }
+
+        int numAirports = static_cast<int>(uniqueAirports.size());
+        int numCities = static_cast<int>(uniqueCities.size());
+        int numCountries = static_cast<int>(uniqueCountries.size());
+
+        std::cout << "Airport " << airportCode << " (" << ap.findVertex(airportCode)->getAirport().getName() << ") can get to:"<< std::endl <<"-"<< numAirports
+        << " different airports\n" << "-" <<numCities << " different cities\n"
+        << "-"<<numCountries << " different countries\n" << std::endl;
+    } else {
+        std::cerr << "Airport with code " << airportCode << " not found." << std::endl;
+    }
+}
 
 
 

@@ -19,7 +19,7 @@ private:
     static void flightsPerAirline(Graph ap);
     static void countCountriesForAirport(Graph ap);
     static void countCountriesForCity(Graph ap);
-
+    static void printNumDestinationsForAirport(Graph ap);
 
 };
 
