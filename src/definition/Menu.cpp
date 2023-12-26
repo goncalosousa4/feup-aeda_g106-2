@@ -309,7 +309,7 @@ void Menu::printNumDestinationsForAirport(Graph ap) {
     }
 }
 void Menu::ranking(Graph ap, int k) {
-    std::vector<std::pair<std::string, int>> airportFlights;
+    std::vector<std::pair<std::string, int>> airportFlights; // vector of pairs to store the airports their flights number
 
 
     for (const Vertex *vertex: ap.getVertexSet()) {
@@ -319,8 +319,7 @@ void Menu::ranking(Graph ap, int k) {
     }
 
 
-    std::sort(airportFlights.begin(), airportFlights.end(),
-              [](const auto& a, const auto& b) {    // sorting the vector
+    std::sort(airportFlights.begin(), airportFlights.end(),[](const auto& a, const auto& b) {    // sorting the vector
                   return a.second > b.second;
               });
 
