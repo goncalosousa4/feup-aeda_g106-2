@@ -1,12 +1,12 @@
 ##     TOPICS
 ### 3
-I - Implemented \n
-II - Implemented \n
-III - Implemented
-IV - Implemented
-V - Implemented
-VI - Not Implemented 
-VII - Not Implemented
+I - Implemented <br />
+II - Implemented <br />
+III - Implemented <br />
+IV - Implemented <br />
+V - Implemented <br />
+VI - Not Implemented <br />
+VII - Not Implemented  
 VIII - Implemented
 IX - Not Implemented
 ### 4
