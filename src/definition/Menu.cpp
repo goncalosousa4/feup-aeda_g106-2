@@ -280,22 +280,16 @@ void Menu::printNumDestinationsForAirport(Graph ap) {
     std::cin >> airportCode;
     std::cout<<std::endl;
 
-    const Vertex *vertex = ap.findVertex(airportCode);
+    auto uniqueAirports = ap.bfs(airportCode);
 
-    if (vertex != nullptr) {
-        const std::vector<Edge> &adjEdges = vertex->getAdj();
+    if (airportCode.size()==3) {
 
-        std::set<std::string> uniqueAirports;
         std::set<std::string> uniqueCities;         // sets wont let the dest repeat
         std::set<std::string> uniqueCountries;
 
-        for (const Edge &edge: adjEdges) {
-            const Vertex *destinationVertex = edge.getDest();
-            const Airport &destinationAirport = destinationVertex->getAirport();
-
-            uniqueAirports.insert(destinationAirport.getCode());
-            uniqueCities.insert(destinationAirport.getCity());
-            uniqueCountries.insert(destinationAirport.getCountry());
+        for (const auto& airp: uniqueAirports){
+            uniqueCities.insert(ap.findVertex(airp)->getAirport().getCity());
+            uniqueCountries.insert((ap.findVertex(airp)->getAirport().getCountry()));
         }
 
         int numAirports = (uniqueAirports.size());
@@ -335,3 +329,15 @@ void Menu::ranking(Graph ap, int k) {
 }
 
 
+
+/*void Menu::reachableDest(Graph ap) {
+    std::string src;
+    int stops;
+    std::cout << "Enter the departing airport code: ";
+    std::cin >> src;
+    std::cout << std::endl;
+    std::cout << "How many lay-overs do you want to make? ";
+    std::cin >> stops;
+    std::cout << std::endl;
+
+}*/

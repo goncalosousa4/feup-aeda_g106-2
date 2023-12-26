@@ -7,6 +7,7 @@
 #include <list>
 #include "Airport.h"
 #include "Flight.h"
+#include <set>
 
 class Edge;
 
@@ -66,7 +67,7 @@ public:
     std::vector<Vertex*> getVertexSet() const;
     std::vector<std::string> dfs();
     std::vector<std::string> dfs(const std::string& source);
-    std::vector<std::string> bfs(const std::string& source) const;
+    const std::set<std::string> bfs(const std::string& source) const;
     bool isDAG() const;
 };
 

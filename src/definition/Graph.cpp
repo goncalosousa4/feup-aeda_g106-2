@@ -1,3 +1,4 @@
+#include <set>
 #include "../header/Graph.h"
 
 /****************** Vertex Implementation ********************/
@@ -138,8 +139,8 @@ std::vector<std::string> Graph::dfs(const std::string& source) {
     return res;
 }
 
-std::vector<std::string> Graph::bfs(const std::string& source) const {
-    std::vector<std::string> res;
+const std::set<std::string> Graph::bfs(const std::string& source) const {
+    std::set<std::string> res;
     auto s = findVertex(source);
     if (s == nullptr)
         return res;
@@ -154,7 +155,7 @@ std::vector<std::string> Graph::bfs(const std::string& source) const {
     while (!q.empty()) {
         auto v = q.front();
         q.pop();
-        res.push_back(v->getAirport().getCode());
+        res.insert(v->getAirport().getCode());
 
         for (auto& e : v->getAdj()) {
             auto w = e.getDest();
