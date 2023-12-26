@@ -118,11 +118,11 @@ void Menu::airportInfoMenu(Graph ap){
                 break;
 
             case 3:
-                int top;
+                int k;
                 std::cout << "Which ranking would you like to check? Top ";
-                std::cin >> top;
+                std::cin >> k;
                 std::cout << std::endl;
-                ranking(ap, top);
+                ranking(ap, k);
                 break;
             case 0:
                 displayMenu(ap);
@@ -309,18 +309,18 @@ void Menu::printNumDestinationsForAirport(Graph ap) {
     }
 }
 void Menu::ranking(Graph ap, int k) {
-    std::vector<std::pair<std::string, int>> airportFlightsCount;
+    std::vector<std::pair<std::string, int>> airportFlights;
 
 
     for (const Vertex *vertex: ap.getVertexSet()) {
         const std::vector<Edge> &adjEdges = vertex->getAdj();
         int numFlights = (adjEdges.size());
-        airportFlightsCount.emplace_back(vertex->getAirport().getCode(), numFlights);
+        airportFlights.emplace_back(vertex->getAirport().getCode(), numFlights);   // populationg the vector
     }
 
 
-    std::sort(airportFlightsCount.begin(), airportFlightsCount.end(),
-              [](const auto& a, const auto& b) {
+    std::sort(airportFlights.begin(), airportFlights.end(),
+              [](const auto& a, const auto& b) {    // sorting the vector
                   return a.second > b.second;
               });
 
@@ -328,8 +328,8 @@ void Menu::ranking(Graph ap, int k) {
     std::cout << "        T O P  " << k << std::endl;
     std::cout << "+----------------------+\n";
     std::cout <<" AIRPORT\tFLIGHTS\n";
-    for (int i = 0; i < k && i < airportFlightsCount.size(); ++i) {
-        const auto &airportCount = airportFlightsCount[i];
+    for (int i = 0; i < k && i < airportFlights.size(); ++i) {              // selecting just the k first
+        const auto &airportCount = airportFlights[i];
         std::cout << "   " << airportCount.first << "\t\t  " << airportCount.second << std::endl;
     }
 }
