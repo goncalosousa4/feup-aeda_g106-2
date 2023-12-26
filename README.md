@@ -4,7 +4,7 @@ Airlines aren't loaded, but can be searched using a method of Menu called findAi
 
 ##     TOPICS
 ### 1 
-Immplemented  
+Implemented  
 ### 2
 Menu structure is done, constantly updating...  
 ### 3
