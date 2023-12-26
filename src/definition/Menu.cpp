@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "Airline.h"
 #include "Loader.h"
+#include "../header/Graph.h"
 #include <set>
 #include <unordered_map>
 #include <algorithm>
@@ -199,7 +200,7 @@ void Menu::flightsPerCityPerAirline(Graph ap) {
         std::cout << "\nNumber of flights from " << city << " per airline:" << std::endl;
         for (const auto& entry : flightsPerAirline) {
             auto airlineCode = entry.first;
-            Airline line = Loader::findAirlineByCode(airlineCode);
+            Airline line = Loader::findAirlineByCode(airlineCode, "../dataset/airlines.csv");
             std::cout << "\t-" << airlineCode << " ("<< line.getName() <<  "): " << entry.second << std::endl; // insert airline name like - IBE (Iberia Airlines)
         }
     }
@@ -211,7 +212,7 @@ void Menu::flightsPerAirline(Graph ap){
     std::cin.ignore();
     std::getline(std::cin, airline);
     std::cout << std::endl;
-    Airline line = Loader::findAirlineByCode(airline);
+    Airline line = Loader::findAirlineByCode(airline, "../dataset/airlines.csv");
     int totalFlights = 0;
 
     for (const auto& vertex : ap.getVertexSet()) {
@@ -332,4 +333,5 @@ void Menu::ranking(Graph ap, int k) {
         std::cout << "   " << airportCount.first << "\t\t  " << airportCount.second << std::endl;
     }
 }
+
 

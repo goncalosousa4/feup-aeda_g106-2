@@ -9,7 +9,7 @@
 
 
 void Loader::loadAirports(Graph& graph, std::string filename) {
-    std::ifstream file("../dataset/airports.csv");
+    std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error: Unable to open file airports.csv " << std::endl;
         return;
@@ -46,7 +46,7 @@ void Loader::loadAirports(Graph& graph, std::string filename) {
     file.close();
 }
 void Loader::loadFlights(Graph& graph, const std::string& filename) {
-    std::ifstream file("../dataset/flights.csv");
+    std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error: Unable to open file flights.cv " << std::endl;
         return;
@@ -116,7 +116,7 @@ void Loader::loadFlights(Graph& graph, const std::string& filename) {
     file.close();
 }
 
-Airline Loader::findAirlineByCode(const std::string& code) {
+Airline Loader::findAirlineByCode(const std::string& code, std::string filename) {
     std::ifstream file("../dataset/airlines.csv");
     std::string line;
 

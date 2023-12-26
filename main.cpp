@@ -6,8 +6,8 @@
 
 int main() {
     Graph Airport;
-    Loader::loadAirports(Airport, "airports.csv");
-    Loader::loadFlights(Airport, "flights.csv");
+    Loader::loadAirports(Airport, "../dataset/airports.csv");
+    Loader::loadFlights(Airport, "../dataset/flights.csv");
     std::cout << " ___________________________________________________\n";
     std::cout << "| --> Welcome to Flight Management Services AED <-- |\n";
     std::cout << "|            Enter your name to continue            | \n";

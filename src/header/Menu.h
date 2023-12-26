@@ -2,6 +2,7 @@
 #define MENU_H
 
 #include <iostream>
+#include <set>
 #include "Graph.h"
 
 class Menu {
@@ -21,7 +22,6 @@ private:
     static void countCountriesForCity(Graph ap);
     static void printNumDestinationsForAirport(Graph ap);
     static void ranking(Graph ap, int k);
-
 };
 
 #endif

@@ -55,7 +55,7 @@ public:
 class Graph {
     std::vector<Vertex*> vertexSet;      // vertex set
     std::vector<Edge*> edgeSet;
-    void dfsVisit(Vertex* v, std::vector<std::string>& res);
+    static void dfsVisit(Vertex* v, std::vector<std::string>& res);
 
 public:
     Vertex* findVertex(const std::string& code) const;

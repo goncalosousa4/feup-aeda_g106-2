@@ -9,10 +9,10 @@
 class Loader {
 public:
     static void loadAirports(Graph& graph, std::string filename);
-    static void loadFlights(Graph& graph, const std::string& flightFilename);
+    static void loadFlights(Graph& graph, const std::string& Filename);
 
 
-    static Airline findAirlineByCode(const std::string &code); // finds airlines without loading the entire file
+    static Airline findAirlineByCode(const std::string &code, std::string filename); // finds airlines without loading the entire file
 };
 
 #endif
