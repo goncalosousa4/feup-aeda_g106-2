@@ -5,14 +5,14 @@ II - Implemented <br />
 III - Implemented <br />
 IV - Implemented <br />
 V - Implemented <br />
-VI - Not Implemented <br />
-VII - Not Implemented  
+VI - Not  
+VII - Not    
 VIII - Implemented  
-IX - Not Implemented  
+IX - Not    
 ### 4
-I - Not Implemented  
-II - Not Implemented   
-III- Not Implemented  
+I - Not    
+II - Not    
+III- Not    
 ### 5
-Not Implemented 
+Not  
 
