@@ -571,24 +571,23 @@ void Menu::bestFlightOption(Graph& ap) {
     }
 
     std::cout << "Best flight options with the least layovers (" << bestLayovers << "):" << std::endl;
-    int i = 0;
+
     if (bestLayovers == 10000000) {
         std::cout << "No direct flight found." << std::endl;
     } else {
         for (const auto& path : bestPaths) {
-
-            for (const auto& vertex : path) {
-                if (i==0){
-                    std::cout << vertex->getAirport().getCode() << " - ";
-                } else {
+            if (static_cast<int>(path.size()) - 1 == bestLayovers) {
+                int i = 0;
+                for (const auto& vertex : path) {
                     Airline airline = Loader::findAirlineByCode(ap.findEdgeByDest(vertex->getAirport().getCode())->getAirline(), "../dataset/Airlines.csv");
-
-                    std::cout << vertex->getAirport().getCode() << " (by " << airline.getName() <<")" << " - ";
+                    std::cout << vertex->getAirport().getCode() << " (by " << airline.getName() << ")";
+                    if (i < path.size() - 1) {
+                        std::cout << " - ";
+                    }
+                    i++;
                 }
-                i++;
-
+                std::cout << std::endl;
             }
-            std::cout << std::endl;
         }
     }
 }
