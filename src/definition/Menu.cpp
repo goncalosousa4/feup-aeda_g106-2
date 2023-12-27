@@ -330,14 +330,4 @@ void Menu::ranking(Graph ap, int k) {
 
 
 
-/*void Menu::reachableDest(Graph ap) {
-    std::string src;
-    int stops;
-    std::cout << "Enter the departing airport code: ";
-    std::cin >> src;
-    std::cout << std::endl;
-    std::cout << "How many lay-overs do you want to make? ";
-    std::cin >> stops;
-    std::cout << std::endl;
 
-}*/
