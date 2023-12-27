@@ -128,7 +128,7 @@ void Menu::airportInfoMenu(Graph ap){
                 break;
 
             case 4:
-                reachableDest(ap);
+                numReachableDestinations(ap);
                 break;
 
             case 0:
@@ -358,7 +358,7 @@ void Menu::ranking(Graph ap, int k) {
     std::cout << "Number of reachable destinations within " << stops << " lay-overs: " << count << std::endl;
 }*/
 
-void Menu::reachableDest(Graph ap) {
+/*void Menu::reachableDest(Graph ap) {
     std::string src;
     int stops;
     int count  = 0;
@@ -372,22 +372,98 @@ void Menu::reachableDest(Graph ap) {
 
     std::unordered_map<std::string, int> reachableDestinations = ap.bfsLayOver(src);
 
-    std::cout << "Reachable airports within " << stops << " layovers from " << src << " are:" << std::endl;
+    std::cout << "Reachable airports within " << stops << " layovers from " << src << " are:" << std::endl; //debug
     for (const auto& dest : reachableDestinations) {
         if (dest.second >= 0 && dest.second <= stops) {
-            std::cout << dest.first << " (Layovers: " << dest.second << ")" << std::endl;
+            std::cout << dest.first << " (Layovers: " << dest.second << ")" << std::endl; //debug
             count++;
         }
     }
     std::cout << "The number of reachable airports for " << src << " within " << stops << " lay-overs is " << count << std::endl;
     auto a = "MAG";
     std::set<Vertex*> direct;
-    std::cout << "Direct Airports ";
+    std::cout << "Direct Airports ";                                                     // debug
     for (const auto& a :ap.findVertex(a)->getAdj()){
         direct.insert(a.getDest());
     }
     std::cout << direct.size() << std::endl;
+}*/
+void Menu::numReachableDestinations(Graph ap) {
+    std::string src;
+    int stops;
+    int countAirports = 0;
+    int countCities = 0;
+    int countCountries = 0;
+
+    std::cout << "Enter the departing airport code: ";
+    std::cin >> src;
+    std::cout << std::endl;
+
+    std::cout << "How many lay-overs would you like to make? ";
+    std::cin >> stops;
+    std::cout << std::endl;
+
+    if (ap.findVertex(src) == nullptr) {
+        std::cout << "Airport not found." << std::endl;
+        return;
+    }
+
+    std::queue<std::pair<Vertex*, int>> q; // empty queue for BFS
+    std::set<std::string> visited;
+    int numReachableDestinations = 0;
+
+    // Inserting the src airport and making it with -1 stops (not accessible)
+    q.push({ap.findVertex(src), -1});
+    visited.insert(src);
+
+    // BFS-like implementation for this context
+
+    while (!q.empty()) {
+        auto current = q.front();
+        q.pop();
+
+        if (current.second <= stops) {
+            numReachableDestinations++;
+        } else {
+            break;
+        }
+
+        // Process the current airport
+        countAirports++;
+
+        // Extract city and country information from the current airport
+        std::string currentCity = current.first->getAirport().getCity();
+        std::string currentCountry = current.first->getAirport().getCountry();
+
+        // Check if the city has not been visited
+        if (visited.find(currentCity) == visited.end()) {
+            visited.insert(currentCity);
+            countCities++;
+        }
+
+        // Check if the country has not been visited
+        if (visited.find(currentCountry) == visited.end()) {
+            visited.insert(currentCountry);
+            countCountries++;
+        }
+
+        // Enqueue neighboring airports
+        for (const auto& edge : current.first->getAdj()) {
+            auto dest = edge.getDest();
+            if (visited.find(dest->getAirport().getCode()) == visited.end()) {
+                q.push({dest, current.second + 1});
+                visited.insert(dest->getAirport().getCode());
+            }
+        }
+    }
+
+    std::cout << "Number of reachable destinations departing from " << src << " within " << stops
+              << " stops is: "<<std::endl;
+    std::cout << "-" << numReachableDestinations -1 << " airports\n";
+    std::cout << "-" << countCities << " cities" << std::endl;
+    std::cout << "-" << countCountries << " countries" << std::endl;
 }
+
 
 
 

@@ -26,7 +26,7 @@ private:
     static void countCountriesForCity(Graph ap);
     static void printNumDestinationsForAirport(Graph ap);
     static void ranking(Graph ap, int k);
-    static void reachableDest(Graph ap);
+    static void numReachableDestinations(Graph ap);
 
     // AUX
 
