@@ -157,6 +157,7 @@ void Menu::statsMenu(Graph ap){
         std::cout << "2. Check Airline statistics\n";
         std::cout << "3. Check countries from a city\n";
         std::cout << "4. Check countries from an Airport\n";
+        std::cout << "5. Find the best flight option\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -174,6 +175,10 @@ void Menu::statsMenu(Graph ap){
                 break;
             case 4:
                 countCountriesForAirport(ap);
+                break;
+
+            case 5:
+                bestFlightOption(ap);
                 break;
             case 0:
                 displayMenu(ap);
@@ -462,60 +467,39 @@ void Menu::findMaxStopsTrip(Graph& graph) {
         std::cout << "No flights found in the graph." << std::endl;
     }
 }
-
-#include <limits>
-
-
-/*void Menu::bestFlightOption(Graph& ap) {
+/*void Menu::bestFlightOption(Graph& graph) {
     std::string source, destination;
 
-    // Get user input for source and destination
-    std::cout << "Enter the source airport code or name: ";
+    std::cout << "Enter the source airport code: ";
     std::cin >> source;
-
-    std::cout << "Enter the destination airport code or name: ";
+    std::cout<< std::endl;
+    std::cout << "Enter the destination airport code: ";
     std::cin >> destination;
+    std::cout << std::endl;
 
-    // Perform BFS to find the best flight option
-    std::queue<std::pair<Vertex*, int>> q;
-    std::unordered_set<std::string> visited;
-
-    Vertex* sourceVertex = ap.findVertex(source);
-    Vertex* destinationVertex = ap.findVertex(destination);
+    Vertex* sourceVertex = graph.findVertex(source);
+    Vertex* destinationVertex = graph.findVertex(destination);
 
     if (!sourceVertex || !destinationVertex) {
-        std::cout << "Invalid source or destination airport." << std::endl;
+        std::cout << "Invalid source or destination location." << std::endl;
         return;
     }
 
-    q.push({sourceVertex, 0});
+    // bfs-like implementation to find the best flight option
+    std::queue<std::pair<Vertex*, int>> q;
+    std::set<std::string> visited;
+
+    q.push({sourceVertex, -1});
     visited.insert(source);
 
-    int bestLayovers = 10000000;
-    std::vector<std::vector<Vertex*>> bestPaths;
+    int bestLayovers = 10000000;  // load a big and impossible value
 
     while (!q.empty()) {
         auto current = q.front();
         q.pop();
 
         if (current.first == destinationVertex) {
-            // Found a path to the destination
-            if (current.second < bestLayovers) {
-                bestLayovers = current.second;
-                bestPaths.clear();
-            }
-
-            if (current.second == bestLayovers) {
-                std::vector<Vertex*> path;
-                Vertex* vertex = current.first;
-                while (vertex) {
-                    path.push_back(vertex);
-                    vertex = vertex->getPrevious();  // Assuming you have a method to get the previous vertex
-                }
-                std::reverse(path.begin(), path.end());
-                bestPaths.push_back(path);
-            }
-
+            bestLayovers = std::min(bestLayovers, current.second);
             continue;
         }
 
@@ -523,22 +507,89 @@ void Menu::findMaxStopsTrip(Graph& graph) {
             auto neighbor = edge.getDest();
             if (visited.find(neighbor->getAirport().getCode()) == visited.end()) {
                 visited.insert(neighbor->getAirport().getCode());
-                neighbor->setPrevious(current.first);  // Assuming you have a method to set the previous vertex
                 q.push({neighbor, current.second + 1});
             }
         }
     }
 
-    // Print the best flight options
-    std::cout << "Best flight option(s) with the least layovers (" << bestLayovers << "):" << std::endl;
-    for (const auto& path : bestPaths) {
-        for (const auto& vertex : path) {
-            std::cout << vertex->getAirport().getCode() << " ";
-        }
-        std::cout << std::endl;
+    // print the best flight option
+    std::cout << "Best flight option with the least layovers (" << bestLayovers << "):" << std::endl;
+    if (bestLayovers == 10000000) {
+        std::cout << "No direct flight found." << std::endl;
+    } else {
+        std::cout << "Number of layovers: " << bestLayovers << std::endl;
     }
 }*/
 
+void Menu::bestFlightOption(Graph& ap) {
+    std::string source, destination;
+    std::cout << "Enter the source airport code: ";
+    std::cin >> source;
+    std::cout << std::endl;
+    std::cout << "Enter the destination airport code: ";
+    std::cin >> destination;
+    std::cout << std::endl;
 
+    Vertex* sourceVertex = ap.findVertex(source);
+    Vertex* destinationVertex = ap.findVertex(destination);
 
+    if (!sourceVertex || !destinationVertex) {
+        std::cout << "Invalid source or destination location." << std::endl;
+        return;
+    }
+
+    // bfs-like implementation
+    std::queue<std::pair<Vertex*, std::vector<Vertex*>>> q;
+    std::unordered_set<std::string> visited;
+
+    q.push({sourceVertex, {sourceVertex}});
+    visited.insert(source);
+
+    int bestLayovers = 10000000;  // load a big and impossible value to bestLayovers to apply a min function further
+    std::vector<std::vector<Vertex*>> bestPaths;
+
+    while (!q.empty()) {
+        auto current = q.front();
+        q.pop();
+
+        if (current.first == destinationVertex) {
+
+            bestLayovers = std::min(bestLayovers, static_cast<int>(current.second.size()) - 1);
+            bestPaths.push_back(current.second);
+            continue;
+        }
+
+        for (const auto& edge : current.first->getAdj()) {
+            auto neighbor = edge.getDest();
+            if (visited.find(neighbor->getAirport().getCode()) == visited.end()) {
+                visited.insert(neighbor->getAirport().getCode());
+                auto newPath = current.second;
+                newPath.push_back(neighbor);
+                q.push({neighbor, newPath});
+            }
+        }
+    }
+
+    std::cout << "Best flight options with the least layovers (" << bestLayovers << "):" << std::endl;
+    int i = 0;
+    if (bestLayovers == 10000000) {
+        std::cout << "No direct flight found." << std::endl;
+    } else {
+        for (const auto& path : bestPaths) {
+
+            for (const auto& vertex : path) {
+                if (i==0){
+                    std::cout << vertex->getAirport().getCode() << " - ";
+                } else {
+                    Airline airline = Loader::findAirlineByCode(ap.findEdgeByDest(vertex->getAirport().getCode())->getAirline(), "../dataset/Airlines.csv");
+
+                    std::cout << vertex->getAirport().getCode() << " (by " << airline.getName() <<")" << " - ";
+                }
+                i++;
+
+            }
+            std::cout << std::endl;
+        }
+    }
+}
 

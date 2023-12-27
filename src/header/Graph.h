@@ -23,8 +23,12 @@ class Vertex {
     int low;               // auxiliary field
     Airport airport;
 
+
+
 public:
     Vertex(const std::string& code);
+
+    void addToPath(Vertex* vertex);
     bool isVisited() const;
     void setVisited(bool v);
     bool isProcessing() const;
@@ -36,6 +40,9 @@ public:
     void setAirport(const Airport& airport);
 
     void addEdge(Vertex* src, Vertex* dest, double w, std::string airline);
+
+
+
 };
 
 class Edge {
@@ -62,6 +69,7 @@ class Graph {
     static void dfsVisit(Vertex* v, std::vector<std::string>& res);
 
 public:
+    Edge* findEdgeByDest(const std::string dest) const;
     Vertex* findVertex(const std::string& code) const;
     Vertex* findVertexCity(const std::string &city) const ;
     int getNumVertex() const;
