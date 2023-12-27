@@ -389,7 +389,8 @@ void Menu::numReachableDestinations(Graph ap) {
          if(a!=src){    // excluding the src airport;
              countAirports++;
              for (auto city: cities){
-                 if (city==ap.findVertex(a)->getAirport().getCity()){   //missing the rest of the implementation
+                 auto aCity=ap.findVertex(a)->getAirport().getCity();
+                 if (city==aCity){   //missing the rest of the implementation
                      repeatedCities++;
                  }
              }
