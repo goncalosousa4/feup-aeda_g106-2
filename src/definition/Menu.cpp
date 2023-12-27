@@ -108,6 +108,7 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "3. Rankings\n";
         std::cout << "4. Reachable destinations with stops\n";
         std::cout << "5. Maximum trip and corresponding pair of source-destination airports (or pairs, if more than one), that is, the flight trip(s) with the greatest number of stops in between them\n";
+        std::cout << "6. Identify the airports that are essential to the network’s circulation capability (airports are essential if, when removed, areas of the network start to be unreachable)\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -136,6 +137,11 @@ void Menu::airportInfoMenu(Graph ap){
 
             case 5:
                 findMaxStopsTrip(ap);
+                break;
+
+            case 6:
+                std::cout << "Identifying essential airports...\n";
+                ap.findArticulationPoints();
                 break;
 
             case 0:
@@ -459,6 +465,4 @@ void Menu::findMaxStopsTrip(Graph& graph) {
         std::cout << "No flights found in the graph." << std::endl;
     }
 }
-
-
 

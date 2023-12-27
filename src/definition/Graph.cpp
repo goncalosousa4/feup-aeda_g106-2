@@ -1,6 +1,7 @@
 #include <set>
 #include "../header/Graph.h"
 #include <iostream>
+#include <unordered_set>
 
 /****************** Vertex Implementation ********************/
 
@@ -46,6 +47,15 @@ void Vertex::addEdge(Vertex* src, Vertex* dest, double w, std::string airline) {
     adj.push_back(Edge(src, dest, w, airline));
 }
 
+void Vertex::clearAdj() {
+    adj.clear();
+}
+
+// Function to remove an edge to a specific vertex
+void Vertex::removeEdgeTo(Vertex* dest) {
+    adj.erase(std::remove_if(adj.begin(), adj.end(),
+                             [dest](const Edge& edge) { return edge.getDest() == dest; }), adj.end());
+}
 
 /****************** Edge Implementation ********************/
 
@@ -171,6 +181,59 @@ const std::set<std::string> Graph::bfs(const std::string& source) const {
     }
 
     return res;
+}
+
+void Graph::findArticulationPointsUtil(Vertex* v, std::unordered_map<Vertex*, int>& disc,
+                                       std::unordered_map<Vertex*, int>& low,
+                                       std::unordered_map<Vertex*, Vertex*>& parent,
+                                       std::unordered_set<Vertex*>& articulationPoints) {
+    static int time = 0;
+    int children = 0;
+
+    v->setVisited(true);
+    disc[v] = low[v] = ++time;
+
+    for (const Edge& e : v->getAdj()) {
+        Vertex* adjV = e.getDest();
+        if (!adjV->isVisited()) {
+            children++;
+            parent[adjV] = v;
+            findArticulationPointsUtil(adjV, disc, low, parent, articulationPoints);
+
+            low[v] = std::min(low[v], low[adjV]);
+
+            if (parent[v] == nullptr && children > 1)
+                articulationPoints.insert(v);
+            if (parent[v] != nullptr && low[adjV] >= disc[v])
+                articulationPoints.insert(v);
+        }
+        else if (adjV != parent[v])
+            low[v] = std::min(low[v], disc[adjV]);
+    }
+}
+
+void Graph::findArticulationPoints() {
+    int contador = 0;
+    std::unordered_map<Vertex*, int> disc;
+    std::unordered_map<Vertex*, int> low;
+    std::unordered_map<Vertex*, Vertex*> parent;
+    std::unordered_set<Vertex*> articulationPoints;
+
+    for (Vertex* v : vertexSet) {
+        if (!v->isVisited())
+            findArticulationPointsUtil(v, disc, low, parent, articulationPoints);
+    }
+
+    for (Vertex* ap : articulationPoints) {
+        std::cout << ap->getAirport().getCode() << " | ";
+        contador++;
+    }
+
+    if (contador > 0) {
+        std::cout << std::endl << "There are " << contador << " airports essential to the network’s circulation capability." << std::endl;
+    } else {
+        std::cout << "No airports essential to the network’s circulation capability found." << std::endl;
+    }
 }
 
 
