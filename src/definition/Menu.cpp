@@ -105,6 +105,7 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "2. Show the number of different destinations reachable from an Airport\n";
         std::cout << "3. Rankings\n";
         std::cout << "4. Reachable destinations with stops\n";
+        std::cout << "5. Maximum trip and corresponding pair of source-destination airports (or pairs, if more than one), that is, the flight trip(s) with the greatest number of stops in between them\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.26)
 project(2proj_AED_G106)
 
 set(CMAKE_CXX_STANDARD 14)

@@ -1,9 +1,2 @@
 # ninja log v5
-1	7617	7253544429507127	CMakeFiles/2proj_AED_G106.dir/src/definition/Airline.cpp.obj	b6d18a54e33003d1
-7	8490	7253544445382142	CMakeFiles/2proj_AED_G106.dir/src/definition/Airport.cpp.obj	b3572bfde7d59214
-8491	17034	7253544528919845	CMakeFiles/2proj_AED_G106.dir/src/definition/Flight.cpp.obj	6450736a12460963
-39	17275	7253544535321636	CMakeFiles/2proj_AED_G106.dir/src/definition/Graph.cpp.obj	d5020e66f1cc4f6d
-7659	19533	7253544561527927	CMakeFiles/2proj_AED_G106.dir/src/definition/Menu.cpp.obj	8e63af48b8160d8f
-17276	19716	7253544564252019	CMakeFiles/2proj_AED_G106.dir/main.cpp.obj	23c475166a2bfd23
-17035	19758	7253544564908043	CMakeFiles/2proj_AED_G106.dir/src/definition/Loader.cpp.obj	79241462973a6ba5
 19759	21641	7253544583788877	2proj_AED_G106.exe	4a0e9797d4f963dd
