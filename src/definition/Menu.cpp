@@ -5,6 +5,8 @@
 #include <set>
 #include <unordered_map>
 #include <algorithm>
+#include <unordered_set>
+#include <queue>
 
 void Menu::displayMenu(Graph ap) {
     int choice;
@@ -130,6 +132,10 @@ void Menu::airportInfoMenu(Graph ap){
 
             case 4:
                 numReachableDestinations(ap);
+                break;
+
+            case 5:
+                findMaxStopsTrip(ap);
                 break;
 
             case 0:
@@ -409,7 +415,50 @@ void Menu::numReachableDestinations(Graph ap) {
 }
 
 
+void Menu::findMaxStopsTrip(Graph& graph) {
+    int maxStops = 0;
+    std::vector<std::pair<std::string, std::string>> maxStopsPairs;
 
+    for (const auto& vertex : graph.getVertexSet()) {
+        std::queue<std::pair<Vertex*, int>> q;
+        std::unordered_set<Vertex*> visited;
+
+        q.push({vertex, 0});
+        visited.insert(vertex);
+
+        while (!q.empty()) {
+            auto [currentVertex, stops] = q.front();
+            q.pop();
+
+            if (stops > maxStops) {
+                maxStops = stops;
+                maxStopsPairs.clear(); // Clear the previous pairs since we found a higher number of stops
+                maxStopsPairs.emplace_back(vertex->getAirport().getCode(), currentVertex->getAirport().getCode());
+            } else if (stops == maxStops) {
+                maxStopsPairs.emplace_back(vertex->getAirport().getCode(), currentVertex->getAirport().getCode());
+            }
+
+            for (const Edge& edge : currentVertex->getAdj()) {
+                Vertex* destVertex = edge.getDest();
+                if (visited.find(destVertex) == visited.end()) {
+                    visited.insert(destVertex);
+                    q.push({destVertex, stops + 1});
+                }
+            }
+        }
+    }
+
+    if (!maxStopsPairs.empty()) {
+        std::cout << "Maximum trip(s) with the greatest number of stops (" << maxStops << " stops):" << std::endl;
+        for (const auto& pair : maxStopsPairs) {
+            std::cout << "Source Airport: " << pair.first << " - " << graph.findVertex(pair.first)->getAirport().getCity() << ", " << graph.findVertex(pair.first)->getAirport().getCountry() << std::endl;
+            std::cout << "Destination Airport: " << pair.second << " - " << graph.findVertex(pair.second)->getAirport().getCity() << ", " << graph.findVertex(pair.second)->getAirport().getCountry() << std::endl;
+            std::cout << "---------------------" << std::endl;
+        }
+    } else {
+        std::cout << "No flights found in the graph." << std::endl;
+    }
+}
 
 
 
