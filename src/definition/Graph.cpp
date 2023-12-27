@@ -48,15 +48,6 @@ void Vertex::addEdge(Vertex* src, Vertex* dest, double w, std::string airline) {
     adj.push_back(Edge(src, dest, w, airline));
 }
 
-void Vertex::clearAdj() {
-    adj.clear();
-}
-
-// Function to remove an edge to a specific vertex
-void Vertex::removeEdgeTo(Vertex* dest) {
-    adj.erase(std::remove_if(adj.begin(), adj.end(),
-                             [dest](const Edge& edge) { return edge.getDest() == dest; }), adj.end());
-}
 
 /****************** Edge Implementation ********************/
 
