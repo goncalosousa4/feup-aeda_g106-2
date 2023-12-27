@@ -20,15 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abefc9a7-df93-4c1d-aa3f-052061710f88" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/2proj_AED_G106.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/2proj_AED_G106.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2proj_AED_G106.dir/src/definition/Menu.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2proj_AED_G106.dir/src/definition/Menu.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/definition/Menu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/definition/Menu.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="abefc9a7-df93-4c1d-aa3f-052061710f88" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,7 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1703651149384</updated>
       <workItem from="1703651155580" duration="830000" />
-      <workItem from="1703682737604" duration="3391000" />
+      <workItem from="1703682737604" duration="3978000" />
     </task>
     <servers />
   </component>
