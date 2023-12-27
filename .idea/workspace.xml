@@ -25,9 +25,12 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/2proj_AED_G106.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/2proj_AED_G106.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2proj_AED_G106.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2proj_AED_G106.dir/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2proj_AED_G106.dir/src/definition/Graph.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2proj_AED_G106.dir/src/definition/Graph.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2proj_AED_G106.dir/src/definition/Loader.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2proj_AED_G106.dir/src/definition/Loader.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2proj_AED_G106.dir/src/definition/Menu.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/2proj_AED_G106.dir/src/definition/Menu.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/definition/Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/definition/Graph.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/definition/Loader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/definition/Loader.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/definition/Menu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/definition/Menu.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/header/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/Graph.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/header/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/Menu.h" afterDir="false" />
@@ -112,7 +115,9 @@
       <workItem from="1703458008366" duration="692000" />
       <workItem from="1703461828720" duration="7644000" />
       <workItem from="1703509384571" duration="19118000" />
-      <workItem from="1703597382310" duration="4939000" />
+      <workItem from="1703597382310" duration="8897000" />
+      <workItem from="1703613462126" duration="1519000" />
+      <workItem from="1703626734924" duration="8759000" />
     </task>
     <servers />
   </component>

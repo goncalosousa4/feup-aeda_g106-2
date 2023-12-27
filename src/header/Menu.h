@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <set>
+#include <unordered_map>
 #include "Graph.h"
 
 class Menu {
@@ -11,6 +12,9 @@ public:
     static void displayMenu(Graph ap);
     static void airportInfoMenu(Graph ap);
     static void statsMenu(Graph ap);
+
+
+
 
 private:
     static void printAvailableAirports(Graph ap);
@@ -22,7 +26,10 @@ private:
     static void countCountriesForCity(Graph ap);
     static void printNumDestinationsForAirport(Graph ap);
     static void ranking(Graph ap, int k);
-    //static void reachableDest(Graph ap);
+    static void reachableDest(Graph ap);
+
+    // AUX
+
 };
 
 #endif

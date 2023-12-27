@@ -104,6 +104,7 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "1. Check the number of flights out of an Airport\n";
         std::cout << "2. Show the number of different destinations reachable from an Airport\n";
         std::cout << "3. Rankings\n";
+        std::cout << "4. Reachable destinations with stops\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -125,6 +126,11 @@ void Menu::airportInfoMenu(Graph ap){
                 std::cout << std::endl;
                 ranking(ap, k);
                 break;
+
+            case 4:
+                reachableDest(ap);
+                break;
+
             case 0:
                 displayMenu(ap);
                 break;
@@ -329,10 +335,11 @@ void Menu::ranking(Graph ap, int k) {
 }
 
 
-
 /*void Menu::reachableDest(Graph ap) {
     std::string src;
     int stops;
+    int count = 0;
+
     std::cout << "Enter the departing airport code: ";
     std::cin >> src;
     std::cout << std::endl;
@@ -340,4 +347,48 @@ void Menu::ranking(Graph ap, int k) {
     std::cin >> stops;
     std::cout << std::endl;
 
+    std::unordered_map<std::string, int> reachableDestinations = ap.bfsLayOver(src);
+
+    for (const auto& dest : reachableDestinations) {
+        if (dest.second >= 0 && dest.second <= stops) {
+            count++;
+        }
+    }
+
+    std::cout << "Number of reachable destinations within " << stops << " lay-overs: " << count << std::endl;
 }*/
+
+void Menu::reachableDest(Graph ap) {
+    std::string src;
+    int stops;
+    int count  = 0;
+    std::cout << "Enter the departing airport code: ";
+    std::cin >> src;
+    std::cout << std::endl;
+
+    std::cout << "How many lay-overs do you want to make? ";
+    std::cin >> stops;
+    std::cout << std::endl;
+
+    std::unordered_map<std::string, int> reachableDestinations = ap.bfsLayOver(src);
+
+    std::cout << "Reachable airports within " << stops << " layovers from " << src << " are:" << std::endl;
+    for (const auto& dest : reachableDestinations) {
+        if (dest.second >= 0 && dest.second <= stops) {
+            std::cout << dest.first << " (Layovers: " << dest.second << ")" << std::endl;
+            count++;
+        }
+    }
+    std::cout << "The number of reachable airports for " << src << " within " << stops << " lay-overs is " << count << std::endl;
+    auto a = "MAG";
+    std::set<Vertex*> direct;
+    std::cout << "Direct Airports ";
+    for (const auto& a :ap.findVertex(a)->getAdj()){
+        direct.insert(a.getDest());
+    }
+    std::cout << direct.size() << std::endl;
+}
+
+
+
+
