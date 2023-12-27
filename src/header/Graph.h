@@ -8,6 +8,7 @@
 #include "Airport.h"
 #include "Flight.h"
 #include <set>
+#include <unordered_map>
 
 class Edge;
 
@@ -34,18 +35,20 @@ public:
     const Airport& getAirport() const;
     void setAirport(const Airport& airport);
 
-    void addEdge(Vertex* dest, double w, std::string airline);
+    void addEdge(Vertex* src, Vertex* dest, double w, std::string airline);
 };
 
 class Edge {
+    Vertex* src;
     Vertex* dest;      // destination vertex
     double weight;         // edge weight
     std::string airline;
 
 
 public:
-    Edge(Vertex* d, double w, std::string airline);
+    Edge(Vertex* src, Vertex* d, double w, std::string airline);
     Vertex* getDest() const;
+    Vertex* getSrc() const;
     void setDest(Vertex* dest);
     double getWeight() const;
     std::string getAirline() const;

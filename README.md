@@ -1,4 +1,12 @@
+
+Airports and Flights loaded into a Graph. Airports are Vertices and Flights are edges.  
+Airlines aren't loaded, but can be searched using a method of Menu called findAirline.
+
 ##     TOPICS
+### 1 
+Implemented  
+### 2
+Menu structure is done, constantly updating...  
 ### 3
 I - Implemented <br />
 II - Implemented <br />
@@ -12,7 +20,7 @@ IX - Not
 ### 4
 I - Not    
 II - Not    
-III- Not    
+III- Not      
 ### 5
 Not  
 

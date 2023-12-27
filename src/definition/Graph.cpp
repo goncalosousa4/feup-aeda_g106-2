@@ -1,5 +1,6 @@
 #include <set>
 #include "../header/Graph.h"
+#include <iostream>
 
 /****************** Vertex Implementation ********************/
 
@@ -41,17 +42,20 @@ void Vertex::setAirport(const Airport& airport) {
     this->airport = airport;
 }
 
-void Vertex::addEdge(Vertex* dest, double w, std::string airline) {
-    adj.push_back(Edge(dest, w, airline));
+void Vertex::addEdge(Vertex* src, Vertex* dest, double w, std::string airline) {
+    adj.push_back(Edge(src, dest, w, airline));
 }
 
 
 /****************** Edge Implementation ********************/
 
-Edge::Edge(Vertex* d, double w, std::string airline) : dest(d), weight(w), airline(airline) {}
+Edge::Edge(Vertex* s, Vertex* d, double w, std::string airline) : src(s), dest(d), weight(w), airline(airline) {}
 
 Vertex* Edge::getDest() const {
     return dest;
+}
+Vertex* Edge::getSrc() const {
+    return src;
 }
 
 void Edge::setDest(Vertex* d) {
@@ -96,8 +100,8 @@ bool Graph::addEdge(const std::string& sourc, const std::string& dest, const std
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
-    v1->addEdge(v2, w, airline);
-    edgeSet.push_back(new Edge(v2, w, airline));
+    v1->addEdge(v1, v2, w, airline);
+    edgeSet.push_back(new Edge(v1, v2, w, airline));
     return true;
 
 }
@@ -168,3 +172,5 @@ const std::set<std::string> Graph::bfs(const std::string& source) const {
 
     return res;
 }
+
+
