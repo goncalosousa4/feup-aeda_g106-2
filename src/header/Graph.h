@@ -63,6 +63,7 @@ class Graph {
 
 public:
     Vertex* findVertex(const std::string& code) const;
+    Vertex* findVertexCity(const std::string &city) const ;
     int getNumVertex() const;
     int getNumEdges() const;
     bool addVertex(const std::string& code);

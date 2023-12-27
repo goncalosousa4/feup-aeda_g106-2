@@ -79,6 +79,12 @@ Vertex* Graph::findVertex(const std::string& code) const {
             return v;
     return nullptr;
 }
+Vertex* Graph::findVertexCity(const std::string &city) const {
+    for (auto v : vertexSet)
+        if (v->getAirport().getCity() == city)
+            return v;
+    return nullptr;
+}
 
 int Graph::getNumVertex() const {
     return vertexSet.size();
