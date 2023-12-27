@@ -173,41 +173,4 @@ const std::set<std::string> Graph::bfs(const std::string& source) const {
     return res;
 }
 
-void Graph::recursiveBfs(Vertex* s, std::unordered_map<std::string, int>& airportLayovers) {
-    for (const auto& edge : s->getAdj()) {
-        if (!edge.getDest()->isVisited()) {
-            edge.getDest()->setVisited(true);
-
-            // Increment the layovers for the destination airport
-            airportLayovers[edge.getDest()->getAirport().getCode()] = airportLayovers[edge.getSrc()->getAirport().getCode()] + 1;
-
-            recursiveBfs(edge.getDest(), airportLayovers);
-        }
-    }
-}
-
-std::unordered_map<std::string, int> Graph::bfsLayOver(std::string airportCode) {
-    auto s = findVertex(airportCode);
-    findVertex(airportCode)->setVisited(true);
-    std::set<std::string> reachableDestinations = bfs(airportCode);
-    std::unordered_map<std::string, int> airportLayovers;
-
-    for (const auto& dest : reachableDestinations) {
-        auto air = findVertex(dest);
-        if (air != nullptr && dest!=airportCode) {
-            air->setVisited(false);
-
-            // Initialize layovers to -1 for all destinations except the source airport
-            airportLayovers.insert({dest, -1});
-
-        }
-        recursiveBfs(s, airportLayovers);
-    }
-
-
-    for (const auto& l: airportLayovers){
-        std::cout << "Airport " << l.first << " - " << l.second << std::endl;
-    }
-    return airportLayovers;
-}
 

@@ -71,8 +71,6 @@ public:
     std::vector<std::string> dfs();
     std::vector<std::string> dfs(const std::string& source);
     const std::set<std::string> bfs(const std::string& source) const;
-    std::unordered_map<std::string, int> bfsLayOver(std::string source);
-    static void recursiveBfs(Vertex* s, std::unordered_map<std::string, int>& airportLayovers);
     bool isDAG() const;
 };
 

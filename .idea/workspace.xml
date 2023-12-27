@@ -71,7 +71,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "layOver",
+    "git-widget-placeholder": "layOver2.0",
     "last_opened_file_path": "C:/Users/Sílvia Augusto/Desktop/2proj_AED_G106/CMakeLists.txt",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -110,7 +110,7 @@
       <workItem from="1703509384571" duration="19118000" />
       <workItem from="1703597382310" duration="8897000" />
       <workItem from="1703613462126" duration="1519000" />
-      <workItem from="1703626734924" duration="13234000" />
+      <workItem from="1703626734924" duration="20062000" />
     </task>
     <servers />
   </component>

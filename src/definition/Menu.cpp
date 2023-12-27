@@ -334,66 +334,10 @@ void Menu::ranking(Graph ap, int k) {
     }
 }
 
-
-/*void Menu::reachableDest(Graph ap) {
-    std::string src;
-    int stops;
-    int count = 0;
-
-    std::cout << "Enter the departing airport code: ";
-    std::cin >> src;
-    std::cout << std::endl;
-    std::cout << "How many lay-overs do you want to make? ";
-    std::cin >> stops;
-    std::cout << std::endl;
-
-    std::unordered_map<std::string, int> reachableDestinations = ap.bfsLayOver(src);
-
-    for (const auto& dest : reachableDestinations) {
-        if (dest.second >= 0 && dest.second <= stops) {
-            count++;
-        }
-    }
-
-    std::cout << "Number of reachable destinations within " << stops << " lay-overs: " << count << std::endl;
-}*/
-
-/*void Menu::reachableDest(Graph ap) {
-    std::string src;
-    int stops;
-    int count  = 0;
-    std::cout << "Enter the departing airport code: ";
-    std::cin >> src;
-    std::cout << std::endl;
-
-    std::cout << "How many lay-overs do you want to make? ";
-    std::cin >> stops;
-    std::cout << std::endl;
-
-    std::unordered_map<std::string, int> reachableDestinations = ap.bfsLayOver(src);
-
-    std::cout << "Reachable airports within " << stops << " layovers from " << src << " are:" << std::endl; //debug
-    for (const auto& dest : reachableDestinations) {
-        if (dest.second >= 0 && dest.second <= stops) {
-            std::cout << dest.first << " (Layovers: " << dest.second << ")" << std::endl; //debug
-            count++;
-        }
-    }
-    std::cout << "The number of reachable airports for " << src << " within " << stops << " lay-overs is " << count << std::endl;
-    auto a = "MAG";
-    std::set<Vertex*> direct;
-    std::cout << "Direct Airports ";                                                     // debug
-    for (const auto& a :ap.findVertex(a)->getAdj()){
-        direct.insert(a.getDest());
-    }
-    std::cout << direct.size() << std::endl;
-}*/
 void Menu::numReachableDestinations(Graph ap) {
     std::string src;
     int stops;
     int countAirports = 0;
-    int countCities = 0;
-    int countCountries = 0;
 
     std::cout << "Enter the departing airport code: ";
     std::cin >> src;
@@ -408,60 +352,53 @@ void Menu::numReachableDestinations(Graph ap) {
         return;
     }
 
-    std::queue<std::pair<Vertex*, int>> q; // empty queue for BFS
+    std::queue<std::pair<Vertex*, int>> k; // empty queue for BFS
     std::set<std::string> visited;
-    int numReachableDestinations = 0;
+    std::set<std::string> cities;   // visited cities
+    std::set<std::string> countries;    // visited countries
+    std::set<std::string> visitedAir;   //visited airports
+
 
     // Inserting the src airport and making it with -1 stops (not accessible)
-    q.push({ap.findVertex(src), -1});
+    k.push({ap.findVertex(src), -1});
     visited.insert(src);
 
-    // BFS-like implementation for this context
-
-    while (!q.empty()) {
-        auto current = q.front();
-        q.pop();
+    // bfs-like implementation for this context
+    while (!k.empty()) {
+        auto current = k.front();
+        k.pop();
 
         if (current.second <= stops) {
-            numReachableDestinations++;
+            Vertex* a = current.first;
+            visitedAir.insert(a->getAirport().getCode());
         } else {
             break;
         }
 
-        // Process the current airport
-        countAirports++;
-
-        // Extract city and country information from the current airport
-        std::string currentCity = current.first->getAirport().getCity();
-        std::string currentCountry = current.first->getAirport().getCountry();
-
-        // Check if the city has not been visited
-        if (visited.find(currentCity) == visited.end()) {
-            visited.insert(currentCity);
-            countCities++;
-        }
-
-        // Check if the country has not been visited
-        if (visited.find(currentCountry) == visited.end()) {
-            visited.insert(currentCountry);
-            countCountries++;
-        }
-
-        // Enqueue neighboring airports
         for (const auto& edge : current.first->getAdj()) {
             auto dest = edge.getDest();
             if (visited.find(dest->getAirport().getCode()) == visited.end()) {
-                q.push({dest, current.second + 1});
+                k.push({dest, current.second + 1});
                 visited.insert(dest->getAirport().getCode());
             }
         }
+
     }
+     for(auto a: visitedAir){
+         if(a!=src){    // excluding the src airport;
+             countAirports++;
+             cities.insert(ap.findVertex(a)->getAirport().getCity());
+             countries.insert(ap.findVertex(a)->getAirport().getCountry());
+         } else {
+             continue;
+         }
+     }
 
     std::cout << "Number of reachable destinations departing from " << src << " within " << stops
               << " stops is: "<<std::endl;
-    std::cout << "-" << numReachableDestinations -1 << " airports\n";
-    std::cout << "-" << countCities << " cities" << std::endl;
-    std::cout << "-" << countCountries << " countries" << std::endl;
+    std::cout << "-" << countAirports << " airports\n";
+    std::cout << "-" << cities.size() << " cities" << std::endl;
+    std::cout << "-" << countries.size() << " countries" << std::endl;
 }
 
 
