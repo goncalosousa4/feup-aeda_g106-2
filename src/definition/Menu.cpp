@@ -338,7 +338,7 @@ void Menu::numReachableDestinations(Graph ap) {
     std::string src;
     int stops;
     int countAirports = 0;
-    int repeatedCities = 0; // count cities from diff countries with the same name
+    int repeatedCities = 0; // count cities from diff countries with the same name (ieg: Sydney (Canada) and Sydney (Australia))
 
     std::cout << "Enter the departing airport code: ";
     std::cin >> src;
