@@ -13,8 +13,8 @@ II - Implemented <br />
 III - Implemented <br />
 IV - Implemented <br />
 V - Implemented <br />
-VI - Not  
-VII - Not    
+VI - Implemented   
+VII - Implemented      
 VIII - Implemented  
 IX - Not    
 ### 4
