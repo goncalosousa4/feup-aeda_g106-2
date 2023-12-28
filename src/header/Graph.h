@@ -69,7 +69,7 @@ class Graph {
 public:
     Edge* findEdgeByDest(const std::string dest) const;
     Vertex* findVertex(const std::string& code) const;
-    Vertex* findVertexCity(const std::string &city) const ;
+    std::set<std::string> findVertexCity(const std::string &city) const ;
     int getNumVertex() const;
     int getNumEdges() const;
     bool addVertex(const std::string& code);

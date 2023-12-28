@@ -32,7 +32,7 @@ private:
     int countCountries(Graph ap, std::set<std::string> visited);
     static void findMaxStopsTrip(Graph& graph);
     static void bestFlightOption(Graph ap);
-
+    static std::set<std::string> findClosestAirports(Graph ap, double lat, double lon);
     // AUX
 
 };

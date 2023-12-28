@@ -91,11 +91,12 @@ Vertex* Graph::findVertex(const std::string& code) const {
             return v;
     return nullptr;
 }
-Vertex* Graph::findVertexCity(const std::string &city) const {
+std::set<std::string> Graph::findVertexCity(const std::string &city) const {
+    std::set<std::string> vertexes;
     for (auto v : vertexSet)
         if (v->getAirport().getCity() == city)
-            return v;
-    return nullptr;
+            vertexes.insert(v->getAirport().getCode());
+    return vertexes;
 }
 
 int Graph::getNumVertex() const {
