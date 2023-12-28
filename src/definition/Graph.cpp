@@ -243,7 +243,7 @@ void Graph::findArticulationPoints() {
     if (contador > 0) {
         std::cout << std::endl << "There are " << contador << " airports essential to the network's circulation capability." << std::endl;
     } else {
-        std::cout << "No airports essential to the network’s circulation capability found." << std::endl;
+        std::cout << "No airports essential to the network's circulation capability found." << std::endl;
     }
 }
 
