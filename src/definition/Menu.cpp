@@ -410,7 +410,10 @@ void Menu::numReachableDestinations(Graph ap) {
          if(a!=src){    // excluding the src airport;
              countAirports++;
              for (auto city: cities){
-                 if (city==ap.findVertex(a)->getAirport().getCity()){   //missing the rest of the implementation
+                 auto c = ap.findVertexCity(city).begin();
+                 auto v = *c;
+                 if (city==ap.findVertex(a)->getAirport().getCity() &&
+                 ap.findVertex(v)->getAirport().getCountry()!=ap.findVertex(a)->getAirport().getCountry()){   //missing the rest of the implementation
                      repeatedCities++;
                  }
              }
@@ -424,7 +427,7 @@ void Menu::numReachableDestinations(Graph ap) {
     std::cout << "Number of reachable destinations departing from " << src << " within " << stops
               << " stops is: "<<std::endl;
     std::cout << "-" << countAirports << " airports\n";
-    std::cout << "-" << cities.size() << " cities" << std::endl;
+    std::cout << "-" << cities.size() + repeatedCities << " cities" << std::endl;
     std::cout << "-" << countries.size() << " countries" << std::endl;
 }
 
@@ -569,8 +572,10 @@ void Menu::bestFlightOption(Graph ap) {
             std::cout << "Enter the destination airport code or name: ";
             std::cin >> destination;
             std::cout << std::endl;
+
             sourceLocations.insert(source);
             destinationLocations.insert(destination);
+
             break;
         case 2:
             std::cout << "Enter the source city name: ";

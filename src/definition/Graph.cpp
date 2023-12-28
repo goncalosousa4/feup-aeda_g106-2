@@ -84,6 +84,12 @@ Edge* Graph::findEdgeByDest(const std::string dest) const {
     return nullptr;
 }
 
+Vertex* Graph::findVertexByName(const std::string& name) const {
+    for (auto v : vertexSet)
+        if (v->getAirport().getName() == name)
+            return v;
+    return nullptr;
+}
 
 Vertex* Graph::findVertex(const std::string& code) const {
     for (auto v : vertexSet)
