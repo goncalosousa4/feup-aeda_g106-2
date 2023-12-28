@@ -21,6 +21,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3aa6eab0-adb4-4c28-887e-a1d45a70c795" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/2proj_AED_G106.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/2proj_AED_G106.exe" afterDir="false" />
@@ -101,7 +102,7 @@
       <option name="presentableId" value="Default" />
       <updated>1703720947939</updated>
       <workItem from="1703720951108" duration="162000" />
-      <workItem from="1703721135145" duration="8671000" />
+      <workItem from="1703721135145" duration="8695000" />
     </task>
     <servers />
   </component>
