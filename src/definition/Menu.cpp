@@ -673,11 +673,16 @@ void Menu::bestFlightOption(Graph ap) {
     for (const auto& path : bestPaths) {
         for (size_t i = 0; i < path.size(); ++i) {
             std::cout << path[i]->getAirport().getCode();
-            if (i < path.size() - 1) {
-                // Print airline information for all edges except the last one
+            if (i < path.size()-1 && i > 0) {
                 std::string airlineCode = ap.findEdgeByDest(path[i]->getAirport().getCode())->getAirline();
                 Airline airline = Loader::findAirlineByCode(airlineCode, "../dataset/Airlines.csv");
                 std::cout << " (by " << airline.getName() << ") - ";
+            } else if (i==0){
+                std::cout << " - ";
+            }  else if (i==path.size()-1){
+                std::string airlineCode = ap.findEdgeByDest(path[i]->getAirport().getCode())->getAirline();
+                Airline airline = Loader::findAirlineByCode(airlineCode, "../dataset/Airlines.csv");
+                std::cout << " (by " << airline.getName() << ")";
             }
         }
         std::cout << std::endl;
