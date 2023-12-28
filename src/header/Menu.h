@@ -17,6 +17,7 @@ public:
 
 
 private:
+
     static void printAvailableAirports(Graph ap);
     static void printAvailableFlights(Graph ap);
     static void countFlightsOutOfAirport(Graph ap);
@@ -30,7 +31,8 @@ private:
     int countCities(Graph ap, std::set<std::string> visited);
     int countCountries(Graph ap, std::set<std::string> visited);
     static void findMaxStopsTrip(Graph& graph);
-    static void bestFlightOption(Graph& ap);
+    static void bestFlightOption(Graph ap);
+
     // AUX
 
 };

@@ -108,6 +108,7 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "3. Rankings\n";
         std::cout << "4. Reachable destinations with stops\n";
         std::cout << "5. Maximum trip and corresponding pair of source-destination airports (or pairs, if more than one), that is, the flight trip(s) with the greatest number of stops in between them\n";
+        std::cout << "6. Identify the airports that are essential to the network’s circulation capability (airports are essential if, when removed, areas of the network start to be unreachable)\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -138,6 +139,11 @@ void Menu::airportInfoMenu(Graph ap){
                 findMaxStopsTrip(ap);
                 break;
 
+            case 6:
+                std::cout << "Identifying essential airports...\n";
+                ap.findArticulationPoints();
+                break;
+
             case 0:
                 displayMenu(ap);
                 break;
@@ -157,7 +163,6 @@ void Menu::statsMenu(Graph ap){
         std::cout << "2. Check Airline statistics\n";
         std::cout << "3. Check countries from a city\n";
         std::cout << "4. Check countries from an Airport\n";
-        std::cout << "5. Find the best flight option\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -175,10 +180,6 @@ void Menu::statsMenu(Graph ap){
                 break;
             case 4:
                 countCountriesForAirport(ap);
-                break;
-
-            case 5:
-                bestFlightOption(ap);
                 break;
             case 0:
                 displayMenu(ap);
@@ -350,7 +351,7 @@ void Menu::numReachableDestinations(Graph ap) {
     std::string src;
     int stops;
     int countAirports = 0;
-    int repeatedCities = 0; // count cities from diff countries with the same name (ieg: Sydney (Canada) and Sydney (Australia))
+    int repeatedCities = 0; // count cities from diff countries with the same name
 
     std::cout << "Enter the departing airport code: ";
     std::cin >> src;
@@ -401,9 +402,7 @@ void Menu::numReachableDestinations(Graph ap) {
          if(a!=src){    // excluding the src airport;
              countAirports++;
              for (auto city: cities){
-                 auto aCity=ap.findVertex(a)->getAirport().getCity();
-                 if (city==aCity &&
-                 ap.findVertexCity(city)->getAirport().getCountry()!=ap.findVertex(a)->getAirport().getCountry()){
+                 if (city==ap.findVertex(a)->getAirport().getCity()){   //missing the rest of the implementation
                      repeatedCities++;
                  }
              }
@@ -414,11 +413,10 @@ void Menu::numReachableDestinations(Graph ap) {
          }
      }
 
-
     std::cout << "Number of reachable destinations departing from " << src << " within " << stops
               << " stops is: "<<std::endl;
     std::cout << "-" << countAirports << " airports\n";
-    std::cout << "-" << cities.size()+repeatedCities << " cities" << std::endl;
+    std::cout << "-" << cities.size() << " cities" << std::endl;
     std::cout << "-" << countries.size() << " countries" << std::endl;
 }
 
@@ -467,6 +465,7 @@ void Menu::findMaxStopsTrip(Graph& graph) {
         std::cout << "No flights found in the graph." << std::endl;
     }
 }
+
 /*void Menu::bestFlightOption(Graph& graph) {
     std::string source, destination;
 
@@ -521,7 +520,7 @@ void Menu::findMaxStopsTrip(Graph& graph) {
     }
 }*/
 
-void Menu::bestFlightOption(Graph& ap) {
+void Menu::bestFlightOption(Graph ap){
     std::string source, destination;
     std::cout << "Enter the source airport code: ";
     std::cin >> source;
@@ -591,4 +590,3 @@ void Menu::bestFlightOption(Graph& ap) {
         }
     }
 }
-

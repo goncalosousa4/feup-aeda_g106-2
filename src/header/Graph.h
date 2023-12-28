@@ -9,6 +9,7 @@
 #include "Flight.h"
 #include <set>
 #include <unordered_map>
+#include <unordered_set>
 
 class Edge;
 
@@ -40,9 +41,6 @@ public:
     void setAirport(const Airport& airport);
 
     void addEdge(Vertex* src, Vertex* dest, double w, std::string airline);
-
-
-
 };
 
 class Edge {
@@ -81,6 +79,15 @@ public:
     std::vector<std::string> dfs(const std::string& source);
     const std::set<std::string> bfs(const std::string& source) const;
     bool isDAG() const;
+
+    void dfsConnectedComponents(Vertex* v, std::unordered_set<Vertex*>& visitedVertices) const;
+    int countConnectedComponents() const;
+
+    void findArticulationPointsUtil(Vertex* v, std::unordered_map<Vertex*, int>& disc,
+                                           std::unordered_map<Vertex*, int>& low,
+                                           std::unordered_map<Vertex*, Vertex*>& parent,
+                                           std::unordered_set<Vertex*>& articulationPoints);
+    void findArticulationPoints();
 };
 
 #endif
