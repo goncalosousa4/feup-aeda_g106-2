@@ -2,7 +2,8 @@
 #include "src/header/Loader.h"
 #include "src/header/Menu.h"
 #include <iostream>
-
+#include <chrono>
+#include <thread>
 
 
 int main() {
@@ -12,13 +13,15 @@ int main() {
 
     Loader::loadAirports(Airport, "../dataset/airports.csv");
 
-    _sleep(2500);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2500));
+
     std::cout << "IT SHOULDN'T TAKE MUCH LONGER\n\n\n";
 
     Loader::loadFlights(Airport, "../dataset/flights.csv");
 
     std::cout << "FASTEN YOUR SEATBELTS, HERE WE GO\n\n";
-    _sleep(1500);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+
 
     std::cout << " ___________________________________________________\n";
     std::cout << "| --> Welcome to Flight Management Services AED <-- |\n";
