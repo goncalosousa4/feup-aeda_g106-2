@@ -7,6 +7,7 @@
 #include <list>
 #include "Airport.h"
 #include "Flight.h"
+#include "Airline.h"
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
@@ -65,6 +66,7 @@ class Graph {
     std::vector<Vertex*> vertexSet;      // vertex set
     std::vector<Edge*> edgeSet;
     static void dfsVisit(Vertex* v, std::vector<std::string>& res);
+    std::vector<Airline> airlines;
 
 public:
     Edge* findEdgeByDest(const std::string dest) const;
@@ -89,6 +91,12 @@ public:
                                            std::unordered_map<Vertex*, Vertex*>& parent,
                                            std::unordered_set<Vertex*>& articulationPoints);
     void findArticulationPoints();
+
+    std::vector<std::vector<Vertex*>> findFlightsWithFilters(const std::string& source, const std::string& destination, const std::vector<std::string>& preferredAirlines, bool minimizeAirlineChanges);
+
+
+    std::vector<std::vector<Vertex*>> findAllFlights(const std::string& source, const std::string& destination);
+    void findAllFlightsUtil(Vertex* current, Vertex* destination, std::vector<Vertex*>& path, std::vector<std::vector<Vertex*>>& allPaths, std::unordered_set<Vertex*>& visited);
 };
 
 #endif

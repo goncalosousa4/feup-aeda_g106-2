@@ -10,6 +10,9 @@
 #include <math.h>
 #include <map>
 #include <limits>
+#include <sstream>
+#include <fstream>
+#include <string>
 
 void Menu::displayMenu(Graph ap) {
     int choice;
@@ -123,6 +126,7 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "4. Reachable destinations for given stops (3.6)\n";
         std::cout << "5. Maximum possible trip (3.7)\n";
         std::cout << "6. Identify the airports that are essential to the network (3.9)\n";
+        std::cout << "7. Search for the best flight with filters (5.)\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -152,6 +156,10 @@ void Menu::airportInfoMenu(Graph ap){
             case 6:
                 std::cout << "Identifying essential airports...\n";
                 ap.findArticulationPoints();
+                break;
+
+            case 7:
+                searchFlightsWithFilters(ap);
                 break;
 
             case 0:
@@ -655,4 +663,102 @@ std::set<std::string> Menu::findClosestAirports(Graph ap, double lat, double lon
         }
     }
     return closestAirports;
+}
+
+void Menu::searchFlightsWithFilters(Graph ap) {
+    std::string source, destination;
+    std::vector<std::string> preferredAirlines;
+    bool minimizeAirlineChanges;
+    std::string input;
+
+    // Get Source Airport
+    std::cout << "Enter the source airport code: ";
+    std::cin >> source;
+
+    // Get Destination Airport
+    std::cout << "Enter the destination airport code: ";
+    std::cin >> destination;
+
+    // Get Preferred Airlines
+    std::cout << "Enter preferred airlines (separated by space, enter 'none' for no preference): ";
+    std::cin.ignore();  // To clear the input buffer
+    std::getline(std::cin, input);
+    std::vector<std::string> selectedAirlines;
+    if (input != "none") {
+        std::istringstream iss(input);
+        std::string airline;
+        while (iss >> airline) {
+            selectedAirlines.push_back(airline);
+        }
+    }
+
+// Get Minimize Airline Changes Option
+    std::cout << "Minimize airline changes? (yes/no): ";
+    std::cin >> input;
+    minimizeAirlineChanges = (input == "yes");
+
+// Search for flights
+    auto flights = ap.findFlightsWithFilters(source, destination, selectedAirlines, minimizeAirlineChanges);
+
+// Display the found flights
+    if (flights.empty()) {
+        std::cout << "No flights found with the given criteria." << std::endl;
+    } else {
+        std::cout << "Found flight options:" << std::endl;
+        for (const auto& path : flights) {
+            for (size_t i = 0; i < path.size() - 1; ++i) {
+                std::cout << path[i]->getAirport().getCode() << " -> ";
+
+                // Find the airline for each leg
+                for (const Edge& edge : path[i]->getAdj()) {
+                    if (edge.getDest() == path[i + 1]) {
+                        std::string airlineName = getAirlineName(edge.getAirline());
+                        std::cout << path[i + 1]->getAirport().getCode() << " at " << airlineName;
+                        if (i < path.size() - 2) {
+                            std::cout << " -> ";
+                        }
+                        break;
+                    }
+                }
+            }
+            std::cout << std::endl;
+        }
+    }
+}
+
+
+std::string Menu::getAirlineName(const std::string& airlineCode) {
+    std::ifstream file("../dataset/airlines.csv"); // Specify the correct path to your file
+    std::string line;
+
+    // Check if file is open
+    if (!file.is_open()) {
+        std::cerr << "Unable to open airlines.csv" << std::endl;
+        return "Unknown Airline";
+    }
+
+    // Skip the header line
+    std::getline(file, line);
+
+    // Read the file line by line
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::string code, name, callsign, country;
+
+        // Parse the line
+        std::getline(iss, code, ',');
+        std::getline(iss, name, ',');
+        std::getline(iss, callsign, ',');
+        std::getline(iss, country);
+
+        // Check if the current line's code matches the airlineCode
+        if (code == airlineCode) {
+            file.close();
+            return name;
+        }
+    }
+
+    // Close the file and return unknown if not found
+    file.close();
+    return "Unknown Airline";
 }

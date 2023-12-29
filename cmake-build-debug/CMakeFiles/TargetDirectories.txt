@@ -1,3 +1,0 @@
-C:/Users/Sílvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug/CMakeFiles/2proj_AED-G106.dir
-C:/Users/Sílvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Sílvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug/CMakeFiles/rebuild_cache.dir
