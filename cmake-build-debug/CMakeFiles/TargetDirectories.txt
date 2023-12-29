@@ -1,0 +1,3 @@
+C:/Users/Sílvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug/CMakeFiles/aaaaaaaaa.dir
+C:/Users/Sílvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Sílvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug/CMakeFiles/rebuild_cache.dir

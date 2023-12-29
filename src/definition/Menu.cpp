@@ -18,10 +18,9 @@ void Menu::displayMenu(Graph ap) {
         std::cout << "  M E N U   \n";
         std::cout << "-----------\n" ;
         std::cout << "1. Check the global number of airports and flights (3.1)\n";
-
-        std::cout << "3. Show Airports' information\n";
-        std::cout << "4. Check statistics\n";
-        std::cout << "5. Make your flight\n";
+        std::cout << "2. Show Airports' information\n";
+        std::cout << "3. Check statistics\n";
+        std::cout << "4. Make your flight\n";
         std::cout << "\n0. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -32,22 +31,19 @@ void Menu::displayMenu(Graph ap) {
                 printAvailableAirports(ap);
                 printAvailableFlights(ap);
                 break;
-            case 2:
-                
-                break;
 
-            case 3:
+            case 2:
                 airportInfoMenu(ap);
                 break;
-            case 4:
+            case 3:
                 statsMenu(ap);
                 break;
-            case 5:
+            case 4:
                 int option;
                 std::cout << "!MAKE YOUR FLIGHT!\n";
-                std::cout << "\n1. Best flight option\n";
-                std::cout << "2. Filter your search\n";
-                std::cout << "Choose your option!\n";
+                std::cout << "\n1. Best flight option (4)\n";
+                std::cout << "2. Filter your search (5)\n";
+                std::cout << "Choose your option!";
                 std::cin >> option;
                 std::cout << std::endl;
                 switch(option){
@@ -121,12 +117,12 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "\n-----------\n" ;
         std::cout << "  I N F O  \n";
         std::cout << "-----------\n" ;
-        std::cout << "1. Check the number of flights out of an Airport\n";
-        std::cout << "2. Show the number of different destinations reachable from an Airport\n";
-        std::cout << "3. Rankings\n";
-        std::cout << "4. Reachable destinations with stops\n";
-        std::cout << "5. Maximum possible trip\n";
-        std::cout << "6. Identify the airports that are essential to the network\n";
+        std::cout << "1. Check the number of flights out of an Airport (3.2)\n";
+        std::cout << "2. Show the number of different destinations reachable from an Airport (3.5)\n";
+        std::cout << "3. Rankings (3.8)\n";
+        std::cout << "4. Reachable destinations for given stops (3.6)\n";
+        std::cout << "5. Maximum possible trip (3.7)\n";
+        std::cout << "6. Identify the airports that are essential to the network (3.9)\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -142,11 +138,7 @@ void Menu::airportInfoMenu(Graph ap){
                 break;
 
             case 3:
-                int k;
-                std::cout << "Which ranking would you like to check? Top ";
-                std::cin >> k;
-                std::cout << std::endl;
-                ranking(ap, k);
+                ranking(ap);
                 break;
 
             case 4:
@@ -177,10 +169,9 @@ void Menu::statsMenu(Graph ap){
         std::cout << "\n-------------\n" ;
         std::cout << "  S T A T S  \n";
         std::cout << "-------------\n" ;
-        std::cout << "1. Check City statistics\n";
-        std::cout << "2. Check Airline statistics\n";
-        std::cout << "3. Check countries from a city\n";
-        std::cout << "4. Check countries from an Airport\n";
+        std::cout << "1. Check city and airline statistics (3.3)\n";
+        std::cout << "2. Check flyable countries from a city (3.4)\n";
+        std::cout << "3. Check flyable countries from an Airport (3.4)\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -189,14 +180,12 @@ void Menu::statsMenu(Graph ap){
         switch (choice) {
             case 1:
                 flightsPerCityPerAirline(ap);
-                break;
-            case 2:
                 flightsPerAirline(ap);
                 break;
-            case 3:
+            case 2:
                 countCountriesForCity(ap);
                 break;
-            case 4:
+            case 3:
                 countCountriesForAirport(ap);
                 break;
             case 0:
@@ -246,8 +235,7 @@ void Menu::flightsPerCityPerAirline(Graph ap) {
 void Menu::flightsPerAirline(Graph ap){
     std::string airline;
     std::cout << "Enter the airline: ";
-    std::cin.ignore();
-    std::getline(std::cin, airline);
+    std::cin >> airline;
     std::cout << std::endl;
     Airline line = Loader::findAirlineByCode(airline, "../dataset/airlines.csv");
     int totalFlights = 0;
@@ -340,7 +328,13 @@ void Menu::printNumDestinationsForAirport(Graph ap) {
         std::cerr << "Airport with code " << airportCode << " not found." << std::endl;
     }
 }
-void Menu::ranking(Graph ap, int k) {
+
+void Menu::ranking(Graph ap) {
+    int k;
+    std::cout << "Which ranking would you like to check? Top ";
+    std::cin >> k;
+    std::cout << std::endl;
+
     std::vector<std::pair<std::string, int>> airportFlights; // vector of pairs to store the airports their flights number
 
 
@@ -369,7 +363,7 @@ void Menu::numReachableDestinations(Graph ap) {
     std::string src;
     int stops;
     int countAirports = 0;
-    int repeatedCities = 0; // count cities from diff countries with the same name
+    int repeatedCities = 0;
 
     std::cout << "Enter the departing airport code: ";
     std::cin >> src;
@@ -379,20 +373,20 @@ void Menu::numReachableDestinations(Graph ap) {
     std::cin >> stops;
     std::cout << std::endl;
 
-    if (ap.findVertex(src) == nullptr) {
+    Vertex* srcVertex = ap.findVertex(src);
+    if (srcVertex == nullptr) {
         std::cout << "Airport not found." << std::endl;
         return;
     }
 
-    std::queue<std::pair<Vertex*, int>> k; // empty queue for BFS
+    std::queue<std::pair<Vertex*, int>> k;
     std::set<std::string> visited;
-    std::set<std::string> cities;   // visited cities
-    std::set<std::string> countries;    // visited countries
-    std::set<std::string> visitedAir;   //visited airports
-
+    std::set<std::string> cities;
+    std::set<std::string> countries;
+    std::set<std::string> visitedAir;
 
     // Inserting the src airport and making it with -1 stops (not accessible)
-    k.push({ap.findVertex(src), -1});
+    k.push({srcVertex, -1});
     visited.insert(src);
 
     // bfs-like implementation for this context
@@ -414,30 +408,21 @@ void Menu::numReachableDestinations(Graph ap) {
                 visited.insert(dest->getAirport().getCode());
             }
         }
-
     }
-     for(auto a: visitedAir){
-         if(a!=src){    // excluding the src airport;
-             countAirports++;
-             for (auto city: cities){
-                 auto c = ap.findVertexCity(city).begin();
-                 auto v = *c;
-                 if (city==ap.findVertex(a)->getAirport().getCity() &&
-                 ap.findVertex(v)->getAirport().getCountry()!=ap.findVertex(a)->getAirport().getCountry()){   //missing the rest of the implementation
-                     repeatedCities++;
-                 }
-             }
-             cities.insert(ap.findVertex(a)->getAirport().getCity());
-             countries.insert(ap.findVertex(a)->getAirport().getCountry());
-         } else {
-             continue;
-         }
-     }
+
+    for (auto a : visitedAir) {
+        if (a != src) {
+            countAirports++;
+
+            cities.insert(ap.findVertex(a)->getAirport().getCity());
+            countries.insert(ap.findVertex(a)->getAirport().getCountry());
+        }
+    }
 
     std::cout << "Number of reachable destinations departing from " << src << " within " << stops
-              << " stops is: "<<std::endl;
+              << " stops is: " << std::endl;
     std::cout << "-" << countAirports << " airports\n";
-    std::cout << "-" << cities.size() + repeatedCities << " cities" << std::endl;
+    std::cout << "-" << cities.size()<< " cities" << std::endl;
     std::cout << "-" << countries.size() << " countries" << std::endl;
 }
 
@@ -487,80 +472,6 @@ void Menu::findMaxStopsTrip(Graph& graph) {
     }
 }
 
-/*void Menu::bestFlightOption(Graph ap){
-    std::string source, destination;
-    std::cout << "Enter the source airport code: ";
-    std::cin >> source;
-    std::cout << std::endl;
-    std::cout << "Enter the destination airport code: ";
-    std::cin >> destination;
-    std::cout << std::endl;
-
-    Vertex* sourceVertex = ap.findVertex(source);
-    Vertex* destinationVertex = ap.findVertex(destination);
-
-    if (!sourceVertex || !destinationVertex) {
-        std::cout << "Invalid source or destination location." << std::endl;
-        return;
-    }
-
-    // bfs-like implementation
-    std::queue<std::pair<Vertex*, std::vector<Vertex*>>> q;
-    std::unordered_set<std::string> visited;
-
-    q.push({sourceVertex, {sourceVertex}});
-    visited.insert(source);
-
-    int bestLayovers = 10000000;  // load a big and impossible value to bestLayovers to apply a min function further
-    std::vector<std::vector<Vertex*>> bestPaths;
-
-    while (!q.empty()) {
-        auto current = q.front();
-        q.pop();
-
-        if (current.first == destinationVertex) {
-
-            bestLayovers = std::min(bestLayovers, static_cast<int>(current.second.size()) - 1);
-            bestPaths.push_back(current.second);
-            continue;
-        }
-
-        for (const auto& edge : current.first->getAdj()) {
-            auto neighbor = edge.getDest();
-            if (visited.find(neighbor->getAirport().getCode()) == visited.end()) {
-                visited.insert(neighbor->getAirport().getCode());
-                auto newPath = current.second;
-                newPath.push_back(neighbor);
-                q.push({neighbor, newPath});
-            }
-        }
-    }
-
-    std::cout << "Best flight options with the least layovers (" << bestLayovers << "):" << std::endl;
-
-    if (bestLayovers == 10000000) {
-        std::cout << "No direct flight found." << std::endl;
-    } else {
-        for (const auto& path : bestPaths) {
-            if (static_cast<int>(path.size()) - 1 == bestLayovers) {
-                int i = 0;
-                for (const auto& vertex : path) {
-                    Airline airline = Loader::findAirlineByCode(ap.findEdgeByDest(vertex->getAirport().getCode())->getAirline(), "../dataset/Airlines.csv");
-                    std::cout << vertex->getAirport().getCode() << " (by " << airline.getName() << ")";
-                    if (i < path.size() - 1) {
-                        std::cout << " - ";
-                    }
-                    i++;
-                }
-                std::cout << std::endl;
-            }
-        }
-    }
-}
-*/
-
-
-
 void Menu::bestFlightOption(Graph ap) {
     int searchOption;
 
@@ -570,7 +481,7 @@ void Menu::bestFlightOption(Graph ap) {
     std::cout << "3. Search by geographical coordinates" << std::endl;
     std::cout << "Enter option: ";
     std::cin >> searchOption;
-
+    std::cout << std::endl;
     std::set<std::string> sourceLocations, destinationLocations;
     std::string source, destination;
 
@@ -622,7 +533,7 @@ void Menu::bestFlightOption(Graph ap) {
             break;
     }
 
-    // Perform BFS to find the best flight option
+    // bfs-like implementation
 
     std::queue<std::pair<Vertex*, std::vector<Vertex*>>> q;
     std::unordered_set<std::string> visited;

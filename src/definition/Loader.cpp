@@ -118,7 +118,7 @@ void Loader::loadFlights(Graph& graph, const std::string& filename) {
 }
 
 Airline Loader::findAirlineByCode(const std::string& code, std::string filename) {
-    std::ifstream file(filename);
+    std::ifstream file("../dataset/airlines.csv");
     std::string line;
 
     while (std::getline(file, line)) {

@@ -26,7 +26,7 @@ private:
     static void countCountriesForAirport(Graph ap);
     static void countCountriesForCity(Graph ap);
     static void printNumDestinationsForAirport(Graph ap);
-    static void ranking(Graph ap, int k);
+    static void ranking(Graph ap);
     static void numReachableDestinations(Graph ap);
     int countCities(Graph ap, std::set<std::string> visited);
     int countCountries(Graph ap, std::set<std::string> visited);
