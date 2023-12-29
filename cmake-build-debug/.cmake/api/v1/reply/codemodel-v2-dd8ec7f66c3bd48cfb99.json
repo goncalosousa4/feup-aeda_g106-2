@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "aaaaaaaaa",
+					"name" : "2proj_AED-G106",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "aaaaaaaaa::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-aaaaaaaaa-Debug-75b3334288de6ee184bb.json",
-					"name" : "aaaaaaaaa",
+					"id" : "2proj_AED-G106::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-2proj_AED-G106-Debug-b32701904f9bacb01611.json",
+					"name" : "2proj_AED-G106",
 					"projectIndex" : 0
 				}
 			]
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug",
-		"source" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa"
+		"build" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug",
+		"source" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106"
 	},
 	"version" : 
 	{

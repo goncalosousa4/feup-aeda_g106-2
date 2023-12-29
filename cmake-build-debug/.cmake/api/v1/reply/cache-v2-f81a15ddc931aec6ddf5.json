@@ -2,7 +2,7 @@
 	"entries" : 
 	[
 		{
-			"name" : "2proj_AED_G106_BINARY_DIR",
+			"name" : "2proj_AED-G106_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -11,10 +11,10 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug"
+			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug"
 		},
 		{
-			"name" : "2proj_AED_G106_IS_TOP_LEVEL",
+			"name" : "2proj_AED-G106_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -26,7 +26,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "2proj_AED_G106_SOURCE_DIR",
+			"name" : "2proj_AED-G106_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa"
+			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug"
+			"value" : "c:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -611,7 +611,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -683,7 +683,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa"
+			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -695,7 +695,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files (x86)/2proj_AED_G106"
+			"value" : "C:/Program Files (x86)/2proj_AED-G106"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -911,7 +911,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "aaaaaaaaa"
+			"value" : "2proj_AED-G106"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1316,42 +1316,6 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "TRUE"
-		},
-		{
-			"name" : "aaaaaaaaa_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug"
-		},
-		{
-			"name" : "aaaaaaaaa_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "aaaaaaaaa_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa"
 		}
 	],
 	"kind" : "cache",
