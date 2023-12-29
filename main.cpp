@@ -4,10 +4,19 @@
 #include <iostream>
 
 
+
 int main() {
     Graph Airport;
+
+    std::cout << "\nPLEASE WAIT WILL WE TAKE OFF\n\n\n";
+
     Loader::loadAirports(Airport, "../dataset/airports.csv");
+
     Loader::loadFlights(Airport, "../dataset/flights.csv");
+
+    std::cout << "FASTEN YOUR SEATBELTS\n\n";
+    _sleep(2000);
+
     std::cout << " ___________________________________________________\n";
     std::cout << "| --> Welcome to Flight Management Services AED <-- |\n";
     std::cout << "|            Enter your name to continue            | \n";

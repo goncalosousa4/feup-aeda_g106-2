@@ -596,14 +596,14 @@ void Menu::bestFlightOption(Graph ap) {
 
         for (const auto& dif: bestPaths){
             for (const auto& path : dif) {
-            for (size_t i = 0; i < path.size() - 1; ++i) {
+                for (size_t i = 0; i < path.size() - 1; ++i) {
                 std::cout << path[i]->getAirport().getCode() << " -> ";
 
                 // Find the airline for each leg
                 for (const Edge& edge : path[i]->getAdj()) {
                     if (edge.getDest() == path[i + 1]) {
                         std::string airlineName = getAirlineName(edge.getAirline());
-                        std::cout << path[i + 1]->getAirport().getCode() << " by " << airlineName;
+                        std::cout << path[i + 1]->getAirport().getCode() << " (by " << airlineName << ")";
                         if (i < path.size() - 2) {
                             std::cout << " || ";
                         }
@@ -612,7 +612,7 @@ void Menu::bestFlightOption(Graph ap) {
                 }
             }
             std::cout << std::endl;
-        }
+            }
         }
 
     }
@@ -711,7 +711,7 @@ void Menu::searchFlightsWithFilters(Graph ap) {
                 for (const Edge& edge : path[i]->getAdj()) {
                     if (edge.getDest() == path[i + 1]) {
                         std::string airlineName = getAirlineName(edge.getAirline());
-                        std::cout << path[i + 1]->getAirport().getCode() << " by " << airlineName;
+                        std::cout << path[i + 1]->getAirport().getCode() << " (by " << airlineName << ")";
                         if (i < path.size() - 2) {
                             std::cout << " || ";
                         }
