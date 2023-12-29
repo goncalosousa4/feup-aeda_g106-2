@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.26)
-project(aaaaaaaaa)
+cmake_minimum_required(VERSION 3.27)
+project(2proj_AED-G106)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -7,7 +7,7 @@ include_directories(src)
 include_directories(src/definition)
 include_directories(src/header)
 
-add_executable(aaaaaaaaa
+add_executable(2proj_AED-G106
         src/definition/Airport.cpp
         src/definition/Flight.cpp
         src/definition/Graph.cpp

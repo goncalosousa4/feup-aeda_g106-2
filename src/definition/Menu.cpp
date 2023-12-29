@@ -53,7 +53,9 @@ void Menu::displayMenu(Graph ap) {
                     case 1:
                         bestFlightOption(ap);
                         break;
-
+                    case 2:
+                        searchFlightsWithFilters(ap);
+                        break;
                     default:
                         std::cout << "Invalid choice. Please try again.\n";
                 }
@@ -126,7 +128,6 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "4. Reachable destinations for given stops (3.6)\n";
         std::cout << "5. Maximum possible trip (3.7)\n";
         std::cout << "6. Identify the airports that are essential to the network (3.9)\n";
-        std::cout << "7. Search for the best flight with filters (5.)\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -158,9 +159,6 @@ void Menu::airportInfoMenu(Graph ap){
                 ap.findArticulationPoints();
                 break;
 
-            case 7:
-                searchFlightsWithFilters(ap);
-                break;
 
             case 0:
                 displayMenu(ap);
@@ -604,22 +602,30 @@ void Menu::bestFlightOption(Graph ap) {
 
     // Print the best flight options
     std::cout << "Best flight option(s) with the least layovers (" << bestLayovers << "):" << std::endl;
-    for (const auto& path : bestPaths) {
-        for (size_t i = 0; i < path.size(); ++i) {
-            std::cout << path[i]->getAirport().getCode();
-            if (i < path.size()-1 && i > 0) {
-                std::string airlineCode = ap.findEdgeByDest(path[i]->getAirport().getCode())->getAirline();
-                Airline airline = Loader::findAirlineByCode(airlineCode, "../dataset/Airlines.csv");
-                std::cout << " (by " << airline.getName() << ") - ";
-            } else if (i==0){
-                std::cout << " - ";
-            }  else if (i==path.size()-1){
-                std::string airlineCode = ap.findEdgeByDest(path[i]->getAirport().getCode())->getAirline();
-                Airline airline = Loader::findAirlineByCode(airlineCode, "../dataset/Airlines.csv");
-                std::cout << " (by " << airline.getName() << ")";
+
+
+    if (bestPaths.empty()) {
+        std::cout << "No flights found with the given criteria." << std::endl;
+    } else {
+        std::cout << "Found flight options:" << std::endl;
+        for (const auto& path : bestPaths) {
+            for (size_t i = 0; i < path.size() - 1; ++i) {
+                std::cout << path[i]->getAirport().getCode() << " -> ";
+
+                // Find the airline for each leg
+                for (const Edge& edge : path[i]->getAdj()) {
+                    if (edge.getDest() == path[i + 1]) {
+                        std::string airlineName = getAirlineName(edge.getAirline());
+                        std::cout << path[i + 1]->getAirport().getCode() << " by " << airlineName;
+                        if (i < path.size() - 2) {
+                            std::cout << " || ";
+                        }
+                        break;
+                    }
+                }
             }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
     }
 }
 
@@ -667,22 +673,24 @@ std::set<std::string> Menu::findClosestAirports(Graph ap, double lat, double lon
 
 void Menu::searchFlightsWithFilters(Graph ap) {
     std::string source, destination;
-    std::vector<std::string> preferredAirlines;
     bool minimizeAirlineChanges;
     std::string input;
 
     // Get Source Airport
     std::cout << "Enter the source airport code: ";
     std::cin >> source;
+    std::cout << std::endl;
 
     // Get Destination Airport
     std::cout << "Enter the destination airport code: ";
     std::cin >> destination;
+    std::cout << std::endl;
 
     // Get Preferred Airlines
     std::cout << "Enter preferred airlines (separated by space, enter 'none' for no preference): ";
     std::cin.ignore();  // To clear the input buffer
     std::getline(std::cin, input);
+    std::cout << std::endl;
     std::vector<std::string> selectedAirlines;
     if (input != "none") {
         std::istringstream iss(input);
@@ -695,6 +703,7 @@ void Menu::searchFlightsWithFilters(Graph ap) {
 // Get Minimize Airline Changes Option
     std::cout << "Minimize airline changes? (yes/no): ";
     std::cin >> input;
+    std::cout << std::endl;
     minimizeAirlineChanges = (input == "yes");
 
 // Search for flights
@@ -713,9 +722,9 @@ void Menu::searchFlightsWithFilters(Graph ap) {
                 for (const Edge& edge : path[i]->getAdj()) {
                     if (edge.getDest() == path[i + 1]) {
                         std::string airlineName = getAirlineName(edge.getAirline());
-                        std::cout << path[i + 1]->getAirport().getCode() << " at " << airlineName;
+                        std::cout << path[i + 1]->getAirport().getCode() << " by " << airlineName;
                         if (i < path.size() - 2) {
-                            std::cout << " -> ";
+                            std::cout << " || ";
                         }
                         break;
                     }

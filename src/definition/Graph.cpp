@@ -2,6 +2,7 @@
 #include "../header/Graph.h"
 #include <iostream>
 #include <unordered_set>
+#include <algorithm>
 
 /****************** Vertex Implementation ********************/
 
@@ -285,7 +286,8 @@ std::vector<std::vector<Vertex*>> Graph::findFlightsWithFilters(const std::strin
         for (const Edge& edge : current->getAdj()) {
             Vertex* next = edge.getDest();
             std::string airline = edge.getAirline();
-            if (visited.find(next) == visited.end() && (preferredAirlines.empty() || std::find(preferredAirlines.begin(), preferredAirlines.end(), airline) != preferredAirlines.end())) {
+            auto it = std::find_if(preferredAirlines.begin(), preferredAirlines.end(), [&airline](const std::string& preferred) { return airline == preferred; });
+            if (visited.find(next) == visited.end() && (preferredAirlines.empty() || it != preferredAirlines.end())) {
                 if (!minimizeAirlineChanges || lastAirline.empty() || airline == lastAirline) {
                     visited.insert(next);
                     prev[next] = current;
