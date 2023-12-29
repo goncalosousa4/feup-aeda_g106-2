@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "aaaaaaaaa.exe"
-		},
-		{
-			"path" : "aaaaaaaaa.pdb"
+			"path" : "aaaaaaaaa"
 		}
 	],
 	"backtrace" : 1,
@@ -57,22 +54,22 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++14 -fdiagnostics-color=always"
+					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -fcolor-diagnostics"
 				}
 			],
 			"includes" : 
 			[
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/src"
+					"path" : "/Users/leticiacoelho/Desktop/AED/2proj_AED_G106/src"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/src/definition"
+					"path" : "/Users/leticiacoelho/Desktop/AED/2proj_AED_G106/src/definition"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/src/header"
+					"path" : "/Users/leticiacoelho/Desktop/AED/2proj_AED_G106/src/header"
 				}
 			],
 			"language" : "CXX",
@@ -108,16 +105,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "aaaaaaaaa",
-	"nameOnDisk" : "aaaaaaaaa.exe",
+	"nameOnDisk" : "aaaaaaaaa",
 	"paths" : 
 	{
 		"build" : ".",

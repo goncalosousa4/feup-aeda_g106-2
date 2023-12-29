@@ -33,6 +33,9 @@ private:
     static void findMaxStopsTrip(Graph& graph);
     static void bestFlightOption(Graph ap);
     static std::set<std::string> findClosestAirports(Graph ap, double lat, double lon);
+
+    static void searchFlightsWithFilters(Graph ap);
+    static std::string getAirlineName(const std::string& airlineCode);
     // AUX
 
 };

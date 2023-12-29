@@ -254,3 +254,83 @@ void Graph::findArticulationPoints() {
 }
 
 
+std::vector<std::vector<Vertex*>> Graph::findFlightsWithFilters(const std::string& source, const std::string& destination, const std::vector<std::string>& preferredAirlines, bool minimizeAirlineChanges) {
+    std::vector<std::vector<Vertex*>> result;
+    std::unordered_map<Vertex*, Vertex*> prev;
+    std::queue<std::pair<Vertex*, std::string>> q; // Queue of vertex and last airline used
+    std::unordered_set<Vertex*> visited;
+
+    Vertex* sourceVertex = findVertex(source);
+    Vertex* destinationVertex = findVertex(destination);
+    if (sourceVertex == nullptr || destinationVertex == nullptr) return result;
+
+    q.push({sourceVertex, ""});
+    visited.insert(sourceVertex);
+
+    while (!q.empty()) {
+        Vertex* current = q.front().first;
+        std::string lastAirline = q.front().second;
+        q.pop();
+
+        if (current == destinationVertex) {
+            // Construct path
+            std::vector<Vertex*> path;
+            for (Vertex* v = current; v != nullptr; v = prev[v]) {
+                path.insert(path.begin(), v);
+            }
+            result.push_back(path);
+            continue;
+        }
+
+        for (const Edge& edge : current->getAdj()) {
+            Vertex* next = edge.getDest();
+            std::string airline = edge.getAirline();
+            if (visited.find(next) == visited.end() && (preferredAirlines.empty() || std::find(preferredAirlines.begin(), preferredAirlines.end(), airline) != preferredAirlines.end())) {
+                if (!minimizeAirlineChanges || lastAirline.empty() || airline == lastAirline) {
+                    visited.insert(next);
+                    prev[next] = current;
+                    q.push({next, airline});
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+
+void Graph::findAllFlightsUtil(Vertex* current, Vertex* destination, std::vector<Vertex*>& path, std::vector<std::vector<Vertex*>>& allPaths, std::unordered_set<Vertex*>& visited) {
+    visited.insert(current);
+    path.push_back(current);
+
+    if (current == destination) {
+        // If destination is reached, add the current path to allPaths
+        allPaths.push_back(path);
+    } else {
+        // Explore adjacent vertices
+        for (const Edge& edge : current->getAdj()) {
+            Vertex* next = edge.getDest();
+            if (visited.find(next) == visited.end()) {
+                findAllFlightsUtil(next, destination, path, allPaths, visited);
+            }
+        }
+    }
+
+    // Backtrack
+    path.pop_back();
+    visited.erase(current);
+}
+
+std::vector<std::vector<Vertex*>> Graph::findAllFlights(const std::string& source, const std::string& destination) {
+    std::vector<std::vector<Vertex*>> allFlights;
+    std::vector<Vertex*> path;
+    std::unordered_set<Vertex*> visited;
+    Vertex* sourceVertex = findVertex(source);
+    Vertex* destVertex = findVertex(destination);
+
+    if (sourceVertex && destVertex) {
+        findAllFlightsUtil(sourceVertex, destVertex, path, allFlights, visited);
+    }
+
+    return allFlights;
+}

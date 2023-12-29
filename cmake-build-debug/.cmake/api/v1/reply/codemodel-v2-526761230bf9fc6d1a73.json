@@ -6,10 +6,10 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.27"
+						"string" : "3.26"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "aaaaaaaaa::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-aaaaaaaaa-Debug-75b3334288de6ee184bb.json",
+					"jsonFile" : "target-aaaaaaaaa-Debug-d2cee9bea1f4d46d629c.json",
 					"name" : "aaaaaaaaa",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug",
-		"source" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa"
+		"build" : "/Users/leticiacoelho/Desktop/AED/2proj_AED_G106/cmake-build-debug",
+		"source" : "/Users/leticiacoelho/Desktop/AED/2proj_AED_G106"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 5
 	}
 }

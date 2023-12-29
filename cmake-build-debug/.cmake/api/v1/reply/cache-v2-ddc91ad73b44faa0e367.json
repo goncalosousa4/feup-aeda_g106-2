@@ -2,42 +2,6 @@
 	"entries" : 
 	[
 		{
-			"name" : "2proj_AED_G106_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug"
-		},
-		{
-			"name" : "2proj_AED_G106_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "2proj_AED_G106_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa"
-		},
-		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -51,7 +15,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/addr2line.exe"
+			"value" : "CMAKE_ADDR2LINE-NOTFOUND"
 		},
 		{
 			"name" : "CMAKE_AR",
@@ -67,7 +31,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/ar.exe"
+			"value" : "/Library/Developer/CommandLineTools/usr/bin/ar"
 		},
 		{
 			"name" : "CMAKE_BUILD_TYPE",
@@ -91,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug"
+			"value" : "/Users/leticiacoelho/Desktop/AED/2proj_AED_G106/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -115,7 +79,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "27"
+			"value" : "26"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -127,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "8"
+			"value" : "4"
 		},
 		{
 			"name" : "CMAKE_COLOR_DIAGNOSTICS",
@@ -151,7 +115,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/cmake/win/x64/bin/cmake.exe"
+			"value" : "/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -163,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/cmake/win/x64/bin/cpack.exe"
+			"value" : "/Applications/CLion.app/Contents/bin/cmake/mac/bin/cpack"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -175,7 +139,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/cmake/win/x64/bin/ctest.exe"
+			"value" : "/Applications/CLion.app/Contents/bin/cmake/mac/bin/ctest"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -191,39 +155,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/g++.exe"
-		},
-		{
-			"name" : "CMAKE_CXX_COMPILER_AR",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/gcc-ar.exe"
-		},
-		{
-			"name" : "CMAKE_CXX_COMPILER_RANLIB",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/gcc-ranlib.exe"
+			"value" : "/Library/Developer/CommandLineTools/usr/bin/c++"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS",
@@ -306,22 +238,6 @@
 			"value" : "-O2 -g -DNDEBUG"
 		},
 		{
-			"name" : "CMAKE_CXX_STANDARD_LIBRARIES",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Libraries linked by default with all C++ applications."
-				}
-			],
-			"type" : "STRING",
-			"value" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32"
-		},
-		{
 			"name" : "CMAKE_C_COMPILER",
 			"properties" : 
 			[
@@ -335,39 +251,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/gcc.exe"
-		},
-		{
-			"name" : "CMAKE_C_COMPILER_AR",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/gcc-ar.exe"
-		},
-		{
-			"name" : "CMAKE_C_COMPILER_RANLIB",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/gcc-ranlib.exe"
+			"value" : "/Library/Developer/CommandLineTools/usr/bin/cc"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -450,22 +334,6 @@
 			"value" : "-O2 -g -DNDEBUG"
 		},
 		{
-			"name" : "CMAKE_C_STANDARD_LIBRARIES",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Libraries linked by default with all C applications."
-				}
-			],
-			"type" : "STRING",
-			"value" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32"
-		},
-		{
 			"name" : "CMAKE_DLLTOOL",
 			"properties" : 
 			[
@@ -479,7 +347,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/dlltool.exe"
+			"value" : "CMAKE_DLLTOOL-NOTFOUND"
 		},
 		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
@@ -491,7 +359,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "Unknown"
+			"value" : "MACHO"
 		},
 		{
 			"name" : "CMAKE_EXE_LINKER_FLAGS",
@@ -611,7 +479,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/Users/leticiacoelho/Desktop/AED/2proj_AED_G106/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -662,18 +530,6 @@
 			"value" : ""
 		},
 		{
-			"name" : "CMAKE_GNUtoMS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Convert GNU import libraries to MS format (requires Visual Studio)"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
 			"name" : "CMAKE_HOME_DIRECTORY",
 			"properties" : 
 			[
@@ -683,7 +539,23 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa"
+			"value" : "/Users/leticiacoelho/Desktop/AED/2proj_AED_G106"
+		},
+		{
+			"name" : "CMAKE_INSTALL_NAME_TOOL",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/install_name_tool"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -695,7 +567,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files (x86)/2proj_AED_G106"
+			"value" : "/usr/local"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -711,7 +583,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/ld.exe"
+			"value" : "/Library/Developer/CommandLineTools/usr/bin/ld"
 		},
 		{
 			"name" : "CMAKE_MAKE_PROGRAM",
@@ -719,11 +591,11 @@
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "make program"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/ninja/win/x64/ninja.exe"
+			"type" : "UNINITIALIZED",
+			"value" : "/Applications/CLion.app/Contents/bin/ninja/mac/ninja"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -819,7 +691,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/nm.exe"
+			"value" : "/Library/Developer/CommandLineTools/usr/bin/nm"
 		},
 		{
 			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
@@ -847,7 +719,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/objcopy.exe"
+			"value" : "CMAKE_OBJCOPY-NOTFOUND"
 		},
 		{
 			"name" : "CMAKE_OBJDUMP",
@@ -863,7 +735,43 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/objdump.exe"
+			"value" : "/Library/Developer/CommandLineTools/usr/bin/objdump"
+		},
+		{
+			"name" : "CMAKE_OSX_ARCHITECTURES",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Build architectures for OSX"
+				}
+			],
+			"type" : "STRING",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_OSX_DEPLOYMENT_TARGET",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Minimum OS X version to target for deployment (at runtime); newer APIs weak linked. Set to empty string for default value."
+				}
+			],
+			"type" : "STRING",
+			"value" : "13.5"
+		},
+		{
+			"name" : "CMAKE_OSX_SYSROOT",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The product will be built against the headers and libraries located inside the indicated SDK."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk"
 		},
 		{
 			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
@@ -927,115 +835,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/ranlib.exe"
-		},
-		{
-			"name" : "CMAKE_RC_COMPILER",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "RC compiler"
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/windres.exe"
-		},
-		{
-			"name" : "CMAKE_RC_COMPILER_WORKS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "1"
-		},
-		{
-			"name" : "CMAKE_RC_FLAGS",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Flags for Windows Resource Compiler during all build types."
-				}
-			],
-			"type" : "STRING",
-			"value" : ""
-		},
-		{
-			"name" : "CMAKE_RC_FLAGS_DEBUG",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Flags for Windows Resource Compiler during DEBUG builds."
-				}
-			],
-			"type" : "STRING",
-			"value" : ""
-		},
-		{
-			"name" : "CMAKE_RC_FLAGS_MINSIZEREL",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Flags for Windows Resource Compiler during MINSIZEREL builds."
-				}
-			],
-			"type" : "STRING",
-			"value" : ""
-		},
-		{
-			"name" : "CMAKE_RC_FLAGS_RELEASE",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Flags for Windows Resource Compiler during RELEASE builds."
-				}
-			],
-			"type" : "STRING",
-			"value" : ""
-		},
-		{
-			"name" : "CMAKE_RC_FLAGS_RELWITHDEBINFO",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Flags for Windows Resource Compiler during RELWITHDEBINFO builds."
-				}
-			],
-			"type" : "STRING",
-			"value" : ""
+			"value" : "/Library/Developer/CommandLineTools/usr/bin/ranlib"
 		},
 		{
 			"name" : "CMAKE_READELF",
@@ -1051,7 +851,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/readelf.exe"
+			"value" : "CMAKE_READELF-NOTFOUND"
 		},
 		{
 			"name" : "CMAKE_ROOT",
@@ -1063,7 +863,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/cmake/win/x64/share/cmake-3.27"
+			"value" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1271,23 +1071,19 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/strip.exe"
+			"value" : "/Library/Developer/CommandLineTools/usr/bin/strip"
 		},
 		{
-			"name" : "CMAKE_TAPI",
+			"name" : "CMAKE_UNAME",
 			"properties" : 
 			[
 				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
 					"name" : "HELPSTRING",
-					"value" : "Path to a program."
+					"value" : "uname command"
 				}
 			],
-			"type" : "FILEPATH",
-			"value" : "CMAKE_TAPI-NOTFOUND"
+			"type" : "INTERNAL",
+			"value" : "/usr/bin/uname"
 		},
 		{
 			"name" : "CMAKE_VERBOSE_MAKEFILE",
@@ -1306,18 +1102,6 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "linker supports push/pop state"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "TRUE"
-		},
-		{
 			"name" : "aaaaaaaaa_BINARY_DIR",
 			"properties" : 
 			[
@@ -1327,7 +1111,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa/cmake-build-debug"
+			"value" : "/Users/leticiacoelho/Desktop/AED/2proj_AED_G106/cmake-build-debug"
 		},
 		{
 			"name" : "aaaaaaaaa_IS_TOP_LEVEL",
@@ -1351,7 +1135,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/aaaaaaaaa"
+			"value" : "/Users/leticiacoelho/Desktop/AED/2proj_AED_G106"
 		}
 	],
 	"kind" : "cache",
