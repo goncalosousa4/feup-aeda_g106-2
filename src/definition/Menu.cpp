@@ -17,11 +17,11 @@ void Menu::displayMenu(Graph ap) {
         std::cout << "\n-----------\n" ;
         std::cout << "  M E N U   \n";
         std::cout << "-----------\n" ;
-        std::cout << "1. Check the global number of airports\n";
-        std::cout << "2. Check the number of available flights\n";
+        std::cout << "1. Check the global number of airports and flights (3.1)\n";
+
         std::cout << "3. Show Airports' information\n";
         std::cout << "4. Check statistics\n";
-
+        std::cout << "5. Make your flight\n";
         std::cout << "\n0. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -30,23 +30,38 @@ void Menu::displayMenu(Graph ap) {
         switch (choice) {
             case 1:
                 printAvailableAirports(ap);
+                printAvailableFlights(ap);
                 break;
             case 2:
-                printAvailableFlights(ap);
+                
                 break;
 
             case 3:
                 airportInfoMenu(ap);
                 break;
-
             case 4:
                 statsMenu(ap);
                 break;
             case 5:
+                int option;
+                std::cout << "!MAKE YOUR FLIGHT!\n";
+                std::cout << "\n1. Best flight option\n";
+                std::cout << "2. Filter your search\n";
+                std::cout << "Choose your option!\n";
+                std::cin >> option;
+                std::cout << std::endl;
+                switch(option){
+                    case 1:
+                        bestFlightOption(ap);
+                        break;
+
+                    default:
+                        std::cout << "Invalid choice. Please try again.\n";
+                }
                 break;
+
+
             case 0:
-
-
                 std::cout<<"                            \\    "<<std::endl;
                 std::cout<<"                            \\ \\"<<std::endl;
                 std::cout<<"                             \\  \\"<<std::endl;
@@ -67,12 +82,12 @@ void Menu::displayMenu(Graph ap) {
 
 void Menu::printAvailableAirports(Graph ap) {
     int numAirports = ap.getNumVertex();
-    std::cout << "The global number of Airports: " << numAirports << "\n";
+    std::cout << "The global number of Airports is " << numAirports << "\n";
 }
 
 void Menu::printAvailableFlights(Graph ap) {
     int numFlights = ap.getNumEdges();
-    std::cout << "The number of available flights: " << numFlights << "\n";
+    std::cout << "The number of available flights is " << numFlights << "\n";
 }
 
 void Menu::countFlightsOutOfAirport(Graph ap) {
@@ -110,8 +125,8 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "2. Show the number of different destinations reachable from an Airport\n";
         std::cout << "3. Rankings\n";
         std::cout << "4. Reachable destinations with stops\n";
-        std::cout << "5. Maximum trip and corresponding pair of source-destination airports (or pairs, if more than one), that is, the flight trip(s) with the greatest number of stops in between them\n";
-        std::cout << "6. Identify the airports that are essential to the network's circulation capability (airports are essential if, when removed, areas of the network start to be unreachable)\n";
+        std::cout << "5. Maximum possible trip\n";
+        std::cout << "6. Identify the airports that are essential to the network\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -166,7 +181,6 @@ void Menu::statsMenu(Graph ap){
         std::cout << "2. Check Airline statistics\n";
         std::cout << "3. Check countries from a city\n";
         std::cout << "4. Check countries from an Airport\n";
-        std::cout << "5. Best flight option\n";
         std::cout << "\n0. Return to Main Menu\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -184,10 +198,6 @@ void Menu::statsMenu(Graph ap){
                 break;
             case 4:
                 countCountriesForAirport(ap);
-                break;
-
-            case 5:
-                bestFlightOption(ap);
                 break;
             case 0:
                 displayMenu(ap);
