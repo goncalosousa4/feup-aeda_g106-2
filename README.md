@@ -17,10 +17,9 @@ VI - Implemented
 VII - Implemented      
 VIII - Implemented  
 IX - Implemented     
-### 4
-I - Implemented (I guess), missing Airport Name search     
-II - Implemented (I guess)  
-III- Implemented (I guess)  
+### 4 - Implemented  
+I - (but printing just 1)      
+II - (but printing just 1)  
+III- (but printing just 1)  
 ### 5
-Not  
-
+Implemented (but printing just 1)  
