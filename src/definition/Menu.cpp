@@ -232,8 +232,8 @@ void Menu::flightsPerCityPerAirline(Graph ap) {
         std::cout << "\nNumber of flights from " << city << " per airline:" << std::endl;
         for (const auto& entry : flightsPerAirline) {
             auto airlineCode = entry.first;
-            Airline line = Loader::findAirlineByCode(airlineCode, "../dataset/airlines.csv");
-            std::cout << "\t-" << airlineCode << " ("<< line.getName() <<  "): " << entry.second << std::endl; // insert airline name like - IBE (Iberia Airlines)
+            auto line = getAirlineName(airlineCode);
+            std::cout << "\t-" << airlineCode << " ("<< line <<  "): " << entry.second << std::endl; // insert airline name like - IBE (Iberia Airlines)
         }
     }
 }
@@ -243,7 +243,7 @@ void Menu::flightsPerAirline(Graph ap){
     std::cout << "Enter the airline: ";
     std::cin >> airline;
     std::cout << std::endl;
-    Airline line = Loader::findAirlineByCode(airline, "../dataset/airlines.csv");
+    auto line = getAirlineName(airline);
     int totalFlights = 0;
 
     for (const auto& vertex : ap.getVertexSet()) {
@@ -257,7 +257,7 @@ void Menu::flightsPerAirline(Graph ap){
     if (totalFlights==0){
         std::cout << "Airline " << airline << " not found. Please enter a valid Airline\n";
     } else{
-        std::cout << "The number of flights for " << airline << " (" << line.getName() << ")" << " is " << totalFlights << std::endl; // insert airline name like - IBE (Iberia Airlines)
+        std::cout << "The number of flights for " << airline << " (" << line << ")" << " is " << totalFlights << std::endl; // insert airline name like - IBE (Iberia Airlines)
     }
 
 }
@@ -493,11 +493,36 @@ void Menu::bestFlightOption(Graph ap) {
 
     switch (searchOption) {
         case 1:
+
             std::cout << "Enter the source airport code or name: ";
-            std::cin >> source;
+            std::cin.ignore();
+            std::getline(std::cin, source);
+            if (source.size() > 3) {
+                Vertex* vertex = ap.findVertexByName(source);
+                    if (vertex) {
+                        source = vertex->getAirport().getCode();
+                    } else {
+                        std::cout << "Source airport not found!" << std::endl;
+
+                    }
+            }
+
             std::cout << std::endl;
+
             std::cout << "Enter the destination airport code or name: ";
-            std::cin >> destination;
+
+            std::getline(std::cin, destination);
+
+            if (destination.size() > 3) {
+                Vertex* vertex = ap.findVertexByName(destination);
+                    if (vertex) {
+                        destination = vertex->getAirport().getCode();
+                    } else {
+                        std::cout << "Destination airport not found!" << std::endl;
+
+                    }
+                }
+
             std::cout << std::endl;
 
             sourceLocations.insert(source);
@@ -539,11 +564,6 @@ void Menu::bestFlightOption(Graph ap) {
             break;
     }
 
-    // bfs-like implementation
-
-    std::queue<std::pair<Vertex*, std::vector<Vertex*>>> q;
-    std::unordered_set<std::string> visited;
-
     std::vector<Vertex*> sourceVertexes;
     std::vector<Vertex*> destinationVertexes;
 
@@ -558,57 +578,24 @@ void Menu::bestFlightOption(Graph ap) {
         std::cout << "Invalid source or destination location." << std::endl;
         return;
     }
-
-    std::vector<std::vector<Vertex*>> bestPaths;
-    int bestLayovers = std::numeric_limits<int>::max();  // Initialize with a large value
+    std::vector<std::string> emptyVector;       // to load the function
+    std::vector<std::vector<std::vector<Vertex*>>> bestPaths;
 
     for (const auto& src:sourceVertexes){
-        q.push({src, {src}});
-        visited.insert(source);
-
-
-        while (!q.empty()) {
-            auto current = q.front();
-            q.pop();
-            for (const auto& dest: destinationVertexes){
-                if ((!destinationVertexes.empty() && current.first == dest)) {
-                // Found a path to the destination (if destination is not empty)
-                    if (current.second.size() - 1 < bestLayovers) {
-                        bestLayovers = current.second.size() - 1;
-                        bestPaths.clear();
-                    }
-
-                    if (current.second.size() - 1 == bestLayovers) {
-                        bestPaths.push_back(current.second);
-                    }
-
-                    continue;  // No need to explore further from this node
-                }
-            }
-
-
-            for (const auto& edge : current.first->getAdj()) {
-                auto neighbor = edge.getDest();
-                if (visited.find(neighbor->getAirport().getCode()) == visited.end()) {
-                    visited.insert(neighbor->getAirport().getCode());
-                    auto newPath = current.second;
-                    newPath.push_back(neighbor);
-                    q.push({neighbor, newPath});
-                }
-            }
+        for (const auto& dest: destinationVertexes){
+            bestPaths.push_back(ap.findFlightsWithFilters(src->getAirport().getCode(), dest->getAirport().getCode(), emptyVector, false));
         }
     }
 
 
-    // Print the best flight options
-    std::cout << "Best flight option(s) with the least layovers (" << bestLayovers << "):" << std::endl;
-
+    std::cout << "Best flight option(s) with the least layovers: " << std::endl;
 
     if (bestPaths.empty()) {
-        std::cout << "No flights found with the given criteria." << std::endl;
+        std::cout << "No flights found" << std::endl;
     } else {
-        std::cout << "Found flight options:" << std::endl;
-        for (const auto& path : bestPaths) {
+
+        for (const auto& dif: bestPaths){
+            for (const auto& path : dif) {
             for (size_t i = 0; i < path.size() - 1; ++i) {
                 std::cout << path[i]->getAirport().getCode() << " -> ";
 
@@ -626,6 +613,8 @@ void Menu::bestFlightOption(Graph ap) {
             }
             std::cout << std::endl;
         }
+        }
+
     }
 }
 
