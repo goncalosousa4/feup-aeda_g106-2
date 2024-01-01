@@ -310,11 +310,16 @@ void Menu::countCountriesForCity(Graph ap) {
 }
 void Menu::printNumDestinationsForAirport(Graph ap) {
     std::string airportCode;
+    std::set<std::string> uniqueAirports;
     std::cout << "Enter the airport code: ";
     std::cin >> airportCode;
     std::cout<<std::endl;
 
-    auto uniqueAirports = ap.bfs(airportCode);
+    for (const auto& a: ap.findVertex(airportCode)->getAdj()){
+        uniqueAirports.insert(a.getDest()->getAirport().getCode());
+    }
+
+    //auto uniqueAirports = ap.bfs(airportCode);
 
     if (airportCode.size()==3) {
 
