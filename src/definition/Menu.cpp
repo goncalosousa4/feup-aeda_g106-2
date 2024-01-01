@@ -315,11 +315,11 @@ void Menu::printNumDestinationsForAirport(Graph ap) {
 
     if (airportCode.size()==3) {
 
-        std::set<std::string> uniqueCities;         // sets wont let the dest repeat
+        std::set<std::pair<std::string, std::string>> uniqueCities;         // sets wont let the dest repeat
         std::set<std::string> uniqueCountries;
 
         for (const auto& airp: uniqueAirports){
-            uniqueCities.insert(ap.findVertex(airp)->getAirport().getCity());
+            uniqueCities.insert({ap.findVertex(airp)->getAirport().getCity(), ap.findVertex(airp)->getAirport().getCountry()});
             uniqueCountries.insert((ap.findVertex(airp)->getAirport().getCountry()));
         }
 
@@ -387,7 +387,7 @@ void Menu::numReachableDestinations(Graph ap) {
 
     std::queue<std::pair<Vertex*, int>> k;
     std::set<std::string> visited;
-    std::set<std::string> cities;
+    std::set<std::pair<std::string, std::string>> cities;
     std::set<std::string> countries;
     std::set<std::string> visitedAir;
 
@@ -420,7 +420,7 @@ void Menu::numReachableDestinations(Graph ap) {
         if (a != src) {
             countAirports++;
 
-            cities.insert(ap.findVertex(a)->getAirport().getCity());
+            cities.insert({ap.findVertex(a)->getAirport().getCity(), ap.findVertex(a)->getAirport().getCountry()});
             countries.insert(ap.findVertex(a)->getAirport().getCountry());
         }
     }
@@ -481,7 +481,7 @@ void Menu::findMaxStopsTrip(Graph& graph) {
 void Menu::bestFlightOption(Graph ap) {
     int searchOption;
 
-    std::cout << "Choose search option:" << std::endl;
+    std::cout << "Choose search option for source:" << std::endl;
     std::cout << "1. Search by airport code or name" << std::endl;
     std::cout << "2. Search by city name" << std::endl;
     std::cout << "3. Search by geographical coordinates" << std::endl;
@@ -506,8 +506,50 @@ void Menu::bestFlightOption(Graph ap) {
 
                     }
             }
-
             std::cout << std::endl;
+
+
+            sourceLocations.insert(source);
+
+
+            break;
+        case 2:
+            std::cout << "Enter the source city name: ";
+            std::cin >> source; // Using source for city name
+            std::cout << std::endl;
+
+            sourceLocations = ap.findVertexCity(source);
+
+
+
+            break;
+        case 3:
+            double srcLat, srcLon;
+
+            std::cout << "Enter your source latitude: ";
+            std::cin >> srcLat;
+            std::cout << std::endl;
+            std::cout << "Enter your source longitude: ";
+            std::cin >> srcLon;
+            std::cout << std::endl;
+
+
+            sourceLocations = findClosestAirports(ap, srcLat, srcLon);
+
+            break;
+    }
+    int destOption;
+
+    std::cout << "Choose search option for destination:" << std::endl;
+    std::cout << "1. Search by airport code or name" << std::endl;
+    std::cout << "2. Search by city name" << std::endl;
+    std::cout << "3. Search by geographical coordinates" << std::endl;
+    std::cout << "Enter option: ";
+    std::cin >> destOption;
+    std::cout << std::endl;
+
+    switch (destOption) {
+        case 1:
 
             std::cout << "Enter the destination airport code or name: ";
 
@@ -525,32 +567,23 @@ void Menu::bestFlightOption(Graph ap) {
 
             std::cout << std::endl;
 
-            sourceLocations.insert(source);
+
             destinationLocations.insert(destination);
 
             break;
         case 2:
-            std::cout << "Enter the source city name: ";
-            std::cin >> source; // Using source for city name
-            std::cout << std::endl;
+
             std::cout << "Enter the destination city name: ";
             std::cin >> destination;
             std::cout << std::endl;
 
-            sourceLocations = ap.findVertexCity(source);
             destinationLocations = ap.findVertexCity(destination);
 
 
             break;
         case 3:
-            double srcLat, srcLon, destLat, destLon;
+            double destLat, destLon;
 
-            std::cout << "Enter your source latitude: ";
-            std::cin >> srcLat;
-            std::cout << std::endl;
-            std::cout << "Enter your source longitude: ";
-            std::cin >> srcLon;
-            std::cout << std::endl;
             std::cout << "Enter your destination latitude: ";
             std::cin >> destLat;
             std::cout << std::endl;
@@ -558,7 +591,6 @@ void Menu::bestFlightOption(Graph ap) {
             std::cin >> destLon;
             std::cout << std::endl;
 
-            sourceLocations = findClosestAirports(ap, srcLat, srcLon);
             destinationLocations = findClosestAirports(ap, destLat, destLon);
 
             break;
@@ -594,7 +626,7 @@ void Menu::bestFlightOption(Graph ap) {
         std::cout << "No flights found" << std::endl;
     } else {
 
-        for (const auto& dif: bestPaths){
+        for (const auto& dif: bestPaths)
             for (const auto& path : dif) {
                 for (size_t i = 0; i < path.size() - 1; ++i) {
                 std::cout << path[i]->getAirport().getCode() << " -> ";
@@ -616,7 +648,7 @@ void Menu::bestFlightOption(Graph ap) {
         }
 
     }
-}
+
 
 
 std::set<std::string> Menu::findClosestAirports(Graph ap, double lat, double lon) {

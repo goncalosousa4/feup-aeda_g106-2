@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug"
+			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G10666/cmake-build-debug"
 		},
 		{
 			"name" : "2proj_AED-G106_IS_TOP_LEVEL",
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106"
+			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G10666"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug"
+			"value" : "c:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G10666/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -611,7 +611,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G10666/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -683,7 +683,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106"
+			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G10666"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -695,7 +695,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files (x86)/Project"
+			"value" : "C:/Program Files (x86)/2proj_AED-G106"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -1306,42 +1306,6 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "Project_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug"
-		},
-		{
-			"name" : "Project_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "Project_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106"
-		},
-		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
 			"properties" : 
 			[
@@ -1352,42 +1316,6 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "TRUE"
-		},
-		{
-			"name" : "aaaaaaaaa_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106/cmake-build-debug"
-		},
-		{
-			"name" : "aaaaaaaaa_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "aaaaaaaaa_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/S\u00edlvia Augusto/Desktop/2proj_AED-G106"
 		}
 	],
 	"kind" : "cache",
