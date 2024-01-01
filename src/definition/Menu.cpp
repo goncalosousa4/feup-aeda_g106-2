@@ -118,7 +118,8 @@ void Menu::countFlightsOutOfAirport(Graph ap) {
 }
 void Menu::airportInfoMenu(Graph ap){
     int choice;
-    do {
+    Graph apCopy = ap;
+
         std::cout << "\n-----------\n" ;
         std::cout << "  I N F O  \n";
         std::cout << "-----------\n" ;
@@ -155,8 +156,10 @@ void Menu::airportInfoMenu(Graph ap){
                 break;
 
             case 6:
+
+                apCopy.makeUndirected();
                 std::cout << "Identifying essential airports...\n";
-                ap.findArticulationPoints();
+                apCopy.findArticulationPoints();
                 break;
 
 
@@ -166,7 +169,7 @@ void Menu::airportInfoMenu(Graph ap){
             default:
                 std::cout << "Invalid choice. Please try again.\n";
         }
-    } while (choice != 3);
+
 }
 
 void Menu::statsMenu(Graph ap){
@@ -654,6 +657,7 @@ void Menu::bestFlightOption(Graph ap) {
 std::set<std::string> Menu::findClosestAirports(Graph ap, double lat, double lon) {
     std::set<std::string> closestAirports;
     std::map<std::string, double> airportsDist;
+
 
     double lat1 = lat;
     double lon1 = lon;

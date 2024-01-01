@@ -81,6 +81,7 @@ public:
     std::vector<std::string> dfs();
     std::vector<std::string> dfs(const std::string& source);
     const std::set<std::string> bfs(const std::string& source) const;
+    void makeUndirected();
     bool isDAG() const;
 
     void dfsConnectedComponents(Vertex* v, std::unordered_set<Vertex*>& visitedVertices) const;

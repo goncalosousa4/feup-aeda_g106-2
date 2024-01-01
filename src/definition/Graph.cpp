@@ -201,8 +201,31 @@ const std::set<std::string> Graph::bfs(const std::string& source) const {
     return res;
 }
 
-void Graph::findArticulationPointsUtil(Vertex* v, std::unordered_map<Vertex*, int>& disc,
-                                       std::unordered_map<Vertex*, int>& low,
+void Graph::makeUndirected() {
+
+    std::vector<Edge*> edgesCopy = edgeSet;
+
+    for (const Edge* directedEdge : edgesCopy) {
+        Vertex* src = directedEdge->getSrc();
+        Vertex* dest = directedEdge->getDest();
+        double weight = directedEdge->getWeight();
+        std::string airline = directedEdge->getAirline();
+
+
+        Edge* undirectedEdge = new Edge(src, dest, weight, airline);
+        src->addEdge(src, dest, weight, airline);
+        edgeSet.push_back(undirectedEdge);
+
+
+        if (src != dest) {
+            undirectedEdge = new Edge(dest, src, weight, airline);
+            dest->addEdge(dest, src, weight, airline);
+            edgeSet.push_back(undirectedEdge);
+        }
+    }
+}
+
+void Graph::findArticulationPointsUtil(Vertex* v, std::unordered_map<Vertex*, int>& disc, std::unordered_map<Vertex*, int>& low,
                                        std::unordered_map<Vertex*, Vertex*>& parent,
                                        std::unordered_set<Vertex*>& articulationPoints) {
     static int time = 0;
