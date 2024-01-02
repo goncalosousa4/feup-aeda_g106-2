@@ -20,7 +20,7 @@ class Vertex {
     std::vector<Edge> adj;  // list of outgoing edges
     bool visited;
     bool processing;
-    int indegree;
+    std::vector<Vertex*> indegree;
     int num;               // auxiliary field
     int low;               // auxiliary field
     Airport airport;
@@ -35,8 +35,8 @@ public:
     void setVisited(bool v);
     bool isProcessing() const;
     void setProcessing(bool p);
-    int getIndegree() const;
-    void setIndegree(int indegree);
+    std::vector<Vertex*> getIndegree() const;
+    void setIndegree(Vertex* v);
     const std::vector<Edge>& getAdj() const;
     const Airport& getAirport() const;
     void setAirport(const Airport& airport);
@@ -81,6 +81,7 @@ public:
     std::vector<std::string> dfs();
     std::vector<std::string> dfs(const std::string& source);
     const std::set<std::string> bfs(const std::string& source) const;
+    void makeUndirected();
     bool isDAG() const;
 
     void dfsConnectedComponents(Vertex* v, std::unordered_set<Vertex*>& visitedVertices) const;
