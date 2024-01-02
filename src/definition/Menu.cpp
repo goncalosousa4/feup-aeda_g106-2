@@ -322,11 +322,16 @@ void Menu::countCountriesForCity(Graph ap) {
     std::getline(std::cin, city);
     city = uniformizer(city);
     std::cout << std::endl;
+    std::string country;
+    std::cout << "Enter the city's country: ";
+    std::cin >> country;
+    country = uniformizer(country);
+    std::cout << std::endl;
 
     std::set<std::string> countries;
 
     for (const auto& vertex : ap.getVertexSet()) {
-        if (vertex->getAirport().getCity() == city) {
+        if (vertex->getAirport().getCity() == city && vertex->getAirport().getCountry()==country) {
             for (const Edge& edge : vertex->getAdj()) {
                 Vertex* dest = edge.getDest();
 
@@ -334,7 +339,7 @@ void Menu::countCountriesForCity(Graph ap) {
             }
         }
     }
-    std::cout << "The number of different countries able to reach departing from " << city << " is " << countries.size() << std::endl;
+    std::cout << "The number of different countries able to reach departing from " << city  << " (" << country << ") is " << countries.size() << std::endl;
 }
 void Menu::printNumDestinationsForAirport(Graph ap) {
     std::string airportCode;
