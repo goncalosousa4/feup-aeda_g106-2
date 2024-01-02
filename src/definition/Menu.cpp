@@ -97,6 +97,7 @@ void Menu::countFlightsOutOfAirport(Graph ap) {
     std::string airportCode;
     std::cout << "Enter the airport code: ";
     std::cin >> airportCode;
+    airportCode = uniformizer(airportCode);
     std::cout << std::endl;
 
     Vertex* airportVertex = ap.findVertex(airportCode);
@@ -207,11 +208,35 @@ void Menu::statsMenu(Graph ap){
     } while (choice != 6);
 }
 
+std::string Menu::uniformizer(std::string input){
+    std::string result;
+    if (input.size() > 3) {
+        std::istringstream iss(input);
+        std::string word;
+        while (iss >> word) {
+            if (!result.empty()) {
+                result += " ";
+            }
+            result += static_cast<char>(std::toupper(word[0])) + word.substr(1);
+        }
+        return result;
+
+    } else {
+
+        for (char c : input) {
+            result += std::toupper(c);
+        }
+        return result;
+    }
+}
+
+
 void Menu::flightsPerCityPerAirline(Graph ap) {
     std::string city;
     std::cout << "Enter the city: ";
     std::cin.ignore();
     std::getline(std::cin, city);
+    city = uniformizer(city);
     std::cout << std::endl;
     int num = 0, count = 0;
     std::unordered_map<std::string, int> flightsPerAirline;
@@ -245,6 +270,7 @@ void Menu::flightsPerAirline(Graph ap){
     std::string airline;
     std::cout << "Enter the airline: ";
     std::cin >> airline;
+    airline = uniformizer(airline);
     std::cout << std::endl;
     auto line = getAirlineName(airline);
     int totalFlights = 0;
@@ -269,6 +295,7 @@ void Menu::countCountriesForAirport(Graph ap) {
     std::string airportCode;
     std::cout << "Enter the airport code: ";
     std::cin >> airportCode;
+    airportCode = uniformizer(airportCode);
     std::cout << std::endl;
 
     const Vertex* airportVertex = ap.findVertex(airportCode);
@@ -293,12 +320,18 @@ void Menu::countCountriesForCity(Graph ap) {
     std::cout << "Enter the city: ";
     std::cin.ignore();
     std::getline(std::cin, city);
+    city = uniformizer(city);
+    std::cout << std::endl;
+    std::string country;
+    std::cout << "Enter the city's country: ";
+    std::cin >> country;
+    country = uniformizer(country);
     std::cout << std::endl;
 
     std::set<std::string> countries;
 
     for (const auto& vertex : ap.getVertexSet()) {
-        if (vertex->getAirport().getCity() == city) {
+        if (vertex->getAirport().getCity() == city && vertex->getAirport().getCountry()==country) {
             for (const Edge& edge : vertex->getAdj()) {
                 Vertex* dest = edge.getDest();
 
@@ -306,13 +339,14 @@ void Menu::countCountriesForCity(Graph ap) {
             }
         }
     }
-    std::cout << "The number of different countries able to reach departing from " << city << " is " << countries.size() << std::endl;
+    std::cout << "The number of different countries able to reach departing from " << city  << " (" << country << ") is " << countries.size() << std::endl;
 }
 void Menu::printNumDestinationsForAirport(Graph ap) {
     std::string airportCode;
     std::set<std::string> uniqueAirports;
     std::cout << "Enter the airport code: ";
     std::cin >> airportCode;
+    airportCode = uniformizer(airportCode);
     std::cout<<std::endl;
 
     for (const auto& a: ap.findVertex(airportCode)->getAdj()){
@@ -377,10 +411,11 @@ void Menu::numReachableDestinations(Graph ap) {
     std::string src;
     int stops;
     int countAirports = 0;
-    int repeatedCities = 0;
+
 
     std::cout << "Enter the departing airport code: ";
     std::cin >> src;
+    src=uniformizer(src);
     std::cout << std::endl;
 
     std::cout << "How many lay-overs would you like to make? ";
@@ -505,6 +540,7 @@ void Menu::bestFlightOption(Graph ap) {
             std::cout << "Enter the source airport code or name: ";
             std::cin.ignore();
             std::getline(std::cin, source);
+            source=uniformizer(source);
             if (source.size() > 3) {
                 Vertex* vertex = ap.findVertexByName(source);
                     if (vertex) {
@@ -524,6 +560,7 @@ void Menu::bestFlightOption(Graph ap) {
         case 2:
             std::cout << "Enter the source city name: ";
             std::cin >> source; // Using source for city name
+            source=uniformizer(source);
             std::cout << std::endl;
 
             sourceLocations = ap.findVertexCity(source);
@@ -560,9 +597,9 @@ void Menu::bestFlightOption(Graph ap) {
         case 1:
 
             std::cout << "Enter the destination airport code or name: ";
-
+            std::cin.ignore();
             std::getline(std::cin, destination);
-
+            destination=uniformizer(destination);
             if (destination.size() > 3) {
                 Vertex* vertex = ap.findVertexByName(destination);
                     if (vertex) {
@@ -583,6 +620,7 @@ void Menu::bestFlightOption(Graph ap) {
 
             std::cout << "Enter the destination city name: ";
             std::cin >> destination;
+            destination=uniformizer(destination);
             std::cout << std::endl;
 
             destinationLocations = ap.findVertexCity(destination);
@@ -709,11 +747,13 @@ void Menu::searchFlightsWithFilters(Graph ap) {
     // Get Source Airport
     std::cout << "Enter the source airport code: ";
     std::cin >> source;
+    source=uniformizer(source);
     std::cout << std::endl;
 
     // Get Destination Airport
     std::cout << "Enter the destination airport code: ";
     std::cin >> destination;
+    destination=uniformizer(destination);
     std::cout << std::endl;
 
     // Get Preferred Airlines

@@ -13,9 +13,6 @@ public:
     static void airportInfoMenu(Graph ap);
     static void statsMenu(Graph ap);
 
-
-
-
 private:
 
     static void printAvailableAirports(Graph ap);
@@ -32,11 +29,13 @@ private:
     int countCountries(Graph ap, std::set<std::string> visited);
     static void findMaxStopsTrip(Graph& graph);
     static void bestFlightOption(Graph ap);
-    static std::set<std::string> findClosestAirports(Graph ap, double lat, double lon);
-
     static void searchFlightsWithFilters(Graph ap);
     static std::string getAirlineName(const std::string& airlineCode);
+
     // AUX
+
+    static std::set<std::string> findClosestAirports(Graph ap, double lat, double lon);
+    static std::string uniformizer(std::string input);
 
 };
 

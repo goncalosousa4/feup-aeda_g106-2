@@ -316,7 +316,6 @@ std::vector<std::vector<Vertex*>> Graph::findFlightsWithFilters(const std::strin
     return result;
 }
 
-
 void Graph::findAllFlightsUtil(Vertex* current, Vertex* destination, std::vector<Vertex*>& path, std::vector<std::vector<Vertex*>>& allPaths, std::unordered_set<Vertex*>& visited) {
     visited.insert(current);
     path.push_back(current);
