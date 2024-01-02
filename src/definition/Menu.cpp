@@ -25,7 +25,7 @@ void Menu::displayMenu(Graph ap) {
         std::cout << "3. Check statistics\n";
         std::cout << "4. Make your flight\n";
         std::cout << "\n0. Exit\n";
-        std::cout << "Enter your choice: ";
+        std::cout << "Enter your choice:  ";
         std::cin >> choice;
         std::cout << std::endl;
 
@@ -46,7 +46,7 @@ void Menu::displayMenu(Graph ap) {
                 std::cout << "!MAKE YOUR FLIGHT!\n";
                 std::cout << "\n1. Best flight option (4)\n";
                 std::cout << "2. Filter your search (5)\n";
-                std::cout << "Choose your option!";
+                std::cout << "Choose your option!  ";
                 std::cin >> option;
                 std::cout << std::endl;
                 switch(option){
@@ -78,7 +78,7 @@ void Menu::displayMenu(Graph ap) {
             default:
                 std::cout << "Invalid choice. Please try again.\n";
         }
-    } while (choice != 9);
+    } while (choice != 6);
 }
 
 void Menu::printAvailableAirports(Graph ap) {
@@ -119,10 +119,10 @@ void Menu::countFlightsOutOfAirport(Graph ap) {
 void Menu::airportInfoMenu(Graph ap){
     int choice;
     Graph apCopy = ap;
-
-        std::cout << "\n-----------\n" ;
+    do {
+        std::cout << "\n-----------\n";
         std::cout << "  I N F O  \n";
-        std::cout << "-----------\n" ;
+        std::cout << "-----------\n";
         std::cout << "1. Check the number of flights out of an Airport (3.2)\n";
         std::cout << "2. Show the number of different destinations reachable from an Airport (3.5)\n";
         std::cout << "3. Rankings (3.8)\n";
@@ -130,7 +130,7 @@ void Menu::airportInfoMenu(Graph ap){
         std::cout << "5. Maximum possible trip (3.7)\n";
         std::cout << "6. Identify the airports that are essential to the network (3.9)\n";
         std::cout << "\n0. Return to Main Menu\n";
-        std::cout << "Enter your choice: ";
+        std::cout << "Enter your choice:  ";
         std::cin >> choice;
         std::cout << std::endl;
 
@@ -169,7 +169,7 @@ void Menu::airportInfoMenu(Graph ap){
             default:
                 std::cout << "Invalid choice. Please try again.\n";
         }
-
+    } while (choice!=7);
 }
 
 void Menu::statsMenu(Graph ap){
@@ -182,7 +182,7 @@ void Menu::statsMenu(Graph ap){
         std::cout << "2. Check flyable countries from a city (3.4)\n";
         std::cout << "3. Check flyable countries from an Airport (3.4)\n";
         std::cout << "\n0. Return to Main Menu\n";
-        std::cout << "Enter your choice: ";
+        std::cout << "Enter your choice:  ";
         std::cin >> choice;
         std::cout << std::endl;
 
@@ -354,7 +354,7 @@ void Menu::ranking(Graph ap) {
 
     for (const Vertex *vertex: ap.getVertexSet()) {
         const std::vector<Edge> &adjEdges = vertex->getAdj();
-        int numFlights = (adjEdges.size());
+        int numFlights = (adjEdges.size())+vertex->getIndegree().size();
         airportFlights.emplace_back(vertex->getAirport().getCode(), numFlights);   // populationg the vector
     }
 

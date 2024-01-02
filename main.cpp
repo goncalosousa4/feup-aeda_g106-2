@@ -9,18 +9,16 @@
 int main() {
     Graph Airport;
 
-    std::cout << "\nPLEASE WAIT WHILE WE TAKE OFF\n\n";
+    std::cout << "\nPLEASE WAIT WHILE WE TAKE OFF...\n";
+    std::cout << "IT SHOULDN'T TAKE MUCH LONGER\n\n\n";
 
     Loader::loadAirports(Airport, "../dataset/airports.csv");
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(2500));
-
-    std::cout << "IT SHOULDN'T TAKE MUCH LONGER\n\n\n";
 
     Loader::loadFlights(Airport, "../dataset/flights.csv");
 
-    std::cout << "FASTEN YOUR SEATBELTS, HERE WE GO\n\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+    std::cout << "FASTEN YOUR SEATBELTS, HERE WE GO!\n\n\n";
+
 
 
     std::cout << " ___________________________________________________\n";
