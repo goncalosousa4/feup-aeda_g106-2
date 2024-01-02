@@ -232,17 +232,21 @@ std::string Menu::uniformizer(std::string input){
 
 
 void Menu::flightsPerCityPerAirline(Graph ap) {
-    std::string city;
+    std::string city, country;
     std::cout << "Enter the city: ";
     std::cin.ignore();
     std::getline(std::cin, city);
     city = uniformizer(city);
     std::cout << std::endl;
+    std::cout << "Enter the city's country: ";
+    std::cin >> country;
+    country = uniformizer(country);
+    std::cout << std::endl;
     int num = 0, count = 0;
     std::unordered_map<std::string, int> flightsPerAirline;
 
     for (const auto& vertex : ap.getVertexSet()) {
-        if (vertex->getAirport().getCity() == city) {
+        if (vertex->getAirport().getCity() == city && vertex->getAirport().getCountry()==country) {
             count++;
             for (const Edge& edge : vertex->getAdj()) {
                 std::string airline = edge.getAirline();
@@ -255,7 +259,7 @@ void Menu::flightsPerCityPerAirline(Graph ap) {
     if (count==0){
         std::cout <<"City " << city << " not found. Please enter a valid city\n";
     }else{
-        std::cout << "The number of flights from " << city << " is " << num << std::endl;
+        std::cout << "The number of flights from " << city << " (" << country <<") is " << num << std::endl;
         std::cout << city << " has " << flightsPerAirline.size() << " airlines available\n";
         std::cout << "\nNumber of flights from " << city << " per airline:" << std::endl;
         for (const auto& entry : flightsPerAirline) {
